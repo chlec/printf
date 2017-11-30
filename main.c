@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/30 16:43:57 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:50:43 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		ft_printf(const char *format, ...)
 		{
 			flag = get_flag((char*)&format[i]);
 			//need to find a way to replace char* below by the appropriate type
-			result = ft_replaceflag(result, flag, va_arg(arg, char*));
+			result = ft_replaceflag(result, flag, va_arg(arg, void*));
 		}
 		i++;
 	}
@@ -101,6 +101,6 @@ int		ft_printf(const char *format, ...)
 
 int		main(void)
 {
-	ft_printf("%s, %s    kdkdk %s ?\n", "salUt", "ca", 4);
+	ft_printf("%s, %s %s ?\n", "salUt", "ca", "va");
 	return (0);
 }
