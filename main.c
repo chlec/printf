@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/30 15:53:21 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:43:57 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ char	*get_flag(char *str)
 	return (ret);
 }
 
-char	*ft_replaceflag(char *dest, char *flag, char *content)
+char	*ft_replaceflag(char *dest, char *flag, void *content)
 {
-	int		i;
 	char	*after_flag;
-	char	*ret;
 	char	*temp;
 
 	if (!(after_flag = ft_strstr(dest, flag)))
@@ -66,7 +64,7 @@ char	*ft_replaceflag(char *dest, char *flag, char *content)
 	//adding the first part without flag and the part after the flag
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
 	//putting content
-	ft_strcat(temp, content);
+	ft_strcat(temp, (char*)content);
 	//then putting the rest
 	ft_strcat(temp, after_flag);
 	dest = temp;
@@ -80,6 +78,8 @@ int		ft_printf(const char *format, ...)
 	char		*flag;
 	char		*result;
 
+	if (!format)
+		return (0);
 	i = 0;
 	result = (char*)format;
 	va_start(arg, format);
@@ -95,12 +95,12 @@ int		ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(arg);
-	printf("RESULT: %s\n", result);
+	ft_putstr(result);
 	return (0);
 }
 
 int		main(void)
 {
-	ft_printf("%s, %s %s?", "Salut", "ca", "va");
+	ft_printf("%s, %s    kdkdk %s ?\n", "salUt", "ca", 4);
 	return (0);
 }
