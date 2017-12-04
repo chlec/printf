@@ -97,7 +97,7 @@ int		main(void)
 {
 	int e = 7;
 
-	ft_printf("%s, %p %o %u ?\n", "sàlUt", &e, 48964, 17u);
-	printf("%s, %p %o %u ?\n", "sàlUt", &e, 48964, 17u);
+	ft_printf("%s, %p %X %u ?\n", "sàlUt", &e, 48964, 17u);
+	printf("%s, %p %#x %u ?\n", "sàlUt", &e, 48964, 17u);
 	return (0);
 }
