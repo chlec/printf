@@ -19,6 +19,8 @@ char	*ft_strrev(char *str)
 	int		i;
 	char	temp;
 
+	if (!str)
+		return (0);
 	len = 0;
 	while (str[len])
 		len++;

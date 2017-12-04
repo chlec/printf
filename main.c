@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft.h"
 #include "ft_printf.h"
 
 size_t	arg_len(char *str)
@@ -35,37 +33,34 @@ char	*get_flag(char *str)
 	char	*ret;
 	char	*flags;
 
-	flags = "sSpdDioOuUxXcC";
-	i = 0;
+	flags = "sSpdDioOuUxXcC%";
+	i = 1;
 	while (str[i])
 	{
-		if (ft_strchr(flags, str[i]))
+		if (ft_strchr(flags, str[i]) || str[i + 1] == ' ')
 		{
 			ret = ft_strndup(str, i + 1);
 			return (ret);
 		}
 		i++;
 	}
-	ret = ft_strndup(str, i);
+	ret = ft_strdup(str);
 	return (ret);
 }
 
-char	*ft_replaceflag(char *dest, char *flag, void *content)
+char	*replacestr(char *dest, char *flag, void *content)
 {
 	char	*after_flag;
 	char	*temp;
 
 	if (!(after_flag = ft_strstr(dest, flag)))
 		return (dest);
-	//simply get the string just after the flag
 	after_flag = &after_flag[ft_strlen(flag)];
-	if (!(temp = (char*)malloc(sizeof(char) * ((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1))))
+	if (!(temp = (char*)malloc(sizeof(char) *
+		((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1))))
 		return (0);
-	//adding the first part without flag and the part after the flag
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
-	//putting content
 	ft_strcat(temp, (char*)content);
-	//then putting the rest
 	ft_strcat(temp, after_flag);
 	dest = temp;
 	return (dest);
@@ -73,34 +68,34 @@ char	*ft_replaceflag(char *dest, char *flag, void *content)
 
 int		ft_printf(const char *format, ...)
 {
-	va_list		arg;
+	va_list		args;
 	int			i;
 	char		*flag;
-	char		*result;
+	char		*conversion;
 
 	if (!format)
 		return (0);
 	i = 0;
-	result = (char*)format;
-	va_start(arg, format);
-	//get next flag
+	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			flag = get_flag((char*)&format[i]);
-			//need to find a way to replace char* below by the appropriate type
-			result = ft_replaceflag(result, flag, va_arg(arg, void*));
+			conversion = handle_flags(flag, &args);
+			if (conversion)
+				format = replacestr((char*)format, flag, conversion);
 		}
 		i++;
 	}
-	va_end(arg);
-	ft_putstr(result);
+	va_end(args);
+	ft_putstr(format);
 	return (0);
 }
 
 int		main(void)
 {
-	ft_printf("%s, %s %s ?\n", "salUt", "ca", "va");
+	ft_printf("%s, %x %X ?\n", "salUt", 487, 487);
+	ft_printf("%%%%%%%%%%%%%%%%%% ?\n", "salUt", 487, "va");
 	return (0);
 }

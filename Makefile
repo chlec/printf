@@ -14,13 +14,13 @@ NAME = test
 
 SRCS = *.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
 	make -C libft/
-	gcc $(SRCS) -c
+	gcc -Wall -Werror -Wextra $(SRCS) -c -I libft/includes
 	gcc $(OBJ) libft/libft.a -o $(NAME)
 
 clean:

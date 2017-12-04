@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strtolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/30 14:56:07 by clecalie         ###   ########.fr       */
+/*   Created: 2017/11/08 11:05:50 by clecalie          #+#    #+#             */
+/*   Updated: 2017/11/08 11:06:38 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-# include "libft.h"
+#include "includes/libft.h"
 
-int			ft_printf(const char *format, ...);
-char		*handle_flags(char *flag, va_list *args);
+char	*ft_strtolower(char *str)
+{
+	int		i;
 
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
+		i++;
+	}
+	return (str);
+}
