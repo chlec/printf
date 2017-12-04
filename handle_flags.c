@@ -24,9 +24,7 @@ static char*	char_to_str(char c)
 
 char			*handle_flags(char *flag, va_list *args)
 {
-	//LEFT: x u p o
 	char	*ret;
-	//char	*params;
 	char	flag_letter;
 
 	flag_letter = flag[ft_strlen(flag) - 1];
@@ -42,5 +40,11 @@ char			*handle_flags(char *flag, va_list *args)
 		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned int), 16));
 	else if (flag_letter == 'X')
 		ret = ft_itoa_base(va_arg(*args, unsigned int), 16);
+	else if (flag_letter == 'o')
+		ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
+	else if (flag_letter == 'u')
+		ret = ft_itoa(va_arg(*args, unsigned int));
+	else if (flag_letter == 'p')
+		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned long), 16));
 	return (ret);
 }

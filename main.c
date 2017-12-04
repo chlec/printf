@@ -95,7 +95,9 @@ int		ft_printf(const char *format, ...)
 
 int		main(void)
 {
-	ft_printf("%s, %x %X ?\n", "salUt", 487, 487);
-	ft_printf("%%%%%%%%%%%%%%%%%% ?\n", "salUt", 487, "va");
+	int e = 7;
+
+	ft_printf("%s, %p %o %u ?\n", "sàlUt", &e, 48964, 17u);
+	printf("%s, %p %o %u ?\n", "sàlUt", &e, 48964, 17u);
 	return (0);
 }
