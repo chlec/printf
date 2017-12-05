@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 13:00:10 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:12:02 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			flag = get_flag((char*)&format[i]);
-			conversion = handle_flags(flag, &args);
+			conversion = handle_conversion(flag, &args);
 			if (conversion)
 				format = replacestr((char*)format, flag, conversion);
 		}
@@ -92,12 +92,12 @@ int		ft_printf(const char *format, ...)
 	ft_putstr(format);
 	return (0);
 }
-
+/*
 int		main(void)
 {
 	int e = 7;
 
-	ft_printf("%S, %p %X %u ?\n", "sàlUt", &e, 48964, 17u);
-	printf("%S, %p %X %u ?\n", "salUt", &e, 48964, 17u);
+	ft_printf("%s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
+	printf("%-s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
 	return (0);
-}
+}*/

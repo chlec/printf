@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_ctos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 13:57:45 by clecalie         ###   ########.fr       */
+/*   Created: 2017/12/05 13:52:38 by clecalie          #+#    #+#             */
+/*   Updated: 2017/12/05 13:54:42 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-# include "libft.h"
+#include "includes/libft.h"
 
-int			ft_printf(const char *format, ...);
-char		*handle_flags(char *flag, va_list *args);
-char		*handle_conversion(char *flag, va_list *args);
-char		*replacestr(char *dest, char *flag, void *content);
-char		*add_0x(char *str);
+char	*ft_ctos(char c)
+{
+	char	*buf;
 
-#endif
+	if (!(buf = ft_strnew(1)))
+		return (0);
+	buf[0] = c;
+	return (buf);
+}

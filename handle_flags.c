@@ -6,21 +6,11 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 12:31:21 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:12:13 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static char		*char_to_str(char c)
-{
-	char	*buf;
-
-	if (!(buf = ft_strnew(1)))
-		return (0);
-	buf[0] = c;
-	return (buf);
-}
 
 char			*handle_other_flags(char *flag, va_list *args)
 {
@@ -32,14 +22,30 @@ char			*handle_other_flags(char *flag, va_list *args)
 	temp = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == 'p')
-	{
-		temp = ft_strtolower(ft_itoa_base(va_arg(*args, long int), 16));
-		if (!(ret = ft_strnew(ft_strlen(temp + 3))))
-			return (0);
-		ft_strcat(ret, "0x");
-		ft_strcat(ret, temp);
-	}
+		ret = add_0x(ft_strtolower(ft_itoa_base(va_arg(*args, long int), 16)));
 	return (ret);
+}
+
+char			*handle_conversion(char *flag, va_list *args)
+{
+	int		i;
+	char	flag_letter;
+//	char	*temp;
+
+	i = 0;
+	flag_letter = flag[ft_strlen(flag) - 1];
+	while (flag[i])
+	{
+		if (flag[i] == '#')
+		{
+			if (flag_letter == 'x')
+			{
+							
+			}
+		}
+		i++;
+	}
+	return (handle_flags(flag, args));	
 }
 
 char			*handle_flags(char *flag, va_list *args)
@@ -56,7 +62,7 @@ char			*handle_flags(char *flag, va_list *args)
 	else if (flag_letter == 's')
 		ret = va_arg(*args, char*);
 	else if (flag_letter == 'c')
-		ret = char_to_str(va_arg(*args, int));
+		ret = ft_ctos(va_arg(*args, int));
 	else if (flag_letter == 'x')
 		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned int), 16));
 	else if (flag_letter == 'X')

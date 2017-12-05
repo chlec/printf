@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:09:40 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 12:21:27 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:53:53 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 
+char			*ft_ctos(char c);
 char			*ft_strrev(char *str);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_putchar(char c);
