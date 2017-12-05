@@ -12,7 +12,9 @@
 
 NAME = libftprintf.a
 
-SRCS = *.c
+SRCS =	main.c \
+		handle_flags.c \
+		manipulation.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -22,7 +24,7 @@ $(NAME):
 	make -C libft/
 	gcc -Wall -Werror -Wextra $(SRCS) -c -I libft/includes
 	#gcc $(OBJ) libft/libft.a -o test
-	ar rc $(NAME) $(OBJ) libft/libft.a
+	ar rc $(NAME) $(OBJ) libft/libft.a libft/*.o
 
 clean:
 	make -C libft/ clean

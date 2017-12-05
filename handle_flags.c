@@ -16,10 +16,8 @@ char			*handle_other_flags(char *flag, va_list *args)
 {
 	char	*ret;
 	char	flag_letter;
-	char	*temp;
 
 	ret = 0;
-	temp = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == 'p')
 		ret = add_0x(ft_strtolower(ft_itoa_base(va_arg(*args, long int), 16)));
