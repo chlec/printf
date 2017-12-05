@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/30 16:50:43 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:00:10 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		main(void)
 {
 	int e = 7;
 
-	ft_printf("%s, %p %X %u ?\n", "sàlUt", &e, 48964, 17u);
-	printf("%s, %p %#x %u ?\n", "sàlUt", &e, 48964, 17u);
+	ft_printf("%S, %p %X %u ?\n", "sàlUt", &e, 48964, 17u);
+	printf("%S, %p %X %u ?\n", "salUt", &e, 48964, 17u);
 	return (0);
 }

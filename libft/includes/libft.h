@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:09:40 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/27 12:10:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 12:21:27 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int c);
-char			*ft_itoa_base(int n, int base);
+char			*ft_itoa_base(long int n, int base);
 void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);

@@ -6,13 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/30 16:50:43 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/05 12:31:21 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char*	char_to_str(char c)
+static char		*char_to_str(char c)
 {
 	char	*buf;
 
@@ -22,11 +22,32 @@ static char*	char_to_str(char c)
 	return (buf);
 }
 
+char			*handle_other_flags(char *flag, va_list *args)
+{
+	char	*ret;
+	char	flag_letter;
+	char	*temp;
+
+	ret = 0;
+	temp = 0;
+	flag_letter = flag[ft_strlen(flag) - 1];
+	if (flag_letter == 'p')
+	{
+		temp = ft_strtolower(ft_itoa_base(va_arg(*args, long int), 16));
+		if (!(ret = ft_strnew(ft_strlen(temp + 3))))
+			return (0);
+		ft_strcat(ret, "0x");
+		ft_strcat(ret, temp);
+	}
+	return (ret);
+}
+
 char			*handle_flags(char *flag, va_list *args)
 {
 	char	*ret;
 	char	flag_letter;
 
+	ret = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strcmp(flag, "%%") == 0)
 		ret = "%";
@@ -44,7 +65,7 @@ char			*handle_flags(char *flag, va_list *args)
 		ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	else if (flag_letter == 'u')
 		ret = ft_itoa(va_arg(*args, unsigned int));
-	else if (flag_letter == 'p')
-		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned long), 16));
+	else
+		ret = handle_other_flags(flag, args);
 	return (ret);
 }
