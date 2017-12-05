@@ -12,8 +12,11 @@
 
 #include "ft_printf.h"
 
-int		main()
+int		main(void)
 {
-	ft_printf("%d %d", 1, -2);
+	int e = 7;
+
+	ft_printf("%s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
+	printf("%s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
 	return (0);
 }

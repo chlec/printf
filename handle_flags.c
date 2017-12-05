@@ -38,7 +38,11 @@ char			*handle_conversion(char *flag, va_list *args)
 		{
 			if (flag_letter == 'x')
 			{
-							
+				/*
+					On ne peut pas modifier le flags directement dans la string.
+					L'astuce serait d'ajouter les espaces/modif au debut du ret de retour ci dessous
+					On peut le faire ici et on strcat le retour de la fonction de dessous après, a voir...
+				*/
 			}
 		}
 		i++;

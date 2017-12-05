@@ -92,12 +92,3 @@ int		ft_printf(const char *format, ...)
 	ft_putstr(format);
 	return (0);
 }
-/*
-int		main(void)
-{
-	int e = 7;
-
-	ft_printf("%s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
-	printf("%-s, %p %X %u %c?\n", "Salut", &e, 48964, 17u, '\0');
-	return (0);
-}*/

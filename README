@@ -1,1 +1,4 @@
 https://wpollock.com/CPlus/PrintfRef.htm
+
+
+make re && gcc test.c -I libft/includes libftprintf.a && ./a.out
