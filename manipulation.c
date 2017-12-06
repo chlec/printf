@@ -16,6 +16,8 @@ char	*add_begin(char *str, char *add)
 {
 	char	*ret;
 
+	if (!str || !add)
+		return (0);
 	if (!(ret = ft_strnew(ft_strlen(str) + ft_strlen(add) + 1)))
 		return (0);
 	ft_strcat(ret, add);
@@ -27,6 +29,8 @@ char	*add_end(char *str, char *add)
 {
 	char	*ret;
 
+	if (!str || !add)
+		return (0);
 	if (!(ret = ft_strnew(ft_strlen(str) + ft_strlen(add) + 1)))
 		return (0);
 	ft_strcat(ret, str);

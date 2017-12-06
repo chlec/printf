@@ -39,19 +39,16 @@ char			*handle_conversion(char *flag, va_list *args)
 	int		i;
 	char	flag_letter;
 	char	*ret;
-	char	*temp;
 	int		nb;
 
 	i = 0;
-	ret = 0;
+	ret = handle_flags(flag, args);
 	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[i])
 	{
-		printf("FLAG IS %s\n", flag);
 		if (flag[i] == '-')
 		{
 			nb = ft_atoi(&flag[i + 1]);
-			ret = handle_flags(flag, args);
 			while (ft_strlen(ret) < (size_t)(nb))
 				ret = add_end(ret, " ");
 			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
@@ -60,7 +57,6 @@ char			*handle_conversion(char *flag, va_list *args)
 		else if (ft_isdigit(flag[i]) && flag[i] != '0')
 		{
 			nb = ft_atoi(&flag[i]);
-			ret = handle_flags(flag, args);
 			while (ft_strlen(ret) < (size_t)nb)
 				ret = add_begin(ret, " ");
 			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
@@ -69,18 +65,18 @@ char			*handle_conversion(char *flag, va_list *args)
 		else if (flag[i] == '#')
 		{
 			if (flag_letter == 'x')
-				ret = add_begin(ft_strtolower(handle_flags(flag, args)), "0x");
+				ret = add_begin(ft_strtolower(ret), "0x");
 			else if (flag_letter == 'X')
-				ret = add_begin(handle_flags(flag, args), "0X");
+				ret = add_begin(ret, "0X");
 			else if (flag_letter == 'o')
-				ret = add_begin(handle_flags(flag, args), "0");
+				ret = add_begin(ret, "0");
 			flag = replacestr(flag, "#", "");
 			i = -1;
 		}
 		else if (flag[i] == '+')
 		{
-			if (ft_strchr("id", flag_letter) && ft_atoi((ret = handle_flags(flag, args))) >= 0)
-				ret = add_begin(temp, "+");
+			if (ft_strchr("id", flag_letter) && ft_atoi(ret) >= 0)
+				ret = add_begin(ret, "+");
 			flag = replacestr(flag, "+", "");
 			flag = replacestr(flag, get_0_param(&flag[i]), ""); 
 			i = -1;
@@ -92,7 +88,6 @@ char			*handle_conversion(char *flag, va_list *args)
 		else if (flag[i] == '0' && !ft_strchr(flag, '-'))
 		{
 			nb = ft_atoi(&flag[i + 1]);
-			ret = handle_flags(flag, args);
 			while (ft_strlen(ret) < (size_t)nb)
 				ret = add_begin(ret, "0");
 			flag = replacestr(flag, get_0_param(&flag[i]), "");
@@ -100,9 +95,7 @@ char			*handle_conversion(char *flag, va_list *args)
 		}
 		i++;
 	}
-	if (ret)
-		return (ret);
-	return (handle_flags(flag, args));	
+	return (ret);
 }
 
 char			*handle_flags(char *flag, va_list *args)

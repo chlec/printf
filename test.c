@@ -16,7 +16,7 @@ int		main(void)
 {
 	int e = 7;
 
-	ft_printf("%5s %7#X\n", "haha", 894);
-	printf("%5s %7#X\n", "haha", 894);
+	ft_printf("%5s %#7X\n", "haha", 894);
+	printf("%5s %#7X\n", "haha", 894);
 	return (0);
 }
