@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 13:57:45 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:40:40 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			ft_printf(const char *format, ...);
 char		*handle_flags(char *flag, va_list *args);
 char		*handle_conversion(char *flag, va_list *args);
 char		*replacestr(char *dest, char *flag, void *content);
-char		*add_0x(char *str);
+char		*add_begin(char *str, char *add);
+char		*get_flag(char *str);
 
 #endif

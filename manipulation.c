@@ -6,19 +6,19 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:56:47 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 13:59:29 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/06 10:54:52 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*add_0x(char *str)
+char	*add_begin(char *str, char *add)
 {
 	char	*ret;
 
-	if (!(ret = ft_strnew(ft_strlen(str + 3))))
+	if (!(ret = ft_strnew(ft_strlen(str) + ft_strlen(add) + 1)))
 		return (0);
-	ft_strcat(ret, "0x");
+	ft_strcat(ret, add);
 	ft_strcat(ret, str);
 	return (ret);
 }
