@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/06 11:55:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/06 12:53:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,26 @@ char			*handle_conversion(char *flag, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[i])
 	{
-		if (flag[i] == '#')
+		printf("FLAG IS %s\n", flag);
+		if (flag[i] == '-')
+		{
+			nb = ft_atoi(&flag[i + 1]);
+			ret = handle_flags(flag, args);
+			while (ft_strlen(ret) < (size_t)(nb))
+				ret = add_end(ret, " ");
+			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
+			i = -1;
+		}
+		else if (ft_isdigit(flag[i]) && flag[i] != '0')
+		{
+			nb = ft_atoi(&flag[i]);
+			ret = handle_flags(flag, args);
+			while (ft_strlen(ret) < (size_t)nb)
+				ret = add_begin(ret, " ");
+			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
+			i = -1;
+		}
+		else if (flag[i] == '#')
 		{
 			if (flag_letter == 'x')
 				ret = add_begin(ft_strtolower(handle_flags(flag, args)), "0x");
@@ -55,16 +74,21 @@ char			*handle_conversion(char *flag, va_list *args)
 				ret = add_begin(handle_flags(flag, args), "0X");
 			else if (flag_letter == 'o')
 				ret = add_begin(handle_flags(flag, args), "0");
+			flag = replacestr(flag, "#", "");
+			i = -1;
 		}
 		else if (flag[i] == '+')
 		{
-			if (ft_strchr("id", flag_letter) && ft_atoi((temp = handle_flags(flag, args))) >= 0)
+			if (ft_strchr("id", flag_letter) && ft_atoi((ret = handle_flags(flag, args))) >= 0)
 				ret = add_begin(temp, "+");
+			flag = replacestr(flag, "+", "");
+			flag = replacestr(flag, get_0_param(&flag[i]), ""); 
+			i = -1;
 		}
 		else if (flag[i] == ' ' && !ft_strchr(flag, '+'))
 		{
 			
-		}
+		}	
 		else if (flag[i] == '0' && !ft_strchr(flag, '-'))
 		{
 			nb = ft_atoi(&flag[i + 1]);
@@ -72,6 +96,7 @@ char			*handle_conversion(char *flag, va_list *args)
 			while (ft_strlen(ret) < (size_t)nb)
 				ret = add_begin(ret, "0");
 			flag = replacestr(flag, get_0_param(&flag[i]), "");
+			i = -1;
 		}
 		i++;
 	}
