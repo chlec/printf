@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/06 12:51:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:18:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(void)
 {
 	int e = 7;
 
-	ft_printf("%5s %#7X\n", "haha", 894);
-	printf("%5s %#7X\n", "haha", 894);
+	printf("%d\n", ft_printf("%-5 s%s |% +d| %#-15X\n", "haha", "bb", -4, &e));
+   	printf("%d\n",    printf("%-5 s%s |% +d| %#-15X\n", "haha", "bb", -4, &e)); 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 14:12:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/06 16:56:35 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_flag(char *str)
 	i = 1;
 	while (str[i])
 	{
-		if (ft_strchr(flags, str[i]) || str[i + 1] == ' ')
+		if (ft_strchr(flags, str[i])) //|| str[i + 1] == ' ')
 		{
 			ret = ft_strndup(str, i + 1);
 			return (ret);
@@ -90,5 +90,5 @@ int		ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	ft_putstr(format);
-	return (0);
+	return (ft_strlen(format));
 }
