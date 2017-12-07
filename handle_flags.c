@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/07 15:54:59 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:26:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char			*handle_conversion(char *flag, char *ret)
 	temp = 0;
 	deleted = " ";
 	flag_letter = flag[ft_strlen(flag) - 1];
+	printf("Debut flag is %s | The ret is: %s\n", flag, ret);
 	while (flag[++i])
 		if (flag[i] == '#')
 		{
@@ -68,10 +69,25 @@ char			*handle_conversion(char *flag, char *ret)
 			while (ft_strchr(flag, '#'))
 				flag = replacestr(flag, "#", "");
 			deleted = add_begin(deleted, "#");
+			return (handle_conversion(flag, ret));
+		}
+	i = -1;
+	while (flag[++i])
+		if (flag[i] == '-')
+		{
+			nb = ft_atoi(&flag[i + 1]);
+			while (ft_strlen(ret) < (size_t)(nb))
+				ret = add_end(ret, " ");	
+			if (ft_isdigit(flag[i + 1]))
+				flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
+			else
+				flag = replacestr(flag, "-", "");
+			deleted = add_begin(deleted, "-");
+			return (handle_conversion(flag, ret));
 		}
 	i = -1;
 	while (flag[++i])	
-		if (flag[i] == '0')
+		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
 		{
 			if ((!ft_strchr(flag, '-') && !ft_strchr(deleted, '-')))
 			{
@@ -98,20 +114,6 @@ char			*handle_conversion(char *flag, char *ret)
 		}
 	i = -1;
 	while (flag[++i])
-		if (flag[i] == '-')
-		{
-			nb = ft_atoi(&flag[i + 1]);
-			while (ft_strlen(ret) < (size_t)(nb))
-				ret = add_end(ret, " ");	
-			if (ft_isdigit(flag[i + 1]))
-				flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
-			else
-				flag = replacestr(flag, "-", "");
-			deleted = add_begin(deleted, "-");
-			return (handle_conversion(flag, ret));
-		}
-	i = -1;
-	while (flag[++i])
 		if (ft_isdigit(flag[i]) && flag[i] != '0')
 		{
 			if (!ft_strchr(flag, '-') && !ft_strchr(deleted, '-'))
@@ -121,6 +123,7 @@ char			*handle_conversion(char *flag, char *ret)
 					ret = add_begin(ret, " ");
 			}
 			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), "");
+			return (handle_conversion(flag, ret));
 		}
 	i = -1;
 	while (flag[++i])
@@ -129,7 +132,7 @@ char			*handle_conversion(char *flag, char *ret)
 			if (ft_strchr("id", flag_letter) && ft_atoi(ret) >= 0)
 				ret = add_begin(ret, "+");
 			flag = replacestr(flag, "+", "");
-			flag = replacestr(flag, get_0_param(&flag[i]), "");
+			//flag = replacestr(flag, get_0_param(&flag[i]), "");
 			flag = replacestr(flag, " ", "");
 			deleted = add_begin(deleted, "+");
 			return (handle_conversion(flag, ret));

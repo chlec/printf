@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/07 15:54:47 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:10:26 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,17 @@ int		ft_printf(const char *format, ...)
 			ret = handle_flags(flag, &args);
 			conversion = handle_conversion(flag, ret);
 //			if (flag[ft_strlen(flag) - 1] != 'S')
-				ft_putstr(conversion);
+			//	ft_putstr(conversion);
 //			else
 //				;
 			format = replacestr((char*)format, flag, conversion);
-			i += ft_strlen(conversion) - 1;
+			//i += ft_strlen(conversion) - 1;
 		}
-		else
-			ft_putchar(format[i]);
+	//	else
+	//		ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
-	//ft_putstr(format);
+	ft_putstr(format);
 	return (ft_strlen(format));
 }
