@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2017/11/09 14:39:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/07 15:42:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	ft_putstr(char const *str)
 {
 	int		i;
-
+	
+	if (!str)
+		return ;
 	i = 0;
 	while (str[i])
 	{
