@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/08 10:18:56 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/08 11:45:02 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(void)
 {
 	setlocale(LC_ALL, "");
 	int e = 7;
-	ft_printf("%s %-5 s% s |%022+d| %20#X\n", "test","haha", "bb", -4, &e);
-	   printf("%s %-5 s% s |%022+d| %20#X\n", "test","haha", "bb", -4, &e);	   
+	ft_printf("%S %-5 s% s |%022+d| %20#X\n", L"teሴst","haha", "bb", -4, &e);
+	   printf("%S %-5 s% s |%022+d| %20#X\n", L"teሴst","haha", "bb", -4, &e);
 	return (0);
 }

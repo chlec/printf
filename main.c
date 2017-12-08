@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/08 09:22:39 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/08 11:10:25 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ char	*replacestr(char *dest, char *flag, char *content)
 		return (dest);
 	after_flag = &after_flag[ft_strlen(flag)];
 	if (!(temp = (char*)malloc(sizeof(char) *
-		((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1))))
+					((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1))))
 		return (0);
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
 	if (content)
 		ft_strcat(temp, content);
-	else
+	else if (flag[ft_strlen(flag) - 1] == 's')
 		ft_strcat(temp, "(null)");
 	ft_strcat(temp, after_flag);
 	dest = temp;
@@ -81,6 +81,7 @@ int		ft_printf(const char *format, ...)
 	if (!format)
 		return (0);
 	i = 0;
+	flag = 0;
 	va_start(args, format);
 	while (format[i])
 	{
