@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/06 15:29:22 by clecalie         ###   ########.fr        #
+#    Updated: 2017/12/08 09:35:08 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libftprintf.a
 
 SRCS =	main.c \
 		handle_flags.c \
-		manipulation.c
+		manipulation.c \
+		flag_format.c
 
 OBJ = $(SRCS:.c=.o)
 
