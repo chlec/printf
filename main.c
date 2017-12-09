@@ -12,6 +12,30 @@
 
 #include "ft_printf.h"
 
+int		get_index(const char *haystack, const char *needle)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	if (!needle[0])
+		return (0);
+	while (haystack[i])
+	{
+		j = 0;
+		while (haystack[i] && needle[j] && haystack[i] == needle[j])
+		{
+			i++;
+			j++;
+		}
+		if (!needle[j])
+			return (i - j);
+		i -= j;
+		i++;
+	}
+	return (0);
+}
+
 size_t	arg_len(char *str)
 {
 	int		i;
@@ -73,9 +97,11 @@ int		ft_printf(const char *format, ...)
 {
 	va_list		args;
 	int			i;
+	int			j;
 	char		*flag;
 	char		*conversion;
 	char		*ret;
+	int			idx;
 
 	setlocale(LC_ALL, "");
 	if (!format)
@@ -90,11 +116,28 @@ int		ft_printf(const char *format, ...)
 			flag = get_flag((char*)&format[i]);
 			ret = handle_flags(flag, &args);
 			conversion = handle_conversion(flag, ret);
-			if (flag[ft_strlen(flag) - 1] != 'S')
-				ft_putstr(conversion);
-			else
-				;
 			format = replacestr((char*)format, flag, conversion);
+			if (flag[ft_strlen(flag) - 1] == 'S')
+			{
+				/*
+					Maintent recuperer le contenu du wchar et l'afficher ...
+				*/
+				idx = get_index(conversion, ret);
+				j = 0;
+				while ((size_t)j < ft_strlen(conversion))
+				{
+					if (j == idx)
+					{
+						ft_wputstr(L"我是一只猫。");
+						j += ft_strlen(ret) - 1;
+					}
+					else
+						ft_putchar(conversion[j]);
+					j++;
+				}
+			}
+			else
+				ft_putstr(conversion);
 			i += ft_strlen(conversion) - 1;
 		}
 		else

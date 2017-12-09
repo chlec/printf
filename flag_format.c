@@ -39,11 +39,9 @@ char	*handle_diese(char *flag, char *ret)
 char	*handle_neg(char *flag, char *ret)
 {
 	int		i;
-	char	flag_letter;
 	int		nb;
 
 	i = -1;
-	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])
 		if (flag[i] == '-')
 		{
@@ -63,12 +61,10 @@ char	*handle_neg(char *flag, char *ret)
 char	*handle_zero(char *flag, char *ret)
 {
 	int		i;
-	char	flag_letter;
 	int		nb;
 	char	*temp;
 
 	i = -1;
-	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])	
 		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
 		{
@@ -101,11 +97,9 @@ char	*handle_zero(char *flag, char *ret)
 char	*handle_digit(char *flag, char *ret)
 {
 	int		i;
-	char	flag_letter;
 	int		nb;
 
 	i = -1;
-	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])
 		if (ft_isdigit(flag[i]) && flag[i] != '0')
 		{

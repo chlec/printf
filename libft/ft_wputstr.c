@@ -12,39 +12,58 @@
 
 #include "includes/libft.h"
 
-static void	print_size_11(wchar_t c)
+static void	print_size_11(unsigned int c)
 {
 	unsigned char	b2;
 	unsigned char	b1;
 	unsigned char	byte;
-	int				mask;
-	mask = 0xC080;
+
 	b2 = (c << 26) >> 26;
 	b1 = ((c >> 6) << 27) >> 27;
-	byte = (mask >> 8) | b1;
+	byte = (0xC080 >> 8) | b1;
 	write(1, &byte, 1);
-	byte = ((mask << 24) >> 24) | b2;
+	byte = ((0xC080 << 24) >> 24) | b2;
 	write(1, &byte, 1);
 }
 
-static void	print_size_16(wchar_t c)
+static void	print_size_16(unsigned int c)
 {
 	unsigned char	b3;
 	unsigned char	b2;
 	unsigned char	b1;
 	unsigned char	byte;
-	unsigned int	mask;
-	
-	mask = 0xE08080;
+
 	b3 = (c << 26) >> 26;
 	b2 = ((c >> 6) << 26) >> 26;
 	b1 = ((c >> 12) << 28) >> 28;
-	byte = (mask >> 16) | b1;
+	byte = (0xE08080 >> 16) | b1;
 	write(1, &byte, 1);
-	byte = ((mask << 16) >> 24) | b2;
+	byte = ((0xE08080 << 16) >> 24) | b2;
 	write(1, &byte, 1);
-	byte = ((mask << 24) >> 24) | b3;
+	byte = ((0xE08080 << 24) >> 24) | b3;
 	write(1, &byte, 1);
+}
+
+static void print_size_21(unsigned int c)
+{
+	unsigned char	b4;
+    unsigned char	b3;
+    unsigned char	b2;
+    unsigned char	b1;
+    unsigned char	byte;
+
+    b4 = (c << 26) >> 26;
+    b3 = ((c >> 6) << 26) >> 26;
+    b2 = ((c >> 12) << 26) >> 26;
+    b1 = ((c >> 18) << 29) >> 29;
+    byte = (0xF0808080 >> 24) | b1;
+    write(1, &byte, 1);
+    byte = ((0xF0808080 << 8) >> 24) | b2;
+    write(1, &byte, 1);
+    byte = ((0xF0808080 << 16) >> 24) | b3;
+    write(1, &byte, 1);
+    byte = ((0xF0808080 << 24) >> 24) | b4;
+    write(1, &byte, 1);
 }
 
 void		ft_wputstr(wchar_t *str)
@@ -65,9 +84,7 @@ void		ft_wputstr(wchar_t *str)
 		else if (c <= 0xFFFF)
 			print_size_16(c);
 		else if (c <= 0x1FFFFF)
-		{
-
-		}	
+			print_size_21(c);
 		i++;
 	}
 }

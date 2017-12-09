@@ -16,7 +16,7 @@ int		main(void)
 {
 	setlocale(LC_ALL, "");
 	int e = 7;
-	ft_printf("%S %-5 s% s |%022+d| %20#X\n", L"teሴst","haha", "bb", -4, &e);
-	   printf("%S %-5 s% s |%022+d| %20#X\n", L"teሴst","haha", "bb", -4, &e);
+	printf("%d\n", ft_printf("%24S %-5s%s |%022d| %#20X\n", L"我是一只猫。","haha", "bb", -4, &e));
+	printf("%d\n",    printf("%24S %-5s%s |%022d| %#20X\n", L"我是一只猫。","haha", "bb", -4, &e));
 	return (0);
 }

@@ -12,13 +12,38 @@
 
 #include "ft_printf.h"
 
+size_t		wstrlen(wchar_t *s)
+{
+	int				i;
+	unsigned int	c;
+	size_t			count;
+
+	i = 0;
+	c = 0;
+	count = 0;
+	while (s[i])
+	{
+		c = s[i];
+		if (c <= 0x7F)
+			count++;
+		else if (c <= 0x7FF)
+			count += 2;
+		else if (c <= 0xFFFF)
+			count += 3;
+		else if (c <= 0x1FFFFF)
+			count += 4;
+		i++;
+	}
+	return (count);
+}
+
 char			*handle_other_flags(char *flag, va_list *args)
 {
 	char	*ret;
 	wchar_t	*ret_w;
 	char	flag_letter;
 
-	ret = 0;
+	ret = "";
 	ret_w = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == 'p')
@@ -26,8 +51,9 @@ char			*handle_other_flags(char *flag, va_list *args)
 	else if (flag_letter == 'S')
 	{
 		ret_w = va_arg(*args, wchar_t*);
-	   	ft_wputstr(ret_w);
-		ret = "";	
+	  // 	ft_wputstr(ret_w);
+	   	while (ft_strlen(ret) < wstrlen(ret_w))
+			ret = add_begin(ret, "c");	
 	}
 	return (ret);
 }
@@ -44,15 +70,15 @@ char	*get_0_param(char *str)
 
 char			*handle_conversion(char *flag, char *ret)
 {
-	char	flag_letter;
-	char	*deleted;
+	/*char	flag_letter;
+	char	*deleted;*/
 	char	*rep;
 
 	if (!ret)
 		return (0);
 	rep = 0;
-	deleted = " ";
-	flag_letter = flag[ft_strlen(flag) - 1];
+	/*deleted = " ";
+	flag_letter = flag[ft_strlen(flag) - 1];*/
 	if (ft_strcmp(flag, "%%") == 0)
 		return (ret);	
 	if ((rep = handle_diese(flag, ret)))
