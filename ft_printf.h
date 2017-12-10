@@ -31,6 +31,7 @@ char		*handle_zero(char *flag, char *ret);
 char		*handle_digit(char *flag, char *ret);
 char		*handle_plus(char *flag, char *ret);
 char		*handle_space(char *flag, char *ret);
+char		*handle_precision(char *flag, char *ret);
 char		*get_0_param(char *str);
 
 #endif

@@ -119,16 +119,17 @@ int		ft_printf(const char *format, ...)
 			format = replacestr((char*)format, flag, conversion);
 			if (flag[ft_strlen(flag) - 1] == 'S')
 			{
-				/*
-					Maintent recuperer le contenu du wchar et l'afficher ...
-				*/
 				idx = get_index(conversion, ret);
 				j = 0;
 				while ((size_t)j < ft_strlen(conversion))
 				{
 					if (j == idx)
 					{
-						ft_wputstr(L"我是一只猫。");
+						/*
+							Maintent recuperer le contenu du wchar et l'afficher ...
+						*/
+						ft_putstr(ret);
+						//ft_wputstr(L"我是一只猫。");
 						j += ft_strlen(ret) - 1;
 					}
 					else

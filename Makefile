@@ -15,7 +15,8 @@ NAME = libftprintf.a
 SRCS =	main.c \
 		handle_flags.c \
 		manipulation.c \
-		flag_format.c
+		flag_format.c \
+		precision.c
 
 OBJ = $(SRCS:.c=.o)
 

@@ -52,6 +52,7 @@ char			*handle_other_flags(char *flag, va_list *args)
 	{
 		ret_w = va_arg(*args, wchar_t*);
 	  // 	ft_wputstr(ret_w);
+		// ON TEJ LE C! on crée une fct qui recuperer les codes ascii unsigned des char, stockes dans une string separer par des /
 	   	while (ft_strlen(ret) < wstrlen(ret_w))
 			ret = add_begin(ret, "c");	
 	}
@@ -70,15 +71,11 @@ char	*get_0_param(char *str)
 
 char			*handle_conversion(char *flag, char *ret)
 {
-	/*char	flag_letter;
-	char	*deleted;*/
 	char	*rep;
 
 	if (!ret)
 		return (0);
 	rep = 0;
-	/*deleted = " ";
-	flag_letter = flag[ft_strlen(flag) - 1];*/
 	if (ft_strcmp(flag, "%%") == 0)
 		return (ret);	
 	if ((rep = handle_diese(flag, ret)))
@@ -93,6 +90,8 @@ char			*handle_conversion(char *flag, char *ret)
 		return (rep);
 	else if ((rep = handle_space(flag, ret)))
 		return (rep);
+	else if ((rep = handle_precision(flag, ret)))
+		return (rep);
 	return (ret);
 }
 
@@ -105,8 +104,6 @@ char			*handle_flags(char *flag, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strcmp(flag, "%%") == 0)
 		ret = "%";
-	else if (ft_strcmp(flag, "%") == 0)
-		ret = "";
 	else if (flag_letter == 'd' || flag_letter == 'i')
 		ret = ft_itoa(va_arg(*args, int));
 	else if (flag_letter == 's')

@@ -15,8 +15,20 @@
 int		main(void)
 {
 	setlocale(LC_ALL, "");
+	//simple test
+	char *s = "225/136/180";
+	char **split = ft_strsplit(s, '/');
+	int		i;
+	i = 0;
+	unsigned char nb;
+	while (split[i]) {
+		nb = (unsigned char)ft_atoi(split[i]);
+		write(1, &nb, 1);
+		i++;
+	}
+	//end
 	int e = 7;
-	printf("%d\n", ft_printf("%24S %-5s%s |%022d| %#20X\n", L"我是一只猫。","haha", "bb", -4, &e));
-	printf("%d\n",    printf("%24S %-5s%s |%022d| %#20X\n", L"我是一只猫。","haha", "bb", -4, &e));
+	printf("%d\n", ft_printf("%24S %-5s%s |%6.4d| %#20X\n", L"我是一只猫。","haha", "bb", 17, &e));
+	printf("%d\n",    printf("%24S %-5s%s |%6.4d| %#20X\n", L"我是一只猫。","haha", "bb", 17, &e));
 	return (0);
 }

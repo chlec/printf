@@ -101,7 +101,7 @@ char	*handle_digit(char *flag, char *ret)
 
 	i = -1;
 	while (flag[++i])
-		if (ft_isdigit(flag[i]) && flag[i] != '0')
+		if (ft_isdigit(flag[i]) && flag[i] != '0' && flag[i - 1] != '.')
 		{
 			if (!ft_strchr(flag, '-')) //&& !ft_strchr(deleted, '-'))
 			{
