@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 12:02:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 14:33:53 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ char			*handle_conversion(char *flag, char *ret)
 		return (ret);	
 	if ((rep = handle_diese(flag, ret)))
 		return (rep);
-	else if ((rep = handle_neg(flag, ret)))
-		return (rep);
 	else if ((rep = handle_precision(flag, ret)))
+		return (rep);
+	else if ((rep = handle_neg(flag, ret)))
 		return (rep);
 	else if ((rep = handle_zero(flag, ret)))
 		return (rep);

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 11:08:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 14:40:32 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*handle_zero(char *flag, char *ret)
 	while (flag[++i])	
 		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
 		{
-			if ((!ft_strchr(flag, '-'))) //&& !ft_strchr(deleted, '-')))
+			if ((!ft_strchr(flag, '-')) && !ft_strchr(flag, '.')) //&& !ft_strchr(deleted, '-')))
 			{
 				nb = ft_atoi(&flag[i + 1]);
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)

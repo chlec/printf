@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 12:13:26 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 13:10:21 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,22 +104,33 @@ int		ft_printf(const char *format, ...)
 	char		*ret;
 	int			idx;
 	unsigned char			nb;
+	char			*temp;
+	char			*temp2;
+	char			flag_letter;
 
 	setlocale(LC_ALL, "");
 	if (!format)
 		return (0);
 	i = 0;
 	flag = 0;
+	temp = 0;
 	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			flag = get_flag((char*)&format[i]);
+			flag_letter = flag[ft_strlen(flag) - 1];
 			ret = handle_flags(flag, &args);
-			conversion = handle_conversion(flag, ret);
+			if (flag_letter == 'S')
+			{
+				temp = ft_strdup(ret);
+				ret = ft_strndup(ret, ft_strlen(ret) / 3);
+				temp2 = ft_strdup(ret);
+			}
+			conversion = handle_conversion(flag, ret);	
 			format = replacestr((char*)format, flag, conversion);
-			if (flag[ft_strlen(flag) - 1] == 'S')
+			if (flag_letter == 'S')
 			{
 				idx = get_index(conversion, ret);
 				j = 0;
@@ -128,16 +139,15 @@ int		ft_printf(const char *format, ...)
 					if (j == idx)
 					{
 						h = 0;
-						while (ret[h])
+						while (temp[h])
 						{
 							if (h % 3 == 0)
 							{
-								nb = (unsigned char)ft_atoi(ft_strndup(&ret[h], 3));
+								nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
 								write(1, &nb, 1);
 							}
 							h++;
-						}
-						ft_putstr(ret);
+						}	
 						j += ft_strlen(ret) - 1;
 					}
 					else
@@ -154,6 +164,5 @@ int		ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	//ft_putstr(format);
 	return (ft_strlen(format));
 }
