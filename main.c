@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/08 11:10:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 12:13:26 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,12 @@ int		ft_printf(const char *format, ...)
 	va_list		args;
 	int			i;
 	int			j;
+	int			h;
 	char		*flag;
 	char		*conversion;
 	char		*ret;
 	int			idx;
+	unsigned char			nb;
 
 	setlocale(LC_ALL, "");
 	if (!format)
@@ -125,11 +127,17 @@ int		ft_printf(const char *format, ...)
 				{
 					if (j == idx)
 					{
-						/*
-							Maintent recuperer le contenu du wchar et l'afficher ...
-						*/
+						h = 0;
+						while (ret[h])
+						{
+							if (h % 3 == 0)
+							{
+								nb = (unsigned char)ft_atoi(ft_strndup(&ret[h], 3));
+								write(1, &nb, 1);
+							}
+							h++;
+						}
 						ft_putstr(ret);
-						//ft_wputstr(L"我是一只猫。");
 						j += ft_strlen(ret) - 1;
 					}
 					else

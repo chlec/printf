@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/08 11:08:06 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 12:02:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ char			*handle_other_flags(char *flag, va_list *args)
 	else if (flag_letter == 'S')
 	{
 		ret_w = va_arg(*args, wchar_t*);
-	  // 	ft_wputstr(ret_w);
+	   	ret = ft_wputstr(ret_w);
 		// ON TEJ LE C! on crée une fct qui recuperer les codes ascii unsigned des char, stockes dans une string separer par des /
-	   	while (ft_strlen(ret) < wstrlen(ret_w))
-			ret = add_begin(ret, "c");	
+	   	//while (ft_strlen(ret) < wstrlen(ret_w))
+		//	ret = add_begin(ret, "c");	
 	}
 	return (ret);
 }
@@ -82,6 +82,8 @@ char			*handle_conversion(char *flag, char *ret)
 		return (rep);
 	else if ((rep = handle_neg(flag, ret)))
 		return (rep);
+	else if ((rep = handle_precision(flag, ret)))
+		return (rep);
 	else if ((rep = handle_zero(flag, ret)))
 		return (rep);
 	else if ((rep = handle_digit(flag, ret)))
@@ -89,8 +91,6 @@ char			*handle_conversion(char *flag, char *ret)
 	else if ((rep = handle_plus(flag, ret)))
 		return (rep);
 	else if ((rep = handle_space(flag, ret)))
-		return (rep);
-	else if ((rep = handle_precision(flag, ret)))
 		return (rep);
 	return (ret);
 }

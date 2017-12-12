@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/08 09:35:08 by clecalie         ###   ########.fr        #
+#    Updated: 2017/12/12 12:05:22 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,12 @@ SRCS =	main.c \
 		handle_flags.c \
 		manipulation.c \
 		flag_format.c \
-		precision.c
+		precision.c \
+		ft_wputstr.c
 
 OBJ = $(SRCS:.c=.o)
+
+FLAGS = #-Wall -Werror -Wextra 
 
 all: $(NAME)
 
@@ -28,7 +31,7 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ) libft/libft.a libft/*.o
 
 %.o: %.c
-	gcc -c $< -Werror -Wextra -Wall -I libft/includes
+	gcc -c $< $(FLAGS) -I libft/includes
 
 clean:
 	make -C libft/ clean

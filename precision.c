@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/08 11:45:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 11:23:01 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*handle_precision(char *flag, char *ret)
 	char	*temp;
 
 	i = -1;
-	temp = 0;
+	temp = "";
 	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])
 		if (flag[i] == '.')
@@ -30,16 +30,14 @@ char	*handle_precision(char *flag, char *ret)
 			{
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)
 				{
-					temp = "0x";
+					temp = add_begin(temp, "0x");
 					ret = &ret[2];
 				}
 				else if (ft_strchr(ret, '-'))
 				{
-					temp = "-";
+					temp = add_begin(temp, "-");
 					ret = &ret[1];
 				}
-				else
-					temp = "";
 				ret = ft_itoa(ft_atoi(ret));
 				while (ft_strlen(ret) < (size_t)nb)
 					ret = add_begin(ret, "0");
