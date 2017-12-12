@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 13:10:21 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:40:09 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ int		ft_printf(const char *format, ...)
 			flag = get_flag((char*)&format[i]);
 			flag_letter = flag[ft_strlen(flag) - 1];
 			ret = handle_flags(flag, &args);
+			//marche pas en dessous
+			if (ret == NULL && flag_letter == 'c')
+				ft_putchar(0);
 			if (flag_letter == 'S')
 			{
 				temp = ft_strdup(ret);

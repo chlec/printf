@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 14:39:58 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:17:19 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,34 @@ char	*handle_precision(char *flag, char *ret)
 		{
 			nb = ft_atoi(&flag[i + 1]);
 			flag = remove_0(flag);
-			if (ft_strchr("diouxX", flag_letter) && nb > 0)
+			if (ft_strchr("diuoxX", flag_letter) && nb > 0)
 			{
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)
 				{
-					temp = add_begin(temp, "0x");
+					if (!ft_strncmp(ret, "0x", 2))
+						temp = add_begin(temp, "0x");
+					else
+						temp = add_begin(temp, "0X");
 					ret = &ret[2];
 				}
 				else if (ft_strchr(ret, '-'))
 				{
 					temp = add_begin(temp, "-");
 					ret = &ret[1];
-				}
-				ret = ft_itoa(ft_atoi(ret));
+				}	
+				//ret = ft_itoa(ft_atoi(ret));
 				while (ft_strlen(ret) < (size_t)nb)
 					ret = add_begin(ret, "0");
 				ret = add_begin(ret, temp);
-				flag = replacestr(flag, ft_itoa(nb), "");
 			}
-			else if (ft_strchr("sS", flag_letter)) {
-
+			else if (flag_letter == 's' && nb > 0) {	
+				ret = ft_strndup(ret, nb);
 			}
+			else if (flag_letter == 'S' && nb > 0) {	
+				printf("ret is: %s\n", ret);
+				ret = ft_strndup(ret, nb);
+			}
+			flag = replacestr(flag, ft_itoa(nb), "");
 			flag = replacestr(flag, ".", "");
 			return (handle_conversion(flag, ret));
 		}
