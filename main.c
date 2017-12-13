@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:35:52 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:12:50 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*get_flag(char *str)
 	char	*flags;
 
 	flags = "sSpdDioOuUxXcC%";
-	i = 1;
+	i = 1;	
 	while (str[i])
 	{
 		if (ft_strchr(flags, str[i])) //|| str[i + 1] == ' ')
@@ -81,7 +81,7 @@ char	*replacestr(char *dest, char *flag, char *content)
 		return (dest);
 	after_flag = &after_flag[ft_strlen(flag)];
 	if (!(temp = (char*)malloc(sizeof(char) *
-					((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1))))
+					((ft_strlen(dest) - ft_strlen(after_flag)) + (ft_strlen(content) > 0 ? ft_strlen(content) : 6) + 1000))))
 		return (0);
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
 	if (content)
@@ -93,21 +93,40 @@ char	*replacestr(char *dest, char *flag, char *content)
 	return (dest);
 }
 
+int		check_flag(char **str, char *flag)
+{
+	char	*validchar;
+	int		i;
+
+	i = (int)ft_strlen(flag) - 1;
+	validchar = " +-#0123456789.sSpdDioOuUxXcChljzi%";
+	while (flag[i] && ft_strchr(validchar, flag[i]))
+		i--;
+	if (i > 0)
+	{
+		*str = replacestr(*str, ft_strndup(flag, i), "");
+		return (0);
+	}
+	return (1);
+}
+
 int		ft_printf(const char *format, ...)
 {
-	va_list		args;
-	int			i;
-	int			j;
-	int			h;
-	char		*flag;
-	char		*conversion;
-	char		*ret;
-	int			idx;
-	unsigned char			nb;
+	va_list			args;
+	int				i;
+	int				j;
+	int				h;
+	char			*flag;
+	char			*conversion;
+	char			*ret;
+	int				idx;
+	unsigned char	nb;
 	char			*temp;
 	char			*temp2;
 	char			flag_letter;
+	char			*str;
 
+	str = ft_strdup((char*)format);
 	setlocale(LC_ALL, "");
 	if (!format)
 		return (0);
@@ -115,14 +134,12 @@ int		ft_printf(const char *format, ...)
 	flag = 0;
 	temp = 0;
 	va_start(args, format);
-	while (format[i])
+	while (str[i])
 	{
-		if (format[i] == '%')
+		if (str[i] == '%' && check_flag(&str, (flag = get_flag(&str[i]))))
 		{
-			flag = get_flag((char*)&format[i]);
 			flag_letter = flag[ft_strlen(flag) - 1];
 			ret = handle_flags(flag, &args);
-			//marche pas en dessous
 			if (ret[0] == '\0'  && flag_letter == 'c')
 				ft_putchar(0);
 			if (ft_strchr("SC", flag_letter))
@@ -132,7 +149,7 @@ int		ft_printf(const char *format, ...)
 				temp2 = ft_strdup(ret);
 			}
 			conversion = handle_conversion(flag, ret);	
-			format = replacestr((char*)format, flag, conversion);
+			str = replacestr(str, flag, conversion);
 			if (ft_strchr("SC", flag_letter))
 			{
 				idx = get_index(conversion, ret);
@@ -163,9 +180,9 @@ int		ft_printf(const char *format, ...)
 			i += ft_strlen(conversion) - 1;
 		}
 		else
-			ft_putchar(format[i]);
+			ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);
-	return (ft_strlen(format));
+	return (ft_strlen(str));
 }

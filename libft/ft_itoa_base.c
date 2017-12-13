@@ -6,13 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/05 12:22:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:51:00 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-static int	get_length(long int n, int base)
+static int	get_length(long n, int base)
 {
 	int		len;
 
@@ -29,7 +29,7 @@ static int	get_length(long int n, int base)
 	return (len);
 }
 
-char		*ft_itoa_base(long int n, int base)
+char		*ft_itoa_base(long n, int base)
 {
 	int		i;
 	char	*str;

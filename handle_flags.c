@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:45:28 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:57:20 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char			*handle_conversion(char *flag, char *ret)
 		return (0);
 	rep = 0;
 	if (ft_strcmp(flag, "%%") == 0)
-		return (ret);	
+		return (ret);
 	if ((rep = handle_diese(flag, ret)))
 		return (rep);
 	else if ((rep = handle_precision(flag, ret)))
@@ -113,9 +113,9 @@ char			*handle_flags(char *flag, va_list *args)
 	else if (flag_letter == 'c')
 		ret = ft_ctos(va_arg(*args, int));
 	else if (flag_letter == 'x')
-		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned int), 16));
+		ret = ft_strtolower(ft_itoa_base(va_arg(*args, long), 16));
 	else if (flag_letter == 'X')
-		ret = ft_itoa_base(va_arg(*args, unsigned int), 16);
+		ret = ft_itoa_base(va_arg(*args, long), 16);
 	else if (flag_letter == 'o')
 		ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	else if (flag_letter == 'u')

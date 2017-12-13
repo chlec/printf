@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:46:10 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:40:37 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*handle_diese(char *flag, char *ret)
 				ret = add_begin(ret, "0");
 			while (ft_strchr(flag, '#'))
 				flag = replacestr(flag, "#", "");
-			//deleted = add_begin(deleted, "#");
 			return (handle_conversion(flag, ret));
 		}
 	return (0);
@@ -113,7 +112,7 @@ char	*handle_zero(char *flag, char *ret)
 				if (temp)
 					ret = add_begin(ret, temp);
 			}
-			flag = replacestr(flag, get_0_param(&flag[i]), "");	
+			flag = replacestr(flag, get_0_param(&flag[i]), "");
 			return (handle_conversion(flag, ret));
 		}
 	return (0);
@@ -152,10 +151,10 @@ char	*handle_plus(char *flag, char *ret)
 		{
 			if (ft_strchr("id", flag_letter) && ft_atoi(ret) >= 0)
 				ret = add_begin(ret, "+");
-			flag = replacestr(flag, "+", "");
-			//flag = replacestr(flag, get_0_param(&flag[i]), "");
-			flag = replacestr(flag, " ", "");
-			//deleted = add_begin(deleted, "+");
+			while (ft_strchr(flag, '+'))
+				flag = replacestr(flag, "+", "");
+			while (ft_strchr(flag, ' '))
+				flag = replacestr(flag, " ", "");
 			return (handle_conversion(flag, ret));
 		}
 	return (0);
