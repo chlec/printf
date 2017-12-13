@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 14:33:53 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:45:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ char			*handle_other_flags(char *flag, va_list *args)
 	else if (flag_letter == 'S')
 	{
 		ret_w = va_arg(*args, wchar_t*);
-	   	ret = ft_wputstr(ret_w);
-		// ON TEJ LE C! on crée une fct qui recuperer les codes ascii unsigned des char, stockes dans une string separer par des /
-	   	//while (ft_strlen(ret) < wstrlen(ret_w))
-		//	ret = add_begin(ret, "c");	
+	   	ret = ft_wputstr(ret_w);	
+	}
+	else if (flag_letter == 'C')
+	{
+		ret_w = ft_CtoS(va_arg(*args, wchar_t));
+		ret = ft_wputstr(ret_w);
 	}
 	return (ret);
 }
@@ -84,11 +86,11 @@ char			*handle_conversion(char *flag, char *ret)
 		return (rep);
 	else if ((rep = handle_neg(flag, ret)))
 		return (rep);
+	else if ((rep = handle_plus(flag, ret)))
+		return (rep);
 	else if ((rep = handle_zero(flag, ret)))
 		return (rep);
 	else if ((rep = handle_digit(flag, ret)))
-		return (rep);
-	else if ((rep = handle_plus(flag, ret)))
 		return (rep);
 	else if ((rep = handle_space(flag, ret)))
 		return (rep);
@@ -117,7 +119,7 @@ char			*handle_flags(char *flag, va_list *args)
 	else if (flag_letter == 'o')
 		ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	else if (flag_letter == 'u')
-		ret = ft_itoa(va_arg(*args, unsigned int));
+		ret = ft_uitoa(va_arg(*args, unsigned int));
 	else
 		ret = handle_other_flags(flag, args);
 	return (ret);

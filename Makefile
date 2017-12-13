@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/12 12:05:22 by clecalie         ###   ########.fr        #
+#    Updated: 2017/12/13 13:22:24 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS =	main.c \
 		manipulation.c \
 		flag_format.c \
 		precision.c \
-		ft_wputstr.c
+		ft_wputstr.c \
+		ft_uitoa.c
 
 OBJ = $(SRCS:.c=.o)
 

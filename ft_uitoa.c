@@ -1,33 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctos.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 13:52:38 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:33:34 by clecalie         ###   ########.fr       */
+/*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
+/*   Updated: 2017/12/13 13:29:20 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_ctos(char c)
+static int	get_length(long n)
 {
-	char	*buf;
+	int		len;
 
-	if (!(buf = ft_strnew(1)))
-		return (0);
-	buf[0] = c;
-	return (buf);
+	len = 0;
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
+	}
+	if (len <= 0)
+		len = 1;
+	return (len);
 }
 
-wchar_t	*ft_CtoS(wchar_t c)
+char		*ft_uitoa(long n)
 {
-	wchar_t	*buf;
+	int		i;
+	long	nb;
+	char	*str;
 
-	if (!(buf = (wchar_t*)malloc(sizeof(wchar_t) * 2)))
+	nb = n;
+	i = 0;
+	if (!(str = ft_strnew(get_length(n))))
 		return (0);
-	buf[0] = c;
-	return (buf);
+	if (nb == 0)
+	{
+		str = ft_strdup("0");
+		return (str);
+	}
+	while (nb != 0)
+	{
+		str[i++] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	str[i] = '\0';
+	return (ft_strrev(str));
 }

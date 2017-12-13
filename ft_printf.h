@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 13:59:17 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:25:47 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char		*handle_space(char *flag, char *ret);
 char		*handle_precision(char *flag, char *ret);
 char		*get_0_param(char *str);
 int			get_index(const char *haystack, const char *needle);
+char		*ft_uitoa(unsigned int n);
 
 #endif

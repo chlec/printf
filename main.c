@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 15:40:09 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:35:52 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ int		ft_printf(const char *format, ...)
 			flag_letter = flag[ft_strlen(flag) - 1];
 			ret = handle_flags(flag, &args);
 			//marche pas en dessous
-			if (ret == NULL && flag_letter == 'c')
+			if (ret[0] == '\0'  && flag_letter == 'c')
 				ft_putchar(0);
-			if (flag_letter == 'S')
+			if (ft_strchr("SC", flag_letter))
 			{
 				temp = ft_strdup(ret);
 				ret = ft_strndup(ret, ft_strlen(ret) / 3);
@@ -133,7 +133,7 @@ int		ft_printf(const char *format, ...)
 			}
 			conversion = handle_conversion(flag, ret);	
 			format = replacestr((char*)format, flag, conversion);
-			if (flag_letter == 'S')
+			if (ft_strchr("SC", flag_letter))
 			{
 				idx = get_index(conversion, ret);
 				j = 0;
@@ -150,7 +150,7 @@ int		ft_printf(const char *format, ...)
 								write(1, &nb, 1);
 							}
 							h++;
-						}	
+						}
 						j += ft_strlen(ret) - 1;
 					}
 					else
@@ -159,7 +159,7 @@ int		ft_printf(const char *format, ...)
 				}
 			}
 			else
-				ft_putstr(conversion);
+				ft_putstr(conversion);	
 			i += ft_strlen(conversion) - 1;
 		}
 		else

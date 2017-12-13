@@ -2,3 +2,4 @@ https://wpollock.com/CPlus/PrintfRef.htm
 
 https://pastebin.com/fJC0LJ88
 make re && gcc test.c -I libft/includes libftprintf.a && ./a.out
+gcc test.c libftprintf.a libft/libft.a libft/*.o -I libft/includes && clear && ./a.out
