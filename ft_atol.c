@@ -1,56 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 17:00:42 by clecalie         ###   ########.fr       */
+/*   Created: 2017/11/06 16:48:37 by clecalie          #+#    #+#             */
+/*   Updated: 2017/12/13 16:47:20 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_length(long long n)
-{
-	int	len;
-
-	len = 0;
-	while (n != 0)
-	{
-		len++;
-		n /= 10;
-	}
-	if (len <= 0)
-		len = 1;
-	return (len);
-}
-
-char		*ft_uitoa(long long n)
+long long	ft_atol(const char *str)
 {
 	int		i;
-	char	*str;
 	int		neg;
+	long long	result;
 
-	i = 0;
-	if (!(str = ft_strnew(get_length(n))))
-		return (0);
 	neg = 0;
-	if (n < 0)
+	i = 0;
+	result = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
 	{
 		neg = 1;
-		n = -n;
+		i++;
 	}
-	if (n == 0)
-		return (ft_strdup("0"));
-	while (n != 0)
-	{
-		str[i++] = (n % 10) + '0';
-		n /= 10;
-	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		result = (result * 10) + str[i++] - '0';
 	if (neg)
-		str[i++] = '-';
-	str[i] = '\0';
-	return (ft_strrev(str));
+		result = -result;
+	return (result);
 }

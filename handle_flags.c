@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 14:57:20 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 17:07:05 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,37 @@ char			*handle_conversion(char *flag, char *ret)
 	return (ret);
 }
 
-char			*handle_flags(char *flag, va_list *args)
+char			*handle_flags(char *length_flag, char *flag, va_list *args)
 {
 	char	*ret;
 	char	flag_letter;
 
 	ret = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
-	if (ft_strcmp(flag, "%%") == 0)
+	if (flag_letter == '%' && flag[0] == '%')
 		ret = "%";
+	else if (!ft_strcmp(length_flag, "hh") && ft_strchr("di", flag_letter))
+		ret = ft_itoa((signed char)va_arg(*args, int));
+	else if (!ft_strcmp(length_flag, "hh") && ft_strchr("ouxX", flag_letter))
+		ret = ft_itoa((unsigned char)va_arg(*args, int));
+	else if (!ft_strcmp(length_flag, "h") && ft_strchr("di", flag_letter))
+		ret = ft_itoa((short)va_arg(*args, int));
+	else if (!ft_strcmp(length_flag, "h") && ft_strchr("ouxX", flag_letter))
+		ret = ft_itoa((unsigned short)va_arg(*args, int));
+	else if (!ft_strcmp(length_flag, "l") && ft_strchr("di", flag_letter))
+		ret = ft_uitoa(va_arg(*args, long));
+	else if (!ft_strcmp(length_flag, "l") && ft_strchr("ouxX", flag_letter))
+		ret = ft_uitoa(va_arg(*args, unsigned long));
+	else if (!ft_strcmp(length_flag, "ll") && ft_strchr("di", flag_letter))
+		ret = ft_uitoa(va_arg(*args, long long));
+	else if (!ft_strcmp(length_flag, "ll") && ft_strchr("ouxX", flag_letter))
+		ret = ft_uitoa(va_arg(*args, unsigned long long));
+	else if (!ft_strcmp(length_flag, "j") && ft_strchr("di", flag_letter))
+		ret = ft_uitoa(va_arg(*args, intmax_t));
+	else if (!ft_strcmp(length_flag, "j") && ft_strchr("ouxX", flag_letter))
+		ret = ft_uitoa(va_arg(*args, uintmax_t));
+	else if (!ft_strcmp(length_flag, "z") && ft_strchr("diouxX", flag_letter))
+		ret = ft_uitoa(va_arg(*args, size_t));
 	else if (flag_letter == 'd' || flag_letter == 'i')
 		ret = ft_itoa(va_arg(*args, int));
 	else if (flag_letter == 's')
@@ -113,9 +135,9 @@ char			*handle_flags(char *flag, va_list *args)
 	else if (flag_letter == 'c')
 		ret = ft_ctos(va_arg(*args, int));
 	else if (flag_letter == 'x')
-		ret = ft_strtolower(ft_itoa_base(va_arg(*args, long), 16));
+		ret = ft_strtolower(ft_itoa_base(va_arg(*args, unsigned int), 16));
 	else if (flag_letter == 'X')
-		ret = ft_itoa_base(va_arg(*args, long), 16);
+		ret = ft_itoa_base(va_arg(*args, unsigned int), 16);
 	else if (flag_letter == 'o')
 		ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	else if (flag_letter == 'u')

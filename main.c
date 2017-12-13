@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 15:12:50 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:24:38 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,29 @@ int		check_flag(char **str, char *flag)
 	return (1);
 }
 
+char	*get_length_flag(char *flag)
+{
+	char	*valid;
+	char	letter;
+	int		i;
+	int		j;
+	char	*ret;
+
+	ret = 0;
+	valid = "hljz";	
+	i = 0;
+	while (!ft_strchr(valid, flag[i]))
+		i++;
+	if (flag[i])
+	{
+		j = i;
+		while (ft_strchr(valid, flag[j]))
+			j++;
+		ret = ft_strsub(flag, i, j - i);
+	}
+	return (ret);
+}
+
 int		ft_printf(const char *format, ...)
 {
 	va_list			args;
@@ -125,6 +148,7 @@ int		ft_printf(const char *format, ...)
 	char			*temp2;
 	char			flag_letter;
 	char			*str;
+	char			*length_f;
 
 	str = ft_strdup((char*)format);
 	setlocale(LC_ALL, "");
@@ -139,7 +163,8 @@ int		ft_printf(const char *format, ...)
 		if (str[i] == '%' && check_flag(&str, (flag = get_flag(&str[i]))))
 		{
 			flag_letter = flag[ft_strlen(flag) - 1];
-			ret = handle_flags(flag, &args);
+			length_f = get_length_flag(flag);
+			ret = handle_flags(length_f, flag, &args);
 			if (ret[0] == '\0'  && flag_letter == 'c')
 				ft_putchar(0);
 			if (ft_strchr("SC", flag_letter))

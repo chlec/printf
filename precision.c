@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:47:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 17:10:18 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ char	*handle_precision(char *flag, char *ret)
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)
 				{
 					if (!ft_strncmp(ret, "0x", 2))
-						temp = add_begin(temp, "0x");
+						temp = "0x";
 					else
-						temp = add_begin(temp, "0X");
+						temp = "0X";
 					ret = &ret[2];
 				}
 				else if (ft_strchr(ret, '-'))
 				{
-					temp = add_begin(temp, "-");
+					temp = "-";
 					ret = &ret[1];
 				}	
 				//ret = ft_itoa(ft_atoi(ret));

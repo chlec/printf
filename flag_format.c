@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 14:40:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:45:23 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	*handle_plus(char *flag, char *ret)
 	while (flag[++i])
 		if (flag[i] == '+')
 		{
-			if (ft_strchr("id", flag_letter) && ft_atoi(ret) >= 0)
+			if (ft_strchr("id", flag_letter) && ft_atol(ret) >= 0)
 				ret = add_begin(ret, "+");
 			while (ft_strchr(flag, '+'))
 				flag = replacestr(flag, "+", "");

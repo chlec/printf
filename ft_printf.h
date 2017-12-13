@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:25:47 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:46:35 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft.h"
 
 int			ft_printf(const char *format, ...);
-char		*handle_flags(char *flag, va_list *args);
+char		*handle_flags(char *length_flag, char *flag, va_list *args);
 char		*handle_conversion(char *flag, char *ret);
 char		*replacestr(char *dest, char *flag, char *content);
 char		*add_begin(char *str, char *add);
@@ -34,6 +34,7 @@ char		*handle_space(char *flag, char *ret);
 char		*handle_precision(char *flag, char *ret);
 char		*get_0_param(char *str);
 int			get_index(const char *haystack, const char *needle);
-char		*ft_uitoa(unsigned int n);
+char		*ft_uitoa(long long n);
+long long 	ft_atol(const char *str);
 
 #endif
