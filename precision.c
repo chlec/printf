@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 13:16:16 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 14:34:11 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char	*handle_precision(char *flag, char *ret)
 			else if (flag_letter == 'S' && nb > 0) {
 				ret = ft_strndup(ret, nb);
 			}
+			else if (ft_strchr("xXoudi", flag_letter) && nb == 0 && ft_strequ(ret, "0"))
+				ret = "";
 			flag = replacestr(flag, ft_itoa(nb), "");
 			flag = replacestr(flag, ".", "");
 			return (handle_conversion(flag, ret));

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 12:45:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:23:13 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int			get_index(const char *haystack, const char *needle);
 char		*ft_uitoa(intmax_t n);
 long long 	ft_atol(const char *str);
 char		*ft_lltoa_base(intmax_t n, int base);
+char		*ft_unsitoa(unsigned int n);
+char		*ft_ultoa(unsigned long n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 12:35:42 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 14:39:42 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*replacestr(char *dest, char *flag, char *content)
 		return (dest);
 	after_flag = &after_flag[ft_strlen(flag)];
 	if (!(temp = (char*)malloc(sizeof(char) *
-					((ft_strlen(dest) - ft_strlen(after_flag)) + (ft_strlen(content) > 0 ? ft_strlen(content) : 6) + 1000))))
+					((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1000))))
 		return (0);
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
 	if (content)
@@ -165,11 +165,10 @@ int		ft_printf(const char *format, ...)
 			flag_letter = flag[ft_strlen(flag) - 1];
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
+			if (ret == NULL && flag_letter == 's')
+				ret = "(null)";
 			if (ret[0] == '\0'  && flag_letter == 'c')
-			{
-				//ft_putchar(0);
 				ret = "@";
-			}
 			if (ft_strchr("SC", flag_letter))
 			{
 				temp = ft_strdup(ret);

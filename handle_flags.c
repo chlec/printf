@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 12:58:22 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:21:01 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,14 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == '%' && flag[0] == '%')
 		ret = "%";
-	else if (flag_letter == 'd' || flag_letter == 'i')
+	else if (flag_letter == 'd' || flag_letter == 'i' || flag_letter == 'D')
 	{
-		if (!ft_strcmp(length_flag, "hh"))
+		if (!ft_strcmp(length_flag, "l") || flag_letter == 'D')
+			ret = ft_uitoa(va_arg(*args, long));
+		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa((signed char)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa((short)va_arg(*args, int));
-		else if (!ft_strcmp(length_flag, "l"))
-			ret = ft_uitoa(va_arg(*args, long));
 		else if (!ft_strcmp(length_flag, "ll"))
 			ret = ft_uitoa(va_arg(*args, long long));
 		else if (!ft_strcmp(length_flag, "j"))
@@ -159,14 +159,14 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else
 			ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	}
-	else if (flag_letter == 'u')
+	else if (flag_letter == 'u' || flag_letter == 'U')
 	{
-		if (!ft_strcmp(length_flag, "hh"))
+		if (!ft_strcmp(length_flag, "l") || flag_letter == 'U')
+			ret = ft_ultoa(va_arg(*args, unsigned long));
+		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa((unsigned char)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa((unsigned short)va_arg(*args, int));	
-		else if (!ft_strcmp(length_flag, "l"))
-			ret = ft_uitoa(va_arg(*args, unsigned long));
 		else if (!ft_strcmp(length_flag, "ll"))
 			ret = ft_uitoa(va_arg(*args, unsigned long long));
 		else if (!ft_strcmp(length_flag, "j"))
@@ -174,7 +174,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else if (!ft_strcmp(length_flag, "z"))
 			ret = ft_itoa(va_arg(*args, size_t));
 		else
-			ret = ft_itoa(va_arg(*args, unsigned int));
+			ret = ft_unsitoa(va_arg(*args, unsigned int));
 	}
 	else if (flag_letter == 's')
 		ret = va_arg(*args, char*);
