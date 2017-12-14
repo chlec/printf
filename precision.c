@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 17:10:18 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 13:16:16 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ char	*handle_precision(char *flag, char *ret)
 			else if (flag_letter == 's' && nb > 0) {	
 				ret = ft_strndup(ret, nb);
 			}
-			else if (flag_letter == 'S' && nb > 0) {	
-				printf("ret is: %s\n", ret);
+			else if (flag_letter == 'S' && nb > 0) {
 				ret = ft_strndup(ret, nb);
 			}
 			flag = replacestr(flag, ft_itoa(nb), "");

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 16:24:38 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:35:42 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,10 @@ int		ft_printf(const char *format, ...)
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
 			if (ret[0] == '\0'  && flag_letter == 'c')
-				ft_putchar(0);
+			{
+				//ft_putchar(0);
+				ret = "@";
+			}
 			if (ft_strchr("SC", flag_letter))
 			{
 				temp = ft_strdup(ret);
@@ -195,6 +198,18 @@ int		ft_printf(const char *format, ...)
 						}
 						j += ft_strlen(ret) - 1;
 					}
+					else
+						ft_putchar(conversion[j]);
+					j++;
+				}
+			}
+			else if (flag_letter == 'c' && ret[0] == '@')
+			{
+				j = 0;
+				while (conversion[j])
+				{
+					if (conversion[j] == '@')
+						ft_putchar(0);
 					else
 						ft_putchar(conversion[j]);
 					j++;
