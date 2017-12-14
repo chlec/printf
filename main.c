@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 14:39:42 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:33:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int		check_flag(char **str, char *flag)
 char	*get_length_flag(char *flag)
 {
 	char	*valid;
-	char	letter;
 	int		i;
 	int		j;
 	char	*ret;

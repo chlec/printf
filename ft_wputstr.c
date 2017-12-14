@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/12 12:19:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:33:31 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*print_size_11(unsigned int c)
 	byte = (0xC080 >> 8) | b1;
 	//write(1, &byte, 1);
     ret = add_end(ret, ft_itoa(byte));
-	byte = ((0xC080 << 24) >> 24) | b2;
+	byte = (((long)0xC080 << 24) >> 24) | b2;
 	//write(1, &byte, 1);
     ret = add_end(ret, ft_itoa(byte));
 	return (ret);
@@ -46,10 +46,10 @@ static char	*print_size_16(unsigned int c)
 	byte = (0xE08080 >> 16) | b1;
 	//write(1, &byte, 1);
     ret = add_end(ret, ft_itoa(byte));
-	byte = ((0xE08080 << 16) >> 24) | b2;
+	byte = (((long)0xE08080 << 16) >> 24) | b2;
 	ret = add_end(ret, ft_itoa(byte));
 	//write(1, &byte, 1);
-	byte = ((0xE08080 << 24) >> 24) | b3;
+	byte = (((long)0xE08080 << 24) >> 24) | b3;
 	//write(1, &byte, 1);
     ret = add_end(ret, ft_itoa(byte));
 	return (ret);

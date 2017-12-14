@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 13:25:08 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:40:48 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*handle_diese(char *flag, char *ret)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])
 		if (flag[i] == '#')
-		{
-			if (!ft_strequ(ret, "0"))
+		{	
+			if (!ft_strequ(ret, "0") && !ft_strequ(ret, ""))
 			{
 				if (flag_letter == 'x')
 					ret = add_begin(ft_strtolower(ret), "0x");

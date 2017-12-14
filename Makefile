@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/14 15:22:59 by clecalie         ###   ########.fr        #
+#    Updated: 2017/12/14 15:33:37 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS =	main.c \
 
 OBJ = $(SRCS:.c=.o)
 
-FLAGS = #-Wall -Werror -Wextra 
+FLAGS = -Wall -Werror -Wextra 
 
 all: $(NAME)
 
