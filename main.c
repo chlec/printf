@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 15:33:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 16:05:08 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ int		check_flag(char **str, char *flag)
 	validchar = " +-#0123456789.sSpdDioOuUxXcChljzi%";
 	while (flag[i] && ft_strchr(validchar, flag[i]))
 		i--;
-	if (i > 0)
+	if (i > 0 || ft_strlen(flag) == 1)
 	{
-		*str = replacestr(*str, ft_strndup(flag, i), "");
+		if (i < 0)
+			i = 0;
+		*str = replacestr(*str, ft_strndup(flag, (i > 0 ? i : (size_t)ft_strlen(flag))), "");
 		return (0);
 	}
 	return (1);
