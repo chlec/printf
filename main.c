@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 12:52:28 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:11:03 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,9 @@ int		ft_printf(const char *format, ...)
 	{
 		if (str[i] == '%' && check_flag(&str, (flag = get_flag(&str[i]))))
 		{
-			flag_letter = flag[ft_strlen(flag) - 1];
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
+			flag_letter = flag[ft_strlen(flag) - 1];
 			if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
 			{
 				ret = "(null)";

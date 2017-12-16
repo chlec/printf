@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 12:00:17 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:11:00 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,25 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 			ret = ft_unsitoa(va_arg(*args, unsigned int));
 	}
 	else if (flag_letter == 's')
-		ret = va_arg(*args, char*);
+	{
+		if (!ft_strcmp(length_flag, "l"))
+		{
+			flag = replacestr(flag, "s", "S");
+			return (handle_other_flags(flag, args));
+		}			
+		else
+			ret = va_arg(*args, char*);
+	}
 	else if (flag_letter == 'c')
-		ret = ft_ctos(va_arg(*args, int));
+	{
+		if (!ft_strcmp(length_flag, "l"))
+		{
+			flag = replacestr(flag, "c", "C");
+			return (handle_other_flags(flag, args));
+		}
+		else
+			ret = ft_ctos(va_arg(*args, int));
+	}
 	else
 		ret = handle_other_flags(flag, args);
 	return (ret);
