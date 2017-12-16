@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 13:11:00 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:27:55 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa((unsigned short)va_arg(*args, int));	
 		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_uitoa(va_arg(*args, unsigned long long));
+			ret = ft_llutoa(va_arg(*args, unsigned long long));
 		else if (!ft_strcmp(length_flag, "j"))
 			ret = ft_uitoa(va_arg(*args, uintmax_t));
 		else if (!ft_strcmp(length_flag, "z"))

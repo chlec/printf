@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 13:11:06 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:29:37 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ long long 	ft_atol(const char *str);
 char		*ft_lltoa_base(uintmax_t n, int base);
 char		*ft_unsitoa(unsigned int n);
 char		*ft_ultoa(unsigned long n);
+char		*ft_llutoa(unsigned long long n);
 
 #endif

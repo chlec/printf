@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/14 15:33:37 by clecalie         ###   ########.fr        #
+#    Updated: 2017/12/16 13:29:12 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS =	main.c \
 		ft_atol.c \
 		ft_llto_base.c \
 		ft_unsitoa.c \
-		ft_ultoa.c
+		ft_ultoa.c \
+		ft_llutoa.c
 
 OBJ = $(SRCS:.c=.o)
 

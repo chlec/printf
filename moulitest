@@ -13,7 +13,7 @@ ar rc libft.a ft_ctos.o ft_strtolower.o ft_itoa_base.o ft_atoi.o ft_bzero.o ft_i
 make re -k -C /Users/clecalie/Projects/printf -L /Users/clecalie/Projects/printf/libft -lft
 make -C libft/ clean
 rm -f ft_ctos.o ft_strtolower.o ft_itoa_base.o ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_lstadd.o ft_lstdel.o ft_lstdelone.o ft_lstiter.o ft_lstmap.o ft_lstnew.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putchar_fd.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_putnbr_fd.o ft_putstr.o ft_putstr_fd.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strndup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strrev.o ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o
-rm -f main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o
+rm -f main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o ft_llutoa.o
 make -C libft/ fclean
 rm -f ft_ctos.o ft_strtolower.o ft_itoa_base.o ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_lstadd.o ft_lstdel.o ft_lstdelone.o ft_lstiter.o ft_lstmap.o ft_lstnew.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putchar_fd.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_putnbr_fd.o ft_putstr.o ft_putstr_fd.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strndup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strrev.o ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o
 rm -f libft.a
@@ -29,11 +29,12 @@ gcc -c ft_atol.c -Wall -Werror -Wextra  -I libft/includes
 gcc -c ft_llto_base.c -Wall -Werror -Wextra  -I libft/includes
 gcc -c ft_unsitoa.c -Wall -Werror -Wextra  -I libft/includes
 gcc -c ft_ultoa.c -Wall -Werror -Wextra  -I libft/includes
+gcc -c ft_llutoa.c -Wall -Werror -Wextra  -I libft/includes
 make -C libft/
 gcc -Wall -Wextra -Werror  -c ft_ctos.c ft_strtolower.c ft_itoa_base.c ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar.c ft_putstr.c ft_strcat.c ft_strchr.c ft_strcmp.c ft_strcpy.c ft_strdup.c ft_strndup.c ft_strlcat.c ft_strlen.c ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnstr.c ft_strrchr.c ft_strstr.c ft_tolower.c ft_toupper.c ft_bzero.c ft_memalloc.c ft_memdel.c ft_strnew.c ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strrev.c ft_strsplit.c ft_itoa.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c
 ar rc libft.a ft_ctos.o ft_strtolower.o ft_itoa_base.o ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_lstadd.o ft_lstdel.o ft_lstdelone.o ft_lstiter.o ft_lstmap.o ft_lstnew.o ft_memalloc.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memdel.o ft_memmove.o ft_memset.o ft_putchar.o ft_putchar_fd.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o ft_putnbr_fd.o ft_putstr.o ft_putstr_fd.o ft_strcat.o ft_strchr.o ft_strclr.o ft_strcmp.o ft_strcpy.o ft_strdel.o ft_strdup.o ft_strndup.o ft_strequ.o ft_striter.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlen.o ft_strmap.o ft_strmapi.o ft_strncat.o ft_strncmp.o ft_strncpy.o ft_strnequ.o ft_strnew.o ft_strnstr.o ft_strrchr.o ft_strrev.o ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o
-#gcc main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o libft/libft.a -o test
-ar rc libftprintf.a main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o libft/libft.a libft/*.o
+#gcc main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o ft_llutoa.o libft/libft.a -o test
+ar rc libftprintf.a main.o handle_flags.o manipulation.o flag_format.o precision.o ft_wputstr.o ft_uitoa.o ft_atol.o ft_llto_base.o ft_unsitoa.o ft_ultoa.o ft_llutoa.o libft/libft.a libft/*.o
 make[3]: Nothing to be done for `/Users/clecalie/Projects/printf/libft'.
 make -k -C ../testframework/v3/
 rm -f *.o
@@ -56,47 +57,47 @@ Legend: (.) Ok / (F) Fail / (S) Segfault / (B) Bus error / (T) Timeout / (A) Abo
 >>>> 04_conv_p.spec.c ------------ [Ok !] .....
 >>>> 05_percent_escape.spec.c ---- [Ok !] ........
 >>>> 06_mix_sdp_percent.spec.c --- [Ok !] ..
->>>> 07_conv_S.spec.c ------------ [FAIL] ....S [SEGV] nullWideString -> (null)
+>>>> 07_conv_S.spec.c ------------ [Ok !] .....
 >>>> 08_conv_D.spec.c ------------ [Ok !] ....
 >>>> 09_conv_i.spec.c ------------ [Ok !] .....
 >>>> 10_conv_o.spec.c ------------ [Ok !] ....
->>>> 11_conv_O.spec.c ------------ [FAIL] FFFFF [FAIL] test_simple -> printf("%O", 42)
+>>>> 11_conv_O.spec.c ------------ [Ok !] .....
 >>>> 12_conv_u.spec.c ------------ [Ok !] .....
 >>>> 13_conv_U.spec.c ------------ [Ok !] ...
 >>>> 14_conv_x.spec.c ------------ [Ok !] .....
 >>>> 15_conv_X.spec.c ------------ [Ok !] .....
->>>> 16_conv_c.spec.c ------------ [FAIL] ..F. [FAIL] test_ascii_printable_chars -> printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%...
->>>> 17_conv_C.spec.c ------------ [FAIL] ........F [FAIL] test_nullChar -> printf("%C", 0)
->>>> 18_mix_all_previous.spec.c -- [FAIL] .F [FAIL] test_hard -> printf("%s%d%p%%%S%D%i%o%O%u%U%x%X%c%C","bonjour", 42, &c, L"æM-^ZM-^VçM-^BM-^I", LONG_MAX, ...
->>>> 40_length_modif_l.spec.c ---- [FAIL] ..............FFF.. [FAIL] test_lc_wchar -> printf("%lc, %lc", L'æM-^ZM-^V', L'Ø­')
->>>> 41_length_modif_ll.spec.c --- [FAIL] ......F...F.. [FAIL] test_llu_unsign_long_long_max -> printf("%llu, %llu", 0, ULLONG_MAX)
->>>> 42_length_modif_h.spec.c ---- [FAIL] ..........F.. [FAIL] test_err_ho_up_max -> printf("%hO, %hO", 0, USHRT_MAX)
->>>> 43_length_modif_hh.spec.c --- [FAIL] ..................F..FS [FAIL] test_err_hho_up_max -> printf("%hhO, %hhO", 0, USHRT_MAX)
->>>> 43_length_modif_j.spec.c ---- [FAIL] ......F...F.. [FAIL] test_ju_unsign_long_long_max -> printf("%ju, %ju", 0, ULLONG_MAX)
->>>> 44_length_modif_z.spec.c ---- [FAIL] ....FFFFF.. [FAIL] test_zu_unsign_long_long_max -> printf("%zu, %zu", 0, ULLONG_MAX)
+>>>> 16_conv_c.spec.c ------------ [Ok !] ....
+>>>> 17_conv_C.spec.c ------------ [Ok !] .........
+>>>> 18_mix_all_previous.spec.c -- [Ok !] ..
+>>>> 40_length_modif_l.spec.c ---- [FAIL] ..............FF... [FAIL] test_lc_wchar -> printf("%lc, %lc", L'æM-^ZM-^V', L'Ø­')
+>>>> 41_length_modif_ll.spec.c --- [Ok !] .............
+>>>> 42_length_modif_h.spec.c ---- [Ok !] .............
+>>>> 43_length_modif_hh.spec.c --- [Ok !] .......................
+>>>> 43_length_modif_j.spec.c ---- [FAIL] ......F...... [FAIL] test_ju_unsign_long_long_max -> printf("%ju, %ju", 0, ULLONG_MAX)
+>>>> 44_length_modif_z.spec.c ---- [FAIL] ....FFFF... [FAIL] test_zu_unsign_long_long_max -> printf("%zu, %zu", 0, ULLONG_MAX)
 >>>> 45_length_modif_edge_cases.sp [Ok !] .
 >>>> 50_min_width.spec.c --------- [FAIL] .........F.. [FAIL] invalidConvSpec_withMinWith -> printf("{%10R}")
 >>>> 51_min_width_flag_minus.spec. [Ok !] ...
 >>>> 52_min_width_flag_zero.spec.c [Ok !] ...........
 >>>> 53_min_width_non_valid_conv.s [FAIL] F [FAIL] nonValidConv_negativeMinWidth -> printf("{%-15Z}", 123)
 >>>> 60_flag_sharp.spec.c -------- [FAIL] ...F....... [FAIL] test_octalUppercase_max -> printf("%#O", 1)
->>>> 61_flag_plus.spec.c --------- [FAIL] .....F..FF..F [FAIL] test_plus_c_up_zero -> printf("%+C", 0)
->>>> 62_flag_space.spec.c -------- [FAIL] ..........F.S.. [FAIL] test_space_C_zero -> printf("{% C}", 0)
->>>> 69_flag_mix.spec.c ---------- [FAIL] ...F....F [FAIL] mix_space_zero -> printf("{% 03d}", 0)
+>>>> 61_flag_plus.spec.c --------- [Ok !] .............
+>>>> 62_flag_space.spec.c -------- [Ok !] ...............
+>>>> 69_flag_mix.spec.c ---------- [FAIL] ...F..... [FAIL] mix_space_zero -> printf("{% 03d}", 0)
 >>>> 70_precision_for_diu.spec.c - [Ok !] ..............................
->>>> 71_precision_for_oOxX.spec.c  [FAIL] .........FFF................... [FAIL] test_precision_o_up -> printf("%.4O", 42)
+>>>> 71_precision_for_oOxX.spec.c  [FAIL] .........FFFF.................. [FAIL] test_precision_o_up -> printf("%.4O", 42)
 >>>> 72_precision_for_sS.spec.c -- [FAIL] ........FFFFFF [FAIL] test_precision_s_implicit_precision -> printf("%4.s", "42")
->>>> 73_precision_for_cC.spec.c -- [FAIL] ...FF. [FAIL] cUpperNullChar -> printf("%.C", 0)
+>>>> 73_precision_for_cC.spec.c -- [Ok !] ......
 >>>> 74_precision_for_p.spec.c --- [FAIL] FF..FF [FAIL] pNullPointer_zeroPrecision -> printf("%.0p, %.p", 0, 0)
 >>>> 75_precision_for_percent.spec [Ok !] .
 >>>> 79_precision_mixed_with_flags [FAIL] ..FFFFF.FF [FAIL] test_precision_p_zero -> printf("%.p, %.0p", 0, 0)
 >>>> 90_incomptbl_values_sdpi.spec [Ok !] ....
 >>>> 91_incomptbl_values_uUSDcC.sp [Ok !] ......
->>>> 92_incomptbl_values_oOxX.spec [FAIL] ..F.... [FAIL] test_octal_up_long_min -> printf("%O", LONG_MIN)
+>>>> 92_incomptbl_values_oOxX.spec [Ok !] .......
 >>>> bonus_01_wildcard.spec.c ---- [FAIL] FFFFFFFFFFFFF [FAIL] wildcard_for_min_width_positive -> printf("%*d", 5, 42)
 >>>> bonus_02_wildcard_multi.spec. [FAIL] F [FAIL] wildcard_for_min_width_positive -> printf("%*.*d", 0, 3, 0)
 >>>> bonus_03_wildcard_flag_mix.sp [FAIL] FFFF [FAIL] digit_wildcard_and_min_width_value1 -> printf("{%3*d}", 0, 0)
 >>>> bonus_10_conv_fF.spec.c ----- [FAIL] FFFF [FAIL] simple_small_nbr -> printf("{%f}{%F}", 1.42, 1.42)
 [ ----------END OF UNIT TESTS---------- ]
 
->>>> Result: 21/48 test suites passed. 315/396 tests passed (dots).
+>>>> Result: 33/48 test suites passed. 342/396 tests passed (dots).
