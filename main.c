@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 16:05:08 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 12:52:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,11 +166,16 @@ int		ft_printf(const char *format, ...)
 			flag_letter = flag[ft_strlen(flag) - 1];
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
-			if (ret == NULL && flag_letter == 's')
+			if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
+			{
 				ret = "(null)";
-			if (ret[0] == '\0'  && flag_letter == 'c')
+			}
+			else if (ret[0] == '\0'  && ft_strchr("cC", flag_letter))
+			{
+				temp = "@";
 				ret = "@";
-			if (ft_strchr("SC", flag_letter))
+			}
+			else if  (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 			{
 				temp = ft_strdup(ret);
 				ret = ft_strndup(ret, ft_strlen(ret) / 3);
@@ -178,7 +183,7 @@ int		ft_printf(const char *format, ...)
 			}
 			conversion = handle_conversion(flag, ret);	
 			str = replacestr(str, flag, conversion);
-			if (ft_strchr("SC", flag_letter))
+			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 			{
 				idx = get_index(conversion, ret);
 				j = 0;
@@ -203,7 +208,7 @@ int		ft_printf(const char *format, ...)
 					j++;
 				}
 			}
-			else if (flag_letter == 'c' && ret[0] == '@')
+			else if (flag_letter == 'c' && temp && temp[0] == '@')
 			{
 				j = 0;
 				while (conversion[j])

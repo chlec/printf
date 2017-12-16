@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 16:02:13 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/16 12:53:11 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		main(void)
 	int e = 7;
 	printf("Length: %d\n", ft_printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length: %d\n",    printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
-	printf("%");
-	ft_printf("%");
+	ft_printf("mine %S\n", L"l`1`1`");
+	printf("%S\n", L"l`1`1`");
 	return (0);
 }
