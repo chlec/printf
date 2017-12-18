@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 13:25:44 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:14:46 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,9 @@ int		ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (str[i])
 	{
-		if (str[i] == '%' && check_flag(&str, (flag = get_flag(&str[i]))))
-		{
+		flag = get_flag(&str[i]);
+		if (str[i] == '%' && check_flag(&str, flag))
+		{	
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
 			flag_letter = flag[ft_strlen(flag) - 1];

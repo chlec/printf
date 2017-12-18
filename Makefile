@@ -18,12 +18,13 @@ SRCS =	main.c \
 		flag_format.c \
 		precision.c \
 		ft_wputstr.c \
-		ft_uitoa.c \
 		ft_atol.c \
-		ft_llto_base.c \
-		ft_unsitoa.c \
-		ft_ultoa.c \
-		ft_llutoa.c
+		ft_uintmaxtoa.c \
+		ft_intmaxtoa.c \
+		ft_uintmaxtoa_base.c \
+		ft_intmaxtoa_base.c \
+		ft_ulltoa.c \
+		ft_ulltoa_base.c
 
 OBJ = $(SRCS:.c=.o)
 

@@ -34,11 +34,12 @@ char		*handle_space(char *flag, char *ret);
 char		*handle_precision(char *flag, char *ret);
 char		*get_0_param(char *str);
 int			get_index(const char *haystack, const char *needle);
-char		*ft_uitoa(intmax_t n);
 long long 	ft_atol(const char *str);
-char		*ft_lltoa_base(uintmax_t n, int base);
-char		*ft_unsitoa(unsigned int n);
-char		*ft_ultoa(unsigned long n);
-char		*ft_llutoa(unsigned long long n);
+char		*ft_uintmaxtoa(uintmax_t n);
+char		*ft_intmaxtoa(intmax_t n);
+char		*ft_uintmaxtoa_base(uintmax_t n, int base);
+char		*ft_intmaxtoa_base(intmax_t n, int base);
+char		*ft_ulltoa(unsigned long long n);
+char		*ft_ulltoa_base(unsigned long long n, int base);
 
 #endif

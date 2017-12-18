@@ -6,13 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 14:52:15 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:55:20 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_length(unsigned int n)
+static int	get_length(uintmax_t n)
 {
 	int	len;
 
@@ -27,7 +27,7 @@ static int	get_length(unsigned int n)
 	return (len);
 }
 
-char		*ft_unsitoa(unsigned int n)
+char		*ft_uintmaxtoa(uintmax_t n)
 {
 	int		i;
 	char	*str;

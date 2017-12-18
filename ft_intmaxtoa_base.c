@@ -1,56 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_intmaxtoa_base.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 12:55:20 by clecalie         ###   ########.fr       */
+/*   Created: 2017/12/18 12:11:47 by clecalie          #+#    #+#             */
+/*   Updated: 2017/12/18 12:11:48 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-static int	get_length(intmax_t n)
+#include "ft_printf.h"
+
+static int	get_length(intmax_t n, int base)
 {
-	int	len;
+	int		len;
 
 	len = 0;
 	while (n != 0)
 	{
 		len++;
-		n /= 10;
+		n /= base;
 	}
 	if (len <= 0)
 		len = 1;
 	return (len);
 }
 
-char		*ft_uitoa(intmax_t n)
+char		*ft_intmaxtoa_base(intmax_t n, int base)
 {
 	int		i;
 	char	*str;
+	char	*base_str;
 	int		neg;
-	uintmax_t nb;
 
-	i = 0;
-	if (!(str = ft_strnew(get_length(n))))
-		return (0);
 	neg = 0;
-	if (n < 0)
+	base_str = "0123456789ABCDEF";
+	i = 0;
+	if (!(str = ft_strnew(get_length(n, base))))
+		return (0);
+	if (n == 0)
 	{
-		neg = 1;
-		nb = -n;
+		str = ft_strdup("0");
+		return (str);
 	}
-	else
-		nb = n;
-	if (nb == 0)
-		return (ft_strdup("0"));
-	while (nb != 0)
+	if (n < 0 && base == 10)
 	{
-		str[i++] = (nb % 10) + '0';
-		nb /= 10;
+		n = -n;
+		neg = 1;
+	}
+	while (n != 0)
+	{
+		str[i++] = base_str[(n % base)];
+		n /= base;
 	}
 	if (neg)
 		str[i++] = '-';

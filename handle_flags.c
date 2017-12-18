@@ -109,17 +109,17 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 	else if (flag_letter == 'd' || flag_letter == 'i' || flag_letter == 'D')
 	{
 		if (!ft_strcmp(length_flag, "l") || flag_letter == 'D')
-			ret = ft_uitoa(va_arg(*args, long));
+			ret = ft_intmaxtoa(va_arg(*args, long));
 		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa((signed char)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa((short)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_uitoa(va_arg(*args, long long));
+			ret = ft_intmaxtoa(va_arg(*args, long long));
 		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_uitoa(va_arg(*args, intmax_t));
+			ret = ft_intmaxtoa(va_arg(*args, intmax_t));
 		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_uitoa(va_arg(*args, size_t));
+			ret = ft_intmaxtoa(va_arg(*args, size_t));
 		else
 			ret = ft_itoa(va_arg(*args, int));
 	}
@@ -130,13 +130,13 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 16);	
 		else if (!ft_strcmp(length_flag, "l"))
-			ret = ft_lltoa_base(va_arg(*args, unsigned long), 16);
+			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long), 16);
 		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_lltoa_base(va_arg(*args, unsigned long long), 16);
+			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 16);
 		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_lltoa_base(va_arg(*args, uintmax_t), 16);
+			ret = ft_uintmaxtoa_base(va_arg(*args, uintmax_t), 16);
 		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_itoa_base(va_arg(*args, size_t), 16);
+			ret = ft_uintmaxtoa_base(va_arg(*args, size_t), 16);
 		else
 			ret = ft_itoa_base(va_arg(*args, unsigned int), 16);
 		if (flag_letter == 'x')
@@ -145,36 +145,36 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 	else if (flag_letter == 'o' || flag_letter == 'O')
 	{
 		if (!ft_strcmp(length_flag, "l") || flag_letter == 'O')
-			ret = ft_lltoa_base(va_arg(*args, unsigned long), 8);
+			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long), 8);
 		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa_base((unsigned char)va_arg(*args, int), 8);
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 8);	
 		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_lltoa_base(va_arg(*args, unsigned long long), 8);
+			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 8);
 		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_lltoa_base(va_arg(*args, uintmax_t), 8);
+			ret = ft_uintmaxtoa_base(va_arg(*args, uintmax_t), 8);
 		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_itoa_base(va_arg(*args, size_t), 8);
+			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 8);
 		else
 			ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
 	}
 	else if (flag_letter == 'u' || flag_letter == 'U')
 	{
 		if (!ft_strcmp(length_flag, "l") || flag_letter == 'U')
-			ret = ft_ultoa(va_arg(*args, unsigned long));
+			ret = ft_uintmaxtoa(va_arg(*args, unsigned long));
 		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa((unsigned char)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "h"))
 			ret = ft_itoa((unsigned short)va_arg(*args, int));	
 		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_llutoa(va_arg(*args, unsigned long long));
+			ret = ft_uintmaxtoa(va_arg(*args, unsigned long long));
 		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_uitoa(va_arg(*args, uintmax_t));
+			ret = ft_uintmaxtoa(va_arg(*args, uintmax_t));
 		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_itoa(va_arg(*args, size_t));
+			ret = ft_uintmaxtoa(va_arg(*args, unsigned long long));
 		else
-			ret = ft_unsitoa(va_arg(*args, unsigned int));
+			ret = ft_intmaxtoa(va_arg(*args, unsigned int));
 	}
 	else if (flag_letter == 's')
 	{
