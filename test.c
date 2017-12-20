@@ -31,8 +31,6 @@ int		main(void)
 	printf("Length: %d\n", ft_printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length: %d\n",    printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	//ft_printf("mine %ls\n", L"l`1`1`");
-	ft_printf("mien {%-7 Zoo}\n");
-	printf("leur {%-7 Zoo}\n");
 	//printf("%ls\n", L"l`1`1`");
 	return (0);
 }

@@ -55,18 +55,16 @@ char	*get_flag(char *str)
 {
 	int		i;
 	char	*ret;
-	char	*flags;
+	char	*validchar;
 
-	flags = "sSpdDioOuUxXcC%";
+	validchar = " +-#0123456789.hljzi";
 	i = 1;	
 	while (str[i])
 	{
-		if (ft_strchr(flags, str[i])) //|| str[i + 1] == ' ')
-		{
-			ret = ft_strndup(str, i + 1);
-			return (ret);
-		}
-		i++;
+		if (ft_strchr(validchar, str[i])) //|| str[i + 1] == ' ')
+			i++;
+		else
+			return (ft_strndup(str, i + 1));
 	}
 	ret = ft_strdup(str);
 	return (ret);
@@ -91,25 +89,6 @@ char	*replacestr(char *dest, char *flag, char *content)
 	ft_strcat(temp, after_flag);
 	dest = temp;
 	return (dest);
-}
-
-int		check_flag(char **str, char *flag)
-{
-	char	*validchar;
-	int		i;
-
-	i = (int)ft_strlen(flag) - 1;
-	validchar = " +-#0123456789.sSpdDioOuUxXcChljzi%";
-	while (flag[i] && ft_strchr(validchar, flag[i]))
-		i--;
-	if (i > 0 || ft_strlen(flag) == 1)
-	{
-		if (i < 0)
-			i = 0;
-		*str = replacestr(*str, ft_strndup(flag, (i > 0 ? i : (size_t)ft_strlen(flag))), "");
-		return (0);
-	}
-	return (1);
 }
 
 char	*get_length_flag(char *flag)
@@ -146,7 +125,6 @@ int		ft_printf(const char *format, ...)
 	int				idx;
 	unsigned char	nb;
 	char			*temp;
-	char			*temp2;
 	char			flag_letter;
 	char			*str;
 	char			*length_f;
@@ -161,9 +139,9 @@ int		ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (str[i])
 	{
-		flag = get_flag(&str[i]);
-		if (str[i] == '%' && check_flag(&str, flag))
-		{	
+		if (str[i] == '%')
+		{
+			flag = get_flag(&str[i]);
 			length_f = get_length_flag(flag);
 			ret = handle_flags(length_f, flag, &args);
 			flag_letter = flag[ft_strlen(flag) - 1];
@@ -180,7 +158,10 @@ int		ft_printf(const char *format, ...)
 			{
 				temp = ft_strdup(ret);
 				ret = ft_strndup(ret, ft_strlen(ret) / 3);
-				temp2 = ft_strdup(ret);
+			}
+			else if (!ft_strchr("sSpdDioOuUxXcC%", flag_letter))
+			{
+				ret = ft_ctos(flag_letter);
 			}
 			conversion = handle_conversion(flag, ret);	
 			str = replacestr(str, flag, conversion);

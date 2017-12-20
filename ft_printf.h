@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <wchar.h>
 # include <locale.h>
+# include <stdint.h>
 # include "libft.h"
 
 int			ft_printf(const char *format, ...);
