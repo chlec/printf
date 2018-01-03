@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 15:40:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 12:20:09 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*handle_diese(char *flag, char *ret)
 					ret = add_begin(ft_strtolower(ret), "0x");
 				else if (flag_letter == 'X')
 					ret = add_begin(ret, "0X");
-				else if (flag_letter == 'o')
+				else if (flag_letter == 'o' || flag_letter == 'O')
 					ret = add_begin(ret, "0");
 			}
 			while (ft_strchr(flag, '#'))
@@ -108,6 +108,11 @@ char	*handle_zero(char *flag, char *ret)
 				else if (ft_strchr(ret, '+'))
 				{
 					temp = "+";
+					ret = &ret[1];
+				}
+				else if (ft_strchr(ret, ' '))
+				{
+					temp = " ";
 					ret = &ret[1];
 				}
 				while (ft_strlen(ret) + ft_strlen(temp) < (size_t)nb)

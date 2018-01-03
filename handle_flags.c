@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/16 13:27:55 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 12:15:47 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 
 	ret = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
-	if (flag_letter == '%' && flag[0] == '%')
+	if (flag_letter == '%' && flag[0] == '%' && flag[1])
 		ret = "%";
 	else if (flag_letter == 'd' || flag_letter == 'i' || flag_letter == 'D')
 	{

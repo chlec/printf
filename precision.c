@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 15:47:47 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 12:22:04 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*handle_precision(char *flag, char *ret)
 		{
 			nb = ft_atoi(&flag[i + 1]);
 			flag = remove_0(flag);
-			if (ft_strchr("diuoxX", flag_letter) && nb > 0)
+			if (ft_strchr("diuoOxX", flag_letter) && nb > 0)
 			{
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)
 				{
@@ -68,9 +68,9 @@ char	*handle_precision(char *flag, char *ret)
 			else if (flag_letter == 'S' && nb > 0) {
 				ret = ft_strndup(ret, nb);
 			}
-			else if (flag_letter == 'o' && nb == 0 && ft_strequ(ret, "0") && ft_strchr(flag, '#'))
+			else if (ft_strchr("oO", flag_letter) && nb == 0 && ft_strequ(ret, "0") && ft_strchr(flag, '#'))
 				ret = "0";
-			else if (ft_strchr("xXudio", flag_letter) && nb == 0 && ft_strequ(ret, "0"))
+			else if (ft_strchr("xXudioO", flag_letter) && nb == 0 && ft_strequ(ret, "0"))
 				ret = "";
 			flag = replacestr(flag, ft_itoa(nb), "");
 			flag = replacestr(flag, ".", "");
