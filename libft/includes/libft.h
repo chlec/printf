@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:09:40 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 13:13:56 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:50:57 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+char			*ft_wputstr(wchar_t *str);
 
 typedef struct	s_list
 {

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 13:28:52 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 12:07:03 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 int		get_index(const char *haystack, const char *needle)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	if (!needle[0])
 		return (0);
 	while (haystack[i])
 	{
-		if (haystack[i] == needle[0])
-			return (i);
+		j = 0;
+		while (haystack[i] && needle[j] && haystack[i] == needle[j])
+		{
+			i++;
+			j++;
+		}
+		if (!needle[j])
+			return (i - j);
+		i -= j;
 		i++;
 	}
 	return (0);
@@ -120,9 +128,7 @@ int		ft_printf(const char *format, ...)
 	char			flag_letter;
 	char			*str;
 	char			*length_f;
-	int				len;
 
-	len = 0;
 	str = ft_strdup((char*)format);
 	setlocale(LC_ALL, "");
 	if (!format)
@@ -150,35 +156,34 @@ int		ft_printf(const char *format, ...)
 			}
 			else if  (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 			{
-				//temp = ft_strdup(ret);
-				//ret = ft_strndup(ret, ft_strlen(ret) / 3);
+				temp = ft_strdup(ret);
+				ret = ft_strndup(ret, ft_strlen(ret) / 3);
 			}
 			else if (!ft_strchr("sSpdDioOuUxXcC%", flag_letter))
 			{
 				ret = ft_ctos(flag_letter);
 			}
-			conversion = handle_conversion(flag, ret);
-			len += ft_strlen(conversion);
+			conversion = handle_conversion(flag, ret);	
 			str = replacestr(str, flag, conversion);
 			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 			{
-				idx = get_index(conversion, ret);	
+				idx = get_index(conversion, ret);
 				j = 0;
 				while ((size_t)j < ft_strlen(conversion))
 				{
 					if (j == idx)
 					{
 						h = 0;
-						while (ret[h] && ft_isdigit(conversion[h]))
+						while (temp[h])
 						{
 							if (h % 3 == 0)
 							{
-								nb = (unsigned char)ft_atoi(ft_strndup(&conversion[h], 3));
+								nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
 								write(1, &nb, 1);
 							}
 							h++;
 						}
-						j += h - 1;
+						j += ft_strlen(ret) - 1;
 					}
 					else
 						ft_putchar(conversion[j]);
@@ -202,13 +207,9 @@ int		ft_printf(const char *format, ...)
 			i += ft_strlen(conversion) - 1;
 		}
 		else
-		{
 			ft_putchar(str[i]);
-			len++;
-		}
 		i++;
 	}
 	va_end(args);
-	//return (ft_strlen(str));
-	return (len);
+	return (ft_strlen(str));
 }
