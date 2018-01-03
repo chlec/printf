@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 15:33:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:49:17 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int		main(void)
 	printf("%.c\n", 0);
 	ft_printf("{%05.c}\n", 0);
 	printf("{%05.c}\n", 0);
+	ft_printf("%lc\n", L'ÿ≠');
+	printf("%lc\n", L'ÿ≠');
 	return (0);
 }
