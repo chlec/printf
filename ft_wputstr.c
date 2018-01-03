@@ -6,11 +6,33 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/14 15:33:31 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 13:24:44 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+size_t	ft_wstrlen(char *str)
+{
+	size_t	i;
+	size_t	c;
+
+	i = 0;
+	c = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+		{
+			i += 3;
+			c++;
+		}
+		else {
+			i++;
+			c++;
+		}
+	}
+	return (c);
+}
 
 static char	*print_size_11(unsigned int c)
 {
