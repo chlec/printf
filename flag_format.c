@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 09:30:05 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 12:20:09 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:22:02 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*handle_diese(char *flag, char *ret)
 					ret = add_begin(ft_strtolower(ret), "0x");
 				else if (flag_letter == 'X')
 					ret = add_begin(ret, "0X");
-				else if (flag_letter == 'o' || flag_letter == 'O')
+				else if ((flag_letter == 'o' || flag_letter == 'O') && ret[0] != '0')
 					ret = add_begin(ret, "0");
 			}
 			while (ft_strchr(flag, '#'))
@@ -86,13 +86,15 @@ char	*handle_zero(char *flag, char *ret)
 	int		i;
 	int		nb;
 	char	*temp;
+	char	flag_letter;
 
 	i = -1;
 	temp = 0;
+	flag_letter = flag[ft_strlen(flag) - 1];
 	while (flag[++i])	
 		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
 		{
-			if ((!ft_strchr(flag, '-')) && !ft_strchr(flag, '.')) //&& !ft_strchr(deleted, '-')))
+			if (!ft_strchr(flag, '-')) //&& !ft_strchr(deleted, '-')))
 			{
 				nb = ft_atoi(&flag[i + 1]);
 				if (ft_strncmp(ft_strtolower(ret), ft_strtolower("0x"), 2) == 0)

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 12:19:42 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:33:48 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,17 @@ int		main(void)
 	int e = 7;
 	printf("Length: %d\n", ft_printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length: %d\n",    printf("%-20S || %-5s%.7s %c |%lx| %20p\n", L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
-	ft_printf("{% 03d}\n", 0);
-	printf("{% 03d}\n", 0);	
+	ft_printf("{%#.5x}\n", 1);
+	printf("{%#.5x}\n", 1);
+	ft_printf("%#x\n", 0);
+	printf("%#x\n", 0);
+	ft_printf("%#.3o\n", 1);
+	printf("%#.3o\n", 1);
+	ft_printf("{%05.S}\n", L"42 c est cool");
+	printf("{%05.S}\n", L"42 c est cool");
+	ft_printf("%.c\n", 0);
+	printf("%.c\n", 0);
+	ft_printf("{%05.c}\n", 0);
+	printf("{%05.c}\n", 0);
 	return (0);
 }

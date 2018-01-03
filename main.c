@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 12:07:03 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:31:24 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_index(const char *haystack, const char *needle)
 
 	i = 0;
 	if (!needle[0])
-		return (0);
+		return (-1);
 	while (haystack[i])
 	{
 		j = 0;
@@ -33,7 +33,7 @@ int		get_index(const char *haystack, const char *needle)
 		i -= j;
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 size_t	arg_len(char *str)
@@ -166,29 +166,34 @@ int		ft_printf(const char *format, ...)
 			conversion = handle_conversion(flag, ret);	
 			str = replacestr(str, flag, conversion);
 			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
-			{
+			{	
 				idx = get_index(conversion, ret);
 				j = 0;
-				while ((size_t)j < ft_strlen(conversion))
+				if (idx > -1)
 				{
-					if (j == idx)
+					while ((size_t)j < ft_strlen(conversion))
 					{
-						h = 0;
-						while (temp[h])
+						if (j == idx)
 						{
-							if (h % 3 == 0)
+							h = 0;
+							while (temp[h])
 							{
-								nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
-								write(1, &nb, 1);
+								if (h % 3 == 0)
+								{
+									nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
+									write(1, &nb, 1);
+								}
+								h++;
 							}
-							h++;
+							j += ft_strlen(ret) - 1;
 						}
-						j += ft_strlen(ret) - 1;
+						else
+							ft_putchar(conversion[j]);
+						j++;
 					}
-					else
-						ft_putchar(conversion[j]);
-					j++;
 				}
+				else
+					ft_putstr(conversion);
 			}
 			else if (flag_letter == 'c' && temp && temp[0] == '@')
 			{
