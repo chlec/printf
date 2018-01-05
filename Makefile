@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/16 13:29:12 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/05 10:09:35 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS =	main.c \
 		ft_uintmaxtoa_base.c \
 		ft_intmaxtoa_base.c \
 		ft_ulltoa.c \
-		ft_ulltoa_base.c
+		ft_ulltoa_base.c \
+		manip_SC.c
 
 OBJ = $(SRCS:.c=.o)
 
