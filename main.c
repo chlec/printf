@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 13:19:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 13:23:30 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*replacestr(char *dest, char *flag, char *content)
 	after_flag = &after_flag[ft_strlen(flag)];
 	if (!(temp = (char*)malloc(sizeof(char) *
 					((ft_strlen(dest) - ft_strlen(after_flag))
-					+ ft_strlen(content) + 200))))
+					+ ft_strlen(content) + 1000))))
 		return (0);
 	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest)
 				- ft_strlen(after_flag) - ft_strlen(flag)));
