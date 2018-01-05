@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:05:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:29:47 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:58:25 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		not_only_0(char *str)
 	return (0);
 }
 
-void	manip_SC(char *conversion, char *ret, char *temp)
+void	manip_sc_up(char *conversion, char *ret, char *temp)
 {
 	int				idx;
 	int				j;
@@ -69,9 +69,8 @@ void	manip_SC(char *conversion, char *ret, char *temp)
 				{
 					if (h % 3 == 0)
 					{
-						nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
-						if (!(nb >= 224 && !ft_isdigit(conversion[k + 1])) && !(nb >= 192 && !ft_isdigit(conversion[k + 1])))	
-							write(1, &nb, 1);
+						nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));	
+						write(1, &nb, 1);
 					}
 					h += 3;
 					k++;

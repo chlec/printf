@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:48:37 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 16:47:20 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:53:27 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long long	ft_atol(const char *str)
 {
-	int		i;
-	int		neg;
+	int			i;
+	int			neg;
 	long long	result;
 
 	neg = 0;

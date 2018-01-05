@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:32:41 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:56:39 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		ft_printf(const char *format, ...)
 			str = replacestr(str, flag, conversion);
 			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)")
 					&& !ft_strequ(ret, "@"))
-				manip_SC(conversion, ret, temp);
+				manip_sc_up(conversion, ret, temp);
 			else if (ft_strchr("cC", flag_letter) && temp && temp[0] == '@')
 			{
 				j = 0;

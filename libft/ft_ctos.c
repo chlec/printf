@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:52:38 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/13 13:33:34 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 13:01:02 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_ctos(char c)
 	return (buf);
 }
 
-wchar_t	*ft_CtoS(wchar_t c)
+wchar_t	*ft_ctos_up(wchar_t c)
 {
 	wchar_t	*buf;
 

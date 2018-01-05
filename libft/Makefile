@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 11:07:11 by clecalie          #+#    #+#              #
-#    Updated: 2017/12/14 15:53:40 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/05 13:14:27 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME):
 	gcc $(FLAGS) -c $(SRCS)
-	ar rc $(NAME) $(OBJ)
+	ar rc ./$(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

@@ -6,10 +6,9 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:11:47 by clecalie          #+#    #+#             */
-/*   Updated: 2017/12/18 12:11:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:55:15 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -35,16 +34,12 @@ char		*ft_intmaxtoa_base(intmax_t n, int base)
 	char	*base_str;
 	int		neg;
 
-	neg = 0;
 	base_str = "0123456789ABCDEF";
 	i = 0;
 	if (!(str = ft_strnew(get_length(n, base))))
 		return (0);
 	if (n == 0)
-	{
-		str = ft_strdup("0");
-		return (str);
-	}
+		return ("0");
 	if (n < 0 && base == 10)
 	{
 		n = -n;

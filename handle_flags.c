@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:36:04 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 13:01:32 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			*handle_other_flags(char *flag, va_list *args)
 	}
 	else if (flag_letter == 'C')
 	{
-		ret_w = ft_CtoS(va_arg(*args, wchar_t));
+		ret_w = ft_ctos_up(va_arg(*args, wchar_t));
 		ret = ft_wputstr(ret_w);
 	}
 	return (ret);
