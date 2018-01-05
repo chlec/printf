@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/03 15:07:33 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 11:04:30 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char			*handle_conversion(char *flag, char *ret)
 {
 	char	*rep;
 
-//	printf("flag is %s\n", flag);
 	if (!ret)
 		return (0);
 	rep = 0;

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 10:09:17 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:23:04 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		get_index(const char *haystack, const char *needle)
 	{
 		if (haystack[i] == needle[0])
 			return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -136,9 +137,7 @@ int		ft_printf(const char *format, ...)
 			if (ft_strchr("cs", flag_letter) && ft_strchr(length_f, 'l'))
 				flag_letter = ft_toupper(flag_letter);
 			if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
-			{
 				ret = "(null)";
-			}
 			else if (ret[0] == '\0'  && ft_strchr("cC", flag_letter))
 			{
 				temp = "@";
@@ -155,11 +154,9 @@ int		ft_printf(const char *format, ...)
 			}
 			conversion = handle_conversion(flag, ret);	
 			str = replacestr(str, flag, conversion);
-			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
-			{
+			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)") && !ft_strequ(ret, "@"))
 				manip_SC(conversion, ret, temp);	
-			}
-			else if (flag_letter == 'c' && temp && temp[0] == '@')
+			else if (ft_strchr("cC", flag_letter) && temp && temp[0] == '@')
 			{
 				j = 0;
 				while (conversion[j])
