@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:56:28 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 13:20:14 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <wchar.h>
-# include <locale.h>
 # include <stdint.h>
 # include "libft.h"
 

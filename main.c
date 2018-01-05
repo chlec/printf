@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:56:39 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 13:19:37 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int		ft_printf(const char *format, ...)
 	char			*length_f;
 
 	str = ft_strdup((char*)format);
-	setlocale(LC_ALL, "");
 	if (!format)
 		return (0);
 	i = 0;
