@@ -6,11 +6,27 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:05:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:13:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:29:47 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		get_index(const char *haystack, const char *needle)
+{
+	int		i;
+
+	i = 0;
+	if (!needle[0])
+		return (-1);
+	while (haystack[i])
+	{
+		if (haystack[i] == needle[0])
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 int		not_only_0(char *str)
 {

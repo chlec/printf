@@ -6,32 +6,17 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:23:04 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:32:41 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		get_index(const char *haystack, const char *needle)
-{
-	int		i;
-
-	i = 0;
-	if (!needle[0])
-		return (-1);
-	while (haystack[i])
-	{
-		if (haystack[i] == needle[0])
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 size_t	arg_len(char *str)
 {
 	int		i;
 	int		count;
+
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -50,10 +35,10 @@ char	*get_flag(char *str)
 	char	*validchar;
 
 	validchar = " +-#0123456789.hljz";
-	i = 1;	
+	i = 1;
 	while (str[i])
 	{
-		if (ft_strchr(validchar, str[i])) //|| str[i + 1] == ' ')
+		if (ft_strchr(validchar, str[i]))
 			i++;
 		else
 			return (ft_strndup(str, i + 1));
@@ -71,9 +56,11 @@ char	*replacestr(char *dest, char *flag, char *content)
 		return (dest);
 	after_flag = &after_flag[ft_strlen(flag)];
 	if (!(temp = (char*)malloc(sizeof(char) *
-					((ft_strlen(dest) - ft_strlen(after_flag)) + ft_strlen(content) + 1000))))
+					((ft_strlen(dest) - ft_strlen(after_flag))
+					+ ft_strlen(content) + 200))))
 		return (0);
-	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest) - ft_strlen(after_flag) - ft_strlen(flag)));
+	ft_strcat(temp, ft_strndup(dest, ft_strlen(dest)
+				- ft_strlen(after_flag) - ft_strlen(flag)));
 	if (content)
 		ft_strcat(temp, content);
 	else if (flag[ft_strlen(flag) - 1] == 's')
@@ -91,7 +78,7 @@ char	*get_length_flag(char *flag)
 	char	*ret;
 
 	ret = 0;
-	valid = "hljz";	
+	valid = "hljz";
 	i = 0;
 	while (!ft_strchr(valid, flag[i]))
 		i++;
@@ -138,12 +125,12 @@ int		ft_printf(const char *format, ...)
 				flag_letter = ft_toupper(flag_letter);
 			if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
 				ret = "(null)";
-			else if (ret[0] == '\0'  && ft_strchr("cC", flag_letter))
+			else if (ret[0] == '\0' && ft_strchr("cC", flag_letter))
 			{
 				temp = "@";
 				ret = "@";
 			}
-			else if  (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
+			else if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 			{
 				temp = ft_strdup(ret);
 				ret = ft_strndup(ret, ft_strlen(ret) / 3);
@@ -152,10 +139,11 @@ int		ft_printf(const char *format, ...)
 			{
 				ret = ft_ctos(flag_letter);
 			}
-			conversion = handle_conversion(flag, ret);	
+			conversion = handle_conversion(flag, ret);
 			str = replacestr(str, flag, conversion);
-			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)") && !ft_strequ(ret, "@"))
-				manip_SC(conversion, ret, temp);	
+			if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)")
+					&& !ft_strequ(ret, "@"))
+				manip_SC(conversion, ret, temp);
 			else if (ft_strchr("cC", flag_letter) && temp && temp[0] == '@')
 			{
 				j = 0;
@@ -169,7 +157,7 @@ int		ft_printf(const char *format, ...)
 				}
 			}
 			else
-				ft_putstr(conversion);	
+				ft_putstr(conversion);
 			i += ft_strlen(conversion) - 1;
 		}
 		else

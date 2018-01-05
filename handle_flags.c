@@ -6,13 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 11:04:30 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:36:04 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t		wstrlen(wchar_t *s)
+size_t			wstrlen(wchar_t *s)
 {
 	int				i;
 	unsigned int	c;
@@ -47,11 +47,12 @@ char			*handle_other_flags(char *flag, va_list *args)
 	ret_w = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == 'p')
-		ret = add_begin(ft_strtolower(ft_itoa_base(va_arg(*args, long int), 16)), "0x");
+		ret = add_begin(ft_strtolower(ft_itoa_base(va_arg(*args,
+							long int), 16)), "0x");
 	else if (flag_letter == 'S')
 	{
 		ret_w = va_arg(*args, wchar_t*);
-	   	ret = ft_wputstr(ret_w);	
+		ret = ft_wputstr(ret_w);
 	}
 	else if (flag_letter == 'C')
 	{
@@ -61,12 +62,12 @@ char			*handle_other_flags(char *flag, va_list *args)
 	return (ret);
 }
 
-char	*get_0_param(char *str)
+char			*get_0_param(char *str)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] && ft_isdigit(str[i]))	
+	while (str[i] && ft_isdigit(str[i]))
 		i++;
 	return (ft_strndup(str, i));
 }
@@ -128,7 +129,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa_base((unsigned char)va_arg(*args, int), 16);
 		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 16);	
+			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 16);
 		else if (!ft_strcmp(length_flag, "l"))
 			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long), 16);
 		else if (!ft_strcmp(length_flag, "ll"))
@@ -149,7 +150,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa_base((unsigned char)va_arg(*args, int), 8);
 		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 8);	
+			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 8);
 		else if (!ft_strcmp(length_flag, "ll"))
 			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 8);
 		else if (!ft_strcmp(length_flag, "j"))
@@ -166,7 +167,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		else if (!ft_strcmp(length_flag, "hh"))
 			ret = ft_itoa((unsigned char)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa((unsigned short)va_arg(*args, int));	
+			ret = ft_itoa((unsigned short)va_arg(*args, int));
 		else if (!ft_strcmp(length_flag, "ll"))
 			ret = ft_uintmaxtoa(va_arg(*args, unsigned long long));
 		else if (!ft_strcmp(length_flag, "j"))
@@ -182,7 +183,7 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 		{
 			flag = replacestr(flag, "s", "S");
 			return (handle_other_flags(flag, args));
-		}			
+		}
 		else
 			ret = va_arg(*args, char*);
 	}

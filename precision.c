@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:14:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/05 12:42:19 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ char	*remove_0(char *flag)
 
 char	*handle_precision(char *flag, char *ret)
 {
-	int		i;
-	int		nb;
-	char	flag_letter;
-	char	*temp;
+	int				i;
+	int				nb;
+	char			flag_letter;
+	char			*temp;
+	int				t;
+	unsigned char	num;
 
 	i = -1;
 	temp = 0;
@@ -54,7 +56,7 @@ char	*handle_precision(char *flag, char *ret)
 				{
 					temp = "-";
 					ret = &ret[1];
-				}	
+				}
 				while (ft_strlen(ret) < (size_t)nb)
 					ret = add_begin(ret, "0");
 				if (temp)
@@ -64,30 +66,31 @@ char	*handle_precision(char *flag, char *ret)
 			{
 				if (nb == 0 && ret[0] == '@')
 					nb = 1;
-				else if (ft_strchr("CS", flag_letter) && nb > 0 && nb * 3 < (int)ft_strlen(ret))
+				else if (ft_strchr("CS", flag_letter) && nb > 0
+						&& nb * 3 < (int)ft_strlen(ret))
 				{
-					int				t;
-					unsigned char	num;
-
 					t = 0;
 					while (ret[t])
 					{
 						num = ft_atoi(ft_strndup(&ret[t], 3));
-						if (num >= 192 && !(num >= 224 && t / 3 > nb) && !(num >= 192 && t / 3 > nb))
-						{	
+						if (num >= 192 && !(num >= 224 && t / 3 > nb)
+								&& !(num >= 192 && t / 3 > nb))
+						{
 							nb--;
-							break;
+							break ;
 						}
 						t += 3;
 					}
 				}
 				ret = ft_strndup(ret, nb);
 			}
-			else if (ft_strchr("oO", flag_letter) && nb == 0 && ft_strequ(ret, "0") && ft_strchr(flag, '#'))
+			else if (ft_strchr("oO", flag_letter) && nb == 0
+					&& ft_strequ(ret, "0") && ft_strchr(flag, '#'))
 				ret = "0";
-			else if (ft_strchr("xXudioO", flag_letter) && nb == 0 && ft_strequ(ret, "0"))
+			else if (ft_strchr("xXudioO", flag_letter)
+					&& nb == 0 && ft_strequ(ret, "0"))
 				ret = "";
-			else if (flag_letter == 'p' && nb == 0 
+			else if (flag_letter == 'p' && nb == 0
 					&& ft_strequ(ft_strtolower(ret), "0x0"))
 				ret = ft_strndup(ret, 2);
 			flag = replacestr(flag, get_0_param(&flag[i + 1]), "");
