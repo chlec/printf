@@ -6,13 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:05:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:58:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 12:14:41 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		get_index(const char *haystack, const char *needle)
+static int	get_index(const char *haystack, const char *needle)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ int		get_index(const char *haystack, const char *needle)
 	return (-1);
 }
 
-int		not_only_0(char *str)
+static int	not_only_0(char *str)
 {
 	int		i;
 
@@ -44,40 +44,44 @@ int		not_only_0(char *str)
 	return (0);
 }
 
-void	manip_sc_up(char *conversion, char *ret, char *temp)
+static void	display_unicode(char *conversion, char *temp, int idx)
+{
+	int				h;
+	unsigned char	nb;
+	int				k;
+
+	h = 0;
+	k = idx;
+	while (ft_isdigit(conversion[k]) && temp[h])
+	{
+		if (h % 3 == 0)
+		{
+			nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));
+			write(1, &nb, 1);
+		}
+		h += 3;
+		k++;
+	}
+}
+
+void		manip_sc_up(char *conversion, char *ret, char *temp)
 {
 	int				idx;
 	int				j;
-	int				h;
-	int				k;
-	unsigned char	nb;
 
 	idx = get_index(conversion, ret);
-	j = 0;
-	k = 0;
+	j = -1;
 	if (idx > -1 && not_only_0(conversion))
 	{
-		while ((size_t)j < ft_strlen(conversion))
+		while ((size_t)++j < ft_strlen(conversion))
 		{
-			if ((j < idx || k > idx) && conversion[j])
+			if ((j < idx || j > idx) && conversion[j])
 				ft_putchar(conversion[j]);
 			if (j == idx)
 			{
-				h = 0;
-				k = idx;
-				while (ft_isdigit(conversion[k]) && temp[h])
-				{
-					if (h % 3 == 0)
-					{
-						nb = (unsigned char)ft_atoi(ft_strndup(&temp[h], 3));	
-						write(1, &nb, 1);
-					}
-					h += 3;
-					k++;
-				}
+				display_unicode(conversion, temp, idx);
 				j += ft_strlen(ret) - 1;
 			}
-			j++;
 		}
 	}
 	else
