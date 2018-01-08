@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 16:09:23 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:11:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95);
 	ft_printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc");
 	printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc");
-	ft_printf("%s\n", "Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. ");
-	printf("%s\n", "Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. ");
+	ft_printf("%C\n", L'à');
+	printf("%C\n", L'à');
 	return (0);
 }
