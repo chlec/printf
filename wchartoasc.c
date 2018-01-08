@@ -94,9 +94,8 @@ char		*wchartoasc(wchar_t *str)
 				ret = add_end(ret, get_size_11(c));
 			else
 			{
-				//str[i--] = (char)c;
-				char a = (char)c;
-				write(1, &a, 1);
+				c = (char)c;
+ 				write(1, &c, 1);
 			}
 		}
 		else if (c <= 0x7FF && MB_CUR_MAX > 1)
