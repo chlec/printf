@@ -95,8 +95,8 @@ char		*wchartoasc(wchar_t *str)
 			else
 			{
 				//str[i--] = (char)c;
-				c = (char)c;
-				write(1, &c, 1);
+				char a = (char)c;
+				write(1, &a, 1);
 			}
 		}
 		else if (c <= 0x7FF && MB_CUR_MAX > 1)
