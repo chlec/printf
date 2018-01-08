@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 12:52:49 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 13:24:47 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ FLAGS_DIR = flags/
 
 SRCS =	main.c \
 		handle_flags.c \
+		handle_letters_dxou.c \
+		handle_letters_sc.c \
 		manipulation.c \
 		precision.c \
 		wchartoasc.c \

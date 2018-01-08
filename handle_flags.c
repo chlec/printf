@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 11:54:45 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 13:31:26 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,6 @@ size_t			wstrlen(wchar_t *s)
 		i++;
 	}
 	return (count);
-}
-
-char			*handle_other_flags(char *flag, va_list *args)
-{
-	char	*ret;
-	wchar_t	*ret_w;
-	char	flag_letter;
-
-	ret = "";
-	ret_w = 0;
-	flag_letter = flag[ft_strlen(flag) - 1];
-	if (flag_letter == 'p')
-		ret = add_begin(ft_strtolower(ft_itoa_base(va_arg(*args,
-							long int), 16)), "0x");
-	else if (flag_letter == 'S')
-	{
-		ret_w = va_arg(*args, wchar_t*);
-		ret = wchartoasc(ret_w);
-	}
-	else if (flag_letter == 'C')
-	{
-		ret_w = ft_ctos_up(va_arg(*args, wchar_t));
-		ret = wchartoasc(ret_w);
-	}
-	return (ret);
 }
 
 char			*get_0_param(char *str)
@@ -98,6 +73,31 @@ char			*handle_conversion(char *flag, char *ret)
 	return (ret);
 }
 
+char			*handle_other_flags(char *flag, va_list *args)
+{
+	char	*ret;
+	wchar_t	*ret_w;
+	char	flag_letter;
+
+	ret = "";
+	ret_w = 0;
+	flag_letter = flag[ft_strlen(flag) - 1];
+	if (flag_letter == 'p')
+		ret = add_begin(ft_strtolower(ft_itoa_base(va_arg(*args,
+							long int), 16)), "0x");
+	else if (flag_letter == 'S')
+	{
+		ret_w = va_arg(*args, wchar_t*);
+		ret = wchartoasc(ret_w);
+	}
+	else if (flag_letter == 'C')
+	{
+		ret_w = ft_ctos_up(va_arg(*args, wchar_t));
+		ret = wchartoasc(ret_w);
+	}
+	return (ret);
+}
+
 char			*handle_flags(char *length_flag, char *flag, va_list *args)
 {
 	char	*ret;
@@ -108,95 +108,17 @@ char			*handle_flags(char *length_flag, char *flag, va_list *args)
 	if (flag_letter == '%' && flag[0] == '%' && flag[1])
 		ret = "%";
 	else if (flag_letter == 'd' || flag_letter == 'i' || flag_letter == 'D')
-	{
-		if (!ft_strcmp(length_flag, "l") || flag_letter == 'D')
-			ret = ft_intmaxtoa(va_arg(*args, long));
-		else if (!ft_strcmp(length_flag, "hh"))
-			ret = ft_itoa((signed char)va_arg(*args, int));
-		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa((short)va_arg(*args, int));
-		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_intmaxtoa(va_arg(*args, long long));
-		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_intmaxtoa(va_arg(*args, intmax_t));
-		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_intmaxtoa(va_arg(*args, size_t));
-		else
-			ret = ft_itoa(va_arg(*args, int));
-	}
+		ret = handle_di(flag_letter, ret, length_flag, args);
 	else if (flag_letter == 'x' || flag_letter == 'X')
-	{
-		if (!ft_strcmp(length_flag, "hh"))
-			ret = ft_itoa_base((unsigned char)va_arg(*args, int), 16);
-		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 16);
-		else if (!ft_strcmp(length_flag, "l"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long), 16);
-		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 16);
-		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, uintmax_t), 16);
-		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, size_t), 16);
-		else
-			ret = ft_itoa_base(va_arg(*args, unsigned int), 16);
-		if (flag_letter == 'x')
-			ret = ft_strtolower(ret);
-	}
+		ret = handle_x(flag_letter, ret, length_flag, args);
 	else if (flag_letter == 'o' || flag_letter == 'O')
-	{
-		if (!ft_strcmp(length_flag, "l") || flag_letter == 'O')
-			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long), 8);
-		else if (!ft_strcmp(length_flag, "hh"))
-			ret = ft_itoa_base((unsigned char)va_arg(*args, int), 8);
-		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa_base((unsigned short)va_arg(*args, int), 8);
-		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 8);
-		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, uintmax_t), 8);
-		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_uintmaxtoa_base(va_arg(*args, unsigned long long), 8);
-		else
-			ret = ft_itoa_base(va_arg(*args, unsigned int), 8);
-	}
+		ret = handle_o(flag_letter, ret, length_flag, args);
 	else if (flag_letter == 'u' || flag_letter == 'U')
-	{
-		if (!ft_strcmp(length_flag, "l") || flag_letter == 'U')
-			ret = ft_uintmaxtoa(va_arg(*args, unsigned long));
-		else if (!ft_strcmp(length_flag, "hh"))
-			ret = ft_itoa((unsigned char)va_arg(*args, int));
-		else if (!ft_strcmp(length_flag, "h"))
-			ret = ft_itoa((unsigned short)va_arg(*args, int));
-		else if (!ft_strcmp(length_flag, "ll"))
-			ret = ft_uintmaxtoa(va_arg(*args, unsigned long long));
-		else if (!ft_strcmp(length_flag, "j"))
-			ret = ft_uintmaxtoa(va_arg(*args, uintmax_t));
-		else if (!ft_strcmp(length_flag, "z"))
-			ret = ft_uintmaxtoa(va_arg(*args, unsigned long long));
-		else
-			ret = ft_intmaxtoa(va_arg(*args, unsigned int));
-	}
+		ret = handle_u(flag_letter, ret, length_flag, args);
 	else if (flag_letter == 's')
-	{
-		if (!ft_strcmp(length_flag, "l"))
-		{
-			flag = replacestr(flag, "s", "S");
-			return (handle_other_flags(flag, args));
-		}
-		else
-			ret = va_arg(*args, char*);
-	}
+		ret = handle_s(flag, ret, length_flag, args);
 	else if (flag_letter == 'c')
-	{
-		if (!ft_strcmp(length_flag, "l"))
-		{
-			flag = replacestr(flag, "c", "C");
-			return (handle_other_flags(flag, args));
-		}
-		else
-			ret = ft_ctos(va_arg(*args, int));
-	}
+		ret = handle_c(flag, ret, length_flag, args);
 	else
 		ret = handle_other_flags(flag, args);
 	return (ret);
