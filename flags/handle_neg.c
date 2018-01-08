@@ -6,11 +6,12 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 12:26:08 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 13:04:38 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:25:08 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#define ABS(value) value < 0 ? -value : value
 
 static char	*remove_useless_flag(char *flag, int idx)
 {
@@ -48,7 +49,7 @@ char		*handle_neg(char *flag, char *ret)
 	while (flag[++i])
 		if (flag[i] == '-')
 		{
-			nb = ft_atoi(&flag[i + 1]);
+			nb = ABS(ft_atoi(&flag[i + 1]));
 			flag = update_nb(flag, &nb);
 			while (ft_strlen(ret) < (size_t)(nb))
 				ret = add_end(ret, " ");
