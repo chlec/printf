@@ -15,6 +15,7 @@
 
 int		main(void)
 {
+	//setlocale(LC_ALL, "");
 	int e = 7;
 	printf("Length: %d\n", ft_printf("%d %-20S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length: %d\n",    printf("%d %-20S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
@@ -22,7 +23,7 @@ int		main(void)
 	printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95);
 	ft_printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc");
 	printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc");
-	ft_printf("%C\n", L'à');
-	printf("%C\n", L'à');
+	ft_printf("me/ %C\n", L'à');
+	printf("em/ %C\n", L'à');
 	return (0);
 }

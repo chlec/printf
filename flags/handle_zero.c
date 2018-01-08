@@ -42,10 +42,8 @@ char		*handle_zero(char *flag, char *ret)
 	int		i;
 	int		nb;
 	char	*temp;
-	char	flag_letter;
 
 	i = -1;
-	flag_letter = flag[ft_strlen(flag) - 1];
 	temp = 0;
 	while (flag[++i])
 		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))

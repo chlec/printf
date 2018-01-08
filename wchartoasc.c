@@ -89,7 +89,13 @@ char		*wchartoasc(wchar_t *str)
 		if (c <= 0x7F)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
-		else if (c <= 0x7FF)
+		else if (c > 0x7F && c <= 0xFF) {
+			if (MB_CUR_MAX > 1)
+				ret = add_end(ret, get_size_11(c));
+			else
+				str[i--] = (char)c;
+		}
+		else if (c <= 0x7FF && MB_CUR_MAX > 1)
 			ret = add_end(ret, get_size_11(c));
 		else if (c <= 0xFFFF && MB_CUR_MAX > 2)
 			ret = add_end(ret, get_size_16(c));
