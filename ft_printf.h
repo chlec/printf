@@ -25,7 +25,7 @@ char		*replacestr(char *dest, char *flag, char *content);
 char		*add_begin(char *str, char *add);
 char		*add_end(char *str, char *add);
 char		*get_flag(char *str);
-char		*handle_diese(char *flag, char *ret);
+char		*handle_sharp(char *flag, char *ret);
 char		*handle_neg(char *flag, char *ret);
 char		*handle_zero(char *flag, char *ret);
 char		*handle_digit(char *flag, char *ret);

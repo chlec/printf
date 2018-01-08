@@ -83,7 +83,7 @@ char			*handle_conversion(char *flag, char *ret)
 		return (ret);
 	if ((rep = handle_precision(flag, ret)))
 		return (rep);
-	else if ((rep = handle_diese(flag, ret)))
+	else if ((rep = handle_sharp(flag, ret)))
 		return (rep);
 	else if ((rep = handle_plus(flag, ret)))
 		return (rep);

@@ -6,16 +6,17 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 11:57:06 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 12:52:49 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
+FLAGS_DIR = flags/
+
 SRCS =	main.c \
 		handle_flags.c \
 		manipulation.c \
-		flag_format.c \
 		precision.c \
 		wchartoasc.c \
 		ft_atol.c \
@@ -25,7 +26,13 @@ SRCS =	main.c \
 		ft_intmaxtoa_base.c \
 		ft_ulltoa.c \
 		ft_ulltoa_base.c \
-		manip_sc_up.c
+		manip_sc_up.c \
+		flags/handle_sharp.c \
+		flags/handle_neg.c \
+		flags/handle_plus.c \
+		flags/handle_digit.c \
+		flags/handle_space.c \
+		flags/handle_zero.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -58,14 +65,14 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	ar rc $(NAME) $(OBJ) libft/libft.a $(LIB_OBJ)
+	ar rc $(NAME) $(patsubst $(FLAGS_DIR)%, %, $(OBJ)) libft/libft.a $(LIB_OBJ)
 
 %.o: %.c
 	gcc -c $< $(FLAGS) -I libft/includes
 
 clean:
 	make -C libft/ clean
-	rm -f $(OBJ)
+	rm -f $(patsubst $(FLAGS_DIR)%, %, $(OBJ))
 
 fclean: clean
 	make -C libft/ fclean
