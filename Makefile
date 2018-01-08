@@ -6,13 +6,15 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 13:24:47 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 13:48:43 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 FLAGS_DIR = flags/
+
+CONVERSION_DIR = number_conversion/
 
 SRCS =	main.c \
 		handle_flags.c \
@@ -21,14 +23,14 @@ SRCS =	main.c \
 		manipulation.c \
 		precision.c \
 		wchartoasc.c \
-		ft_atol.c \
-		ft_uintmaxtoa.c \
-		ft_intmaxtoa.c \
-		ft_uintmaxtoa_base.c \
-		ft_intmaxtoa_base.c \
-		ft_ulltoa.c \
-		ft_ulltoa_base.c \
 		manip_sc_up.c \
+		number_conversion/ft_atol.c \
+		number_conversion/ft_uintmaxtoa.c \
+		number_conversion/ft_intmaxtoa.c \
+		number_conversion/ft_uintmaxtoa_base.c \
+		number_conversion/ft_intmaxtoa_base.c \
+		number_conversion/ft_ulltoa.c \
+		number_conversion/ft_ulltoa_base.c \
 		flags/handle_sharp.c \
 		flags/handle_neg.c \
 		flags/handle_plus.c \
@@ -37,6 +39,8 @@ SRCS =	main.c \
 		flags/handle_zero.c
 
 OBJ = $(SRCS:.c=.o)
+
+OBJ_FILTERED = $(patsubst $(FLAGS_DIR)%, %, $(patsubst $(CONVERSION_DIR)%, %, $(OBJ)))
 
 LIB_OBJ =	libft/ft_atoi.o \
 			libft/ft_ctos.o \
@@ -67,14 +71,14 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	ar rc $(NAME) $(patsubst $(FLAGS_DIR)%, %, $(OBJ)) libft/libft.a $(LIB_OBJ)
+	ar rc $(NAME) $(OBJ_FILTERED) libft/libft.a $(LIB_OBJ)
 
 %.o: %.c
 	gcc -c $< $(FLAGS) -I libft/includes
 
 clean:
 	make -C libft/ clean
-	rm -f $(patsubst $(FLAGS_DIR)%, %, $(OBJ))
+	rm -f $(OBJ_FILTERED)
 
 fclean: clean
 	make -C libft/ fclean

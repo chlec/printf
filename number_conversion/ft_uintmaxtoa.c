@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 16:48:37 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:53:27 by clecalie         ###   ########.fr       */
+/*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
+/*   Updated: 2017/12/14 12:55:20 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-long long	ft_atol(const char *str)
+static int	get_length(uintmax_t n)
 {
-	int			i;
-	int			neg;
-	long long	result;
+	int	len;
 
-	neg = 0;
-	i = 0;
-	result = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
+	len = 0;
+	while (n != 0)
 	{
-		neg = 1;
-		i++;
+		len++;
+		n /= 10;
 	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-		result = (result * 10) + str[i++] - '0';
-	if (neg)
-		result = -result;
-	return (result);
+	if (len <= 0)
+		len = 1;
+	return (len);
+}
+
+char		*ft_uintmaxtoa(uintmax_t n)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (!(str = ft_strnew(get_length(n))))
+		return (0);
+	if (n == 0)
+		return (ft_strdup("0"));
+	while (n != 0)
+	{
+		str[i++] = (n % 10) + '0';
+		n /= 10;
+	}
+	str[i] = '\0';
+	return (ft_strrev(str));
 }

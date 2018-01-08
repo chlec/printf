@@ -1,54 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:34:34 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:49:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:51:52 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-static int	get_length(intmax_t n)
+static int	get_length(uintmax_t n, int base)
 {
-	int	len;
+	int		len;
 
 	len = 0;
 	while (n != 0)
 	{
 		len++;
-		n /= 10;
+		n /= base;
 	}
 	if (len <= 0)
 		len = 1;
 	return (len);
 }
 
-char		*ft_intmaxtoa(intmax_t n)
+char		*ft_uintmaxtoa_base(uintmax_t n, int base)
 {
-	int			i;
-	char		*str;
-	uintmax_t	nb;
+	int		i;
+	char	*str;
+	char	*base_str;
 
+	base_str = "0123456789ABCDEF";
 	i = 0;
-	if (!(str = ft_strnew(get_length(n))))
+	if (!(str = ft_strnew(get_length(n, base))))
 		return (0);
-	if (n < 0)
-		nb = -n;
-	else
-		nb = n;
-	if (nb == 0)
-		return (ft_strdup("0"));
-	while (nb != 0)
+	if (n == 0)
 	{
-		str[i++] = (nb % 10) + '0';
-		nb /= 10;
+		str = ft_strdup("0");
+		return (str);
 	}
-	if (n < 0)
-		str[i++] = '-';
+	while (n != 0)
+	{
+		str[i++] = base_str[(n % base)];
+		n /= base;
+	}
 	str[i] = '\0';
 	return (ft_strrev(str));
 }

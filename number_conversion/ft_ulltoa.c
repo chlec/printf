@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-static int	get_length(uintmax_t n)
+static int	get_length(unsigned long long n)
 {
 	int	len;
 
@@ -27,7 +27,7 @@ static int	get_length(uintmax_t n)
 	return (len);
 }
 
-char		*ft_uintmaxtoa(uintmax_t n)
+char		*ft_ulltoa(unsigned long long n)
 {
 	int		i;
 	char	*str;

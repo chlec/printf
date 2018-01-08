@@ -6,13 +6,14 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:13:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 13:23:06 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 13:33:27 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*handle_di(char flag_letter, char *ret, char *length_flag, va_list *args)
+char	*handle_di(char flag_letter, char *ret,
+		char *length_flag, va_list *args)
 {
 	if (!ft_strcmp(length_flag, "l") || flag_letter == 'D')
 		ret = ft_intmaxtoa(va_arg(*args, long));
