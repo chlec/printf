@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 16:01:14 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:09:02 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char		*wchartoasc(wchar_t *str)
 		if (c <= 0x7F)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
-		else if (c <= 0x7FF && MB_CUR_MAX > 1)
+		else if (c <= 0x7FF)
 			ret = add_end(ret, get_size_11(c));
 		else if (c <= 0xFFFF && MB_CUR_MAX > 2)
 			ret = add_end(ret, get_size_16(c));
