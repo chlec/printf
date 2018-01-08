@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/05 13:11:43 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 11:57:06 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =	main.c \
 		manipulation.c \
 		flag_format.c \
 		precision.c \
-		ft_wputstr.c \
+		wchartoasc.c \
 		ft_atol.c \
 		ft_uintmaxtoa.c \
 		ft_intmaxtoa.c \

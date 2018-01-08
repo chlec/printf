@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wputstr.c                                       :+:      :+:    :+:   */
+/*   wchartoasc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 12:44:26 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 11:56:22 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*print_size_11(unsigned int c)
+static char	*get_size_11(unsigned int c)
 {
 	unsigned char	b2;
 	unsigned char	b1;
@@ -29,7 +29,7 @@ static char	*print_size_11(unsigned int c)
 	return (ret);
 }
 
-static char	*print_size_16(unsigned int c)
+static char	*get_size_16(unsigned int c)
 {
 	unsigned char	b3;
 	unsigned char	b2;
@@ -50,9 +50,8 @@ static char	*print_size_16(unsigned int c)
 	return (ret);
 }
 
-static char	*print_size_21(unsigned int c)
+static char	*get_size_21(unsigned int c)
 {
-	unsigned char	b4;
 	unsigned char	b3;
 	unsigned char	b2;
 	unsigned char	b1;
@@ -60,7 +59,6 @@ static char	*print_size_21(unsigned int c)
 	char			*ret;
 
 	ret = "";
-	b4 = (c << 26) >> 26;
 	b3 = ((c >> 6) << 26) >> 26;
 	b2 = ((c >> 12) << 26) >> 26;
 	b1 = ((c >> 18) << 29) >> 29;
@@ -70,12 +68,12 @@ static char	*print_size_21(unsigned int c)
 	ret = add_end(ret, ft_itoa(byte));
 	byte = ((0xF0808080 << 16) >> 24) | b3;
 	ret = add_end(ret, ft_itoa(byte));
-	byte = ((0xF0808080 << 24) >> 24) | b4;
+	byte = ((0xF0808080 << 24) >> 24) | (c << 26) >> 26;
 	ret = add_end(ret, ft_itoa(byte));
 	return (ret);
 }
 
-char		*ft_wputstr(wchar_t *str)
+char		*wchartoasc(wchar_t *str)
 {
 	int				i;
 	unsigned int	c;
@@ -92,11 +90,11 @@ char		*ft_wputstr(wchar_t *str)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
 		else if (c <= 0x7FF)
-			ret = add_end(ret, print_size_11(c));
+			ret = add_end(ret, get_size_11(c));
 		else if (c <= 0xFFFF)
-			ret = add_end(ret, print_size_16(c));
+			ret = add_end(ret, get_size_16(c));
 		else if (c <= 0x1FFFFF)
-			ret = add_end(ret, print_size_21(c));
+			ret = add_end(ret, get_size_21(c));
 		i++;
 	}
 	return (ret);

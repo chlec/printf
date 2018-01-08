@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 13:20:14 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 11:55:43 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ char		*ft_intmaxtoa_base(intmax_t n, int base);
 char		*ft_ulltoa(unsigned long long n);
 char		*ft_ulltoa_base(unsigned long long n, int base);
 void		manip_sc_up(char *conversion, char *ret, char *temp);
-
+char		*wchartoasc(wchar_t *str);
 
 #endif
