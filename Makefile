@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 13:48:43 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 13:51:44 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	main.c \
 		precision.c \
 		wchartoasc.c \
 		manip_sc_up.c \
+		replacestr.c \
 		number_conversion/ft_atol.c \
 		number_conversion/ft_uintmaxtoa.c \
 		number_conversion/ft_intmaxtoa.c \
