@@ -1,0 +1,2 @@
+- Gerer le retour -1 / MB_CUR_MAX
+- Essayer de faire marcher sans includes le libft dans le gcc

@@ -6,36 +6,11 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 13:31:26 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:13:46 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-size_t			wstrlen(wchar_t *s)
-{
-	int				i;
-	unsigned int	c;
-	size_t			count;
-
-	i = 0;
-	c = 0;
-	count = 0;
-	while (s[i])
-	{
-		c = s[i];
-		if (c <= 0x7F)
-			count++;
-		else if (c <= 0x7FF)
-			count += 2;
-		else if (c <= 0xFFFF)
-			count += 3;
-		else if (c <= 0x1FFFFF)
-			count += 4;
-		i++;
-	}
-	return (count);
-}
 
 char			*get_0_param(char *str)
 {

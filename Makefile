@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 13:51:44 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/08 14:36:26 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ FLAGS_DIR = flags/
 
 CONVERSION_DIR = number_conversion/
 
-SRCS =	main.c \
+SRCS =	ft_printf.c \
+		ft_printf.util.c \
 		handle_flags.c \
 		handle_letters_dxou.c \
 		handle_letters_sc.c \
