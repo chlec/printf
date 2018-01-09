@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 16:09:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/09 10:34:32 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char		*wchartoasc(wchar_t *str)
 			{
 				c = (char)c;
  				write(1, &c, 1);
+				//return ("-1");
 			}
 		}
 		else if (c <= 0x7FF && MB_CUR_MAX > 1)

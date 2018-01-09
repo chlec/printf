@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 16:03:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/09 10:56:16 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 {
 	if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
 		ret = "(null)";
-	else if (ft_strequ(ret, "-1") && ft_strchr("CS", flag_letter))
-		return (0);
+	else if ((ft_strequ(ret, "-1") || ft_strequ(ret, "-2")) && ft_strchr("CS", flag_letter))
+		return (ret);
 	else if (ret[0] == '\0' && ft_strchr("cC", flag_letter))
 	{
 		*temp = "@";
@@ -72,7 +72,9 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 	if (ft_strchr("cs", flag_letter) && ft_strchr(length_f, 'l'))
 		flag_letter = ft_toupper(flag_letter);
 	if (!(ret = get_temp(ret, &temp, flag_letter)))
-	return (0);
+		return (0);
+	if (ft_strequ(ret, "-1") || ft_strequ(ret, "-2"))
+		return (ret);
 	conversion = handle_conversion(flag, ret);
 	str = replacestr(str, flag, conversion);
 	print_content(ret, temp, conversion, flag_letter);
@@ -86,7 +88,9 @@ int			ft_printf(const char *format, ...)
 	int				i;
 	char			*flag;
 	char			*str;
+	int				err;
 
+	err = 0;
 	str = ft_strdup((char*)format);
 	if (!format)
 		return (0);
@@ -97,11 +101,13 @@ int			ft_printf(const char *format, ...)
 		{
 			flag = get_flag(&str[i]);
 			str = apply_flag(flag, str, &i, &args);
-			if (!str)
+			if (ft_strequ(str, "-1"))
 				return (-1);
+			else if (ft_strequ(str, "-2"))
+				err = 1;
 		}
 		else
 			ft_putchar(str[i]);
 	va_end(args);
-	return (ft_strlen(str));
+	return (err ? -1 : ft_strlen(str));
 }
