@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:05:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 12:14:41 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/09 11:32:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	display_unicode(char *conversion, char *temp, int idx)
 
 	h = 0;
 	k = idx;
-	while (ft_isdigit(conversion[k]) && temp[h])
+	while ((ft_isdigit(conversion[k]) || conversion[k] == '-') && temp[h])
 	{
 		if (h % 3 == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/09 10:34:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/09 11:46:32 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,29 +76,24 @@ static char	*get_size_21(unsigned int c)
 char		*wchartoasc(wchar_t *str)
 {
 	int				i;
-	unsigned int	c;
+	int				c;
 	char			*ret;
 
 	if (!str)
 		return (0);
-	i = 0;
+	i = -1;
 	ret = "";
-	while (str[i])
+	while (str[++i])
 	{
 		c = str[i];
 		if (c <= 0x7F)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
-		else if (c > 0x7F && c <= 0xFF) {
+		else if (c > 0x7F && c <= 0xFF)
 			if (MB_CUR_MAX > 1)
 				ret = add_end(ret, get_size_11(c));
 			else
-			{
-				c = (char)c;
- 				write(1, &c, 1);
-				//return ("-1");
-			}
-		}
+				str[i--] = (char)c;
 		else if (c <= 0x7FF && MB_CUR_MAX > 1)
 			ret = add_end(ret, get_size_11(c));
 		else if (c <= 0xFFFF && MB_CUR_MAX > 2)
@@ -107,7 +102,6 @@ char		*wchartoasc(wchar_t *str)
 			ret = add_end(ret, get_size_21(c));
 		else
 			return ("-1");
-		i++;
 	}
 	return (ret);
 }

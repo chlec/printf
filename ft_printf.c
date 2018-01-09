@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/09 10:56:16 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/09 11:52:25 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 {
 	if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
 		ret = "(null)";
-	else if ((ft_strequ(ret, "-1") || ft_strequ(ret, "-2")) && ft_strchr("CS", flag_letter))
+	else if (ft_strequ(ret, "-1") && ft_strchr("CS", flag_letter))
 		return (ret);
 	else if (ret[0] == '\0' && ft_strchr("cC", flag_letter))
 	{
@@ -73,7 +73,7 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 		flag_letter = ft_toupper(flag_letter);
 	if (!(ret = get_temp(ret, &temp, flag_letter)))
 		return (0);
-	if (ft_strequ(ret, "-1") || ft_strequ(ret, "-2"))
+	if ((ft_strequ(ret, "-1")) && ft_strchr("CS", flag_letter))
 		return (ret);
 	conversion = handle_conversion(flag, ret);
 	str = replacestr(str, flag, conversion);
@@ -103,7 +103,7 @@ int			ft_printf(const char *format, ...)
 			str = apply_flag(flag, str, &i, &args);
 			if (ft_strequ(str, "-1"))
 				return (-1);
-			else if (ft_strequ(str, "-2"))
+			if (ft_strchr("CS", flag[ft_strlen(flag) - 1]) && MB_CUR_MAX == 1)
 				err = 1;
 		}
 		else
