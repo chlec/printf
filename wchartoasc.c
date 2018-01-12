@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:40:46 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 14:29:04 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,13 @@ char		*wchartoasc(wchar_t *str)
 	i = -1;
 	ret = "";
 	while (str[++i])
-	{
-		c = str[i];
-		if (c <= 0x7F)
+		if ((c = str[i]) <= 0x7F)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
-		else if (c > 0x7F && c <= 0xFF)
-			if (MB_CUR_MAX > 1)
-				ret = add_end(ret, get_size_11(c));
-			else
-				str[i--] = (char)c;
+		else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX > 1)
+			ret = add_end(ret, get_size_11(c));
+		else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX == 1)
+			str[i--] = (char)c;
 		else if (c <= 0x7FF)
 			ret = add_end(ret, get_size_11(c));
 		else if (c <= 0xFFFF)
@@ -102,6 +99,5 @@ char		*wchartoasc(wchar_t *str)
 			ret = add_end(ret, get_size_21(c));
 		else
 			return ("-1");
-	}
 	return (ret);
 }
