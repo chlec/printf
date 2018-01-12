@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/09 11:46:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 11:01:55 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ char		*wchartoasc(wchar_t *str)
 				ret = add_end(ret, get_size_11(c));
 			else
 				str[i--] = (char)c;
-		else if (c <= 0x7FF && MB_CUR_MAX > 1)
+		else if (c <= 0x7FF)
 			ret = add_end(ret, get_size_11(c));
-		else if (c <= 0xFFFF && MB_CUR_MAX > 2)
+		else if (c <= 0xFFFF)
 			ret = add_end(ret, get_size_16(c));
-		else if (c <= 0x1FFFFF && MB_CUR_MAX > 3)
+		else if (c <= 0x1FFFFF)
 			ret = add_end(ret, get_size_21(c));
 		else
 			return ("-1");

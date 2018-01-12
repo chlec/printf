@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 10:55:53 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:05:15 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strchr("cs", flag_letter) && ft_strchr(length_f, 'l'))
 		flag_letter = ft_toupper(flag_letter);
+	if (ft_strchr("CS", flag_letter) && ret && !valid_unicode(ret))
+		return ("-1");
 	if (!(ret = get_temp(ret, &temp, flag_letter)))
 		return (0);
 	if ((ft_strequ(ret, "-1")) && ft_strchr("CS", flag_letter))
@@ -104,8 +106,6 @@ int			ft_printf(const char *format, ...)
 			str = apply_flag(flag, str, &i, &args);
 			if (ft_strequ(str, "-1") && ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 				return (-1);
-			if (ft_strchr("CS", flag[ft_strlen(flag) - 1]) && MB_CUR_MAX == 1)
-				err = 1;
 		}
 		else
 			ft_putchar(str[i]);
