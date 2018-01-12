@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:33:57 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/08 14:34:30 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 10:47:15 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,14 @@ char	*get_length_flag(char *flag)
 		ret = ft_strsub(flag, i, j - i);
 	}
 	return (ret);
+}
+
+int		contains_unicode(char *str)
+{
+	int		i;
+
+	i = 0;
+	while(str[i])
+		printf("code: %d\n", str[i++]);
+	return (0);
 }

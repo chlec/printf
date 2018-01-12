@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/09 11:52:25 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 10:55:53 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 	temp = 0;
 	length_f = get_length_flag(flag);
 	ret = handle_flags(length_f, flag, args);
+//	printf("ret vaut: %s\n", ret);
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strchr("cs", flag_letter) && ft_strchr(length_f, 'l'))
 		flag_letter = ft_toupper(flag_letter);
@@ -101,7 +102,7 @@ int			ft_printf(const char *format, ...)
 		{
 			flag = get_flag(&str[i]);
 			str = apply_flag(flag, str, &i, &args);
-			if (ft_strequ(str, "-1"))
+			if (ft_strequ(str, "-1") && ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 				return (-1);
 			if (ft_strchr("CS", flag[ft_strlen(flag) - 1]) && MB_CUR_MAX == 1)
 				err = 1;
