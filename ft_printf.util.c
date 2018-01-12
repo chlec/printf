@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:33:57 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:18:22 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 13:00:33 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ char	*get_length_flag(char *flag)
 int		valid_unicode(char *str)
 {
 	int		nb;
-	
+
 	nb = ft_atoi(ft_strsub(str, 0, 3));
-	if (nb > 0x7F && MB_CUR_MAX < 2)
-		return (0);
-	else if (nb > 0x7FF && MB_CUR_MAX < 3)
-		return (0);
-	else if (nb > 0xFFFF && MB_CUR_MAX < 4)
-		return (0);
-	return (1);
+	if (nb <= 0x7F && MB_CUR_MAX > 0)
+		return (1);
+	else if (nb <= 0x7FF && MB_CUR_MAX > 1)
+		return (1);
+	else if (nb <= 0xFFFF && MB_CUR_MAX > 2)
+		return (1);
+	else if (nb <= 0x1FFFFF && MB_CUR_MAX > 3)
+		return (1);
+	return (0);
 }

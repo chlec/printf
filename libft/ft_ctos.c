@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:52:38 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/05 13:01:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 13:02:01 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ wchar_t	*ft_ctos_up(wchar_t c)
 	if (!(buf = (wchar_t*)malloc(sizeof(wchar_t) * 2)))
 		return (0);
 	buf[0] = c;
+	buf[1] = '\0';
 	return (buf);
 }
