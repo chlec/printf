@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:58:29 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 13:04:37 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 	temp = 0;
 	length_f = get_length_flag(flag);
 	ret = handle_flags(length_f, flag, args);
-//	printf("ret vaut: %s\n", ret);
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strchr("cs", flag_letter) && ft_strchr(length_f, 'l'))
 		flag_letter = ft_toupper(flag_letter);
