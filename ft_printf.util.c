@@ -6,27 +6,11 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:33:57 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:03:24 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:18:22 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-size_t	arg_len(char *str)
-{
-	int		i;
-	int		count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-			count++;
-		i++;
-	}
-	return (count);
-}
 
 char	*get_flag(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:04:04 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:12:18 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(void)
 	printf("Length 3: %d\n", ft_printf("me/ %10C test\n", L'à'));
 	printf("Length 3: %d\n", printf("em/ %10C test\n", L'à'));
 	printf("Length 4: %d\n", ft_printf("Test/ %s aaaaaaa\n", NULL));
-	printf("Length 4: %d\n", printf("Test/ %s aaaaaaa\n", NULL));*/
+	printf("Length 4: %d\n", printf("Test/ %s aaaaaaa\n", NULL));
 	printf("Length 5: %d\n", ft_printf("%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C \
 				%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C\
 				%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C%C",
@@ -48,6 +48,8 @@ int		main(void)
 				'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 				't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}'));
 	printf("Length 6: %d\n", ft_printf("%C\n", L'猫'));	
-	printf("Length 6: %d\n", printf("%C\n", L'猫'));	
+	printf("Length 6: %d\n", printf("%C\n", L'猫'));*/
+	ft_printf("Lalalala, %s des gens qui parlent à Ly adorent Ly. Ou Presque.\n", "100%");
+	printf("Lalalala, %s des gens qui parlent à Ly adorent Ly. Ou Presque.\n", "100%");
 	return (0);
 }
