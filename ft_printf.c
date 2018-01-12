@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:20:58 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:22:11 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int			ft_printf(const char *format, ...)
 
 	err = 0;
 	str = ft_strdup((char*)format);
-	printf("str is: %s\n", str);
 	if (!format)
 		return (0);
 	i = -1;
@@ -104,7 +103,6 @@ int			ft_printf(const char *format, ...)
 		if (str[i] == '%')
 		{
 			flag = get_flag(&str[i]);
-			printf("Flag is: %s\n", flag);
 			str = apply_flag(flag, str, &i, &args);
 			if (ft_strequ(str, "-1") &&
 					ft_strchr("CS", flag[ft_strlen(flag) - 1]))

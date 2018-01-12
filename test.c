@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 12:12:18 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:24:06 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int		main(void)
 {
-	//setlocale(LC_ALL, "");
-	/*int e = 7;
-	printf("Length: %d\n", ft_printf("%d %-20S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
+//	setlocale(LC_ALL, "");
+	int e = 7;
+	/*printf("Length: %d\n", ft_printf("%d %-20S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length: %d\n",    printf("%d %-20S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫", "haha", "abcdef", 97, 2147483649, &e));
 	ft_printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95);
 	printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95);
@@ -49,7 +49,7 @@ int		main(void)
 				't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}'));
 	printf("Length 6: %d\n", ft_printf("%C\n", L'猫'));	
 	printf("Length 6: %d\n", printf("%C\n", L'猫'));*/
-	ft_printf("Lalalala, %s des gens qui parlent à Ly adorent Ly. Ou Presque.\n", "100%");
-	printf("Lalalala, %s des gens qui parlent à Ly adorent Ly. Ou Presque.\n", "100%");
+	ft_printf("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p\n", 100, "Ly", &e);
+	printf("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p\n", 100, "Ly", &e);
 	return (0);
 }
