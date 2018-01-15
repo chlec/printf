@@ -12,6 +12,15 @@
 
 #include "ft_printf.h"
 
+/*
+	Gestion des masques.
+	0XXXXXXX -> Si le cacetère est inférieure ou égal à 127
+	110XXXXX 10XXXXXX -> Si le cacetère est entre 128 et 2047 (size 11)
+	1110XXXX 10XXXXXX 10XXXXXX -> Si le cacetère est entre 2048 et 65535 (size 16)
+	11110XXX 10XXXXXX 10XXXXXX 10XXXXXX -> Si le cacetère est entre 65536 et 2097151 (size 21)
+
+	Les 3 masques: 0xC080 / 0xE08080 / 0xF0808080
+*/
 static char	*get_size_11(unsigned int c)
 {
 	unsigned char	b2;
