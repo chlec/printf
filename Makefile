@@ -6,15 +6,11 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/08 14:36:26 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/17 13:39:16 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-
-FLAGS_DIR = flags/
-
-CONVERSION_DIR = number_conversion/
 
 SRCS =	ft_printf.c \
 		ft_printf.util.c \
@@ -26,23 +22,21 @@ SRCS =	ft_printf.c \
 		wchartoasc.c \
 		manip_sc_up.c \
 		replacestr.c \
-		number_conversion/ft_atol.c \
-		number_conversion/ft_uintmaxtoa.c \
-		number_conversion/ft_intmaxtoa.c \
-		number_conversion/ft_uintmaxtoa_base.c \
-		number_conversion/ft_intmaxtoa_base.c \
-		number_conversion/ft_ulltoa.c \
-		number_conversion/ft_ulltoa_base.c \
-		flags/handle_sharp.c \
-		flags/handle_neg.c \
-		flags/handle_plus.c \
-		flags/handle_digit.c \
-		flags/handle_space.c \
-		flags/handle_zero.c
+		ft_atol.c \
+		ft_uintmaxtoa.c \
+		ft_intmaxtoa.c \
+		ft_uintmaxtoa_base.c \
+		ft_intmaxtoa_base.c \
+		ft_ulltoa.c \
+		ft_ulltoa_base.c \
+		handle_sharp.c \
+		handle_neg.c \
+		handle_plus.c \
+		handle_digit.c \
+		handle_space.c \
+		handle_zero.c
 
 OBJ = $(SRCS:.c=.o)
-
-OBJ_FILTERED = $(patsubst $(FLAGS_DIR)%, %, $(patsubst $(CONVERSION_DIR)%, %, $(OBJ)))
 
 LIB_OBJ =	libft/ft_atoi.o \
 			libft/ft_ctos.o \
@@ -67,20 +61,20 @@ LIB_OBJ =	libft/ft_atoi.o \
 			libft/ft_toupper.o \
 			libft/ft_bzero.o
 
-FLAGS = -Wall -Werror -Wextra 
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	ar rc $(NAME) $(OBJ_FILTERED) libft/libft.a $(LIB_OBJ)
+	ar rc $(NAME) $(OBJ) libft/libft.a $(LIB_OBJ)
 
 %.o: %.c
 	gcc -c $< $(FLAGS) -I libft/includes
 
 clean:
 	make -C libft/ clean
-	rm -f $(OBJ_FILTERED)
+	rm -f $(OBJ)
 
 fclean: clean
 	make -C libft/ fclean

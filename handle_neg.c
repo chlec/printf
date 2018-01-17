@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 #define ABS(value) value < 0 ? -value : value
 
 static char	*remove_useless_flag(char *flag, int idx)

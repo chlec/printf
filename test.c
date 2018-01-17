@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/17 13:31:29 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:42:33 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(void)
 	printf("Length 4: %d\n", ft_printf("Test/ %s aaaaaaa\n", NULL));
 	printf("Length 4: %d\n", printf("Test/ %s aaaaaaa\n", NULL));
 	printf("Length 5: %d\n", ft_printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95));
-	printf("Length 5: %d\n",   printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95);
+	printf("Length 5: %d\n",   printf("%--.4u et %#O%#012O%1lc\n", -12, 0, 0, 95));
 	ft_printf("%C\n", 0xD800);
 	printf("%C\n", 0xD800);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 13:04:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/17 12:50:59 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,7 @@ int			ft_printf(const char *format, ...)
 	int				i;
 	char			*flag;
 	char			*str;
-	int				err;
 
-	err = 0;
 	str = ft_strdup((char*)format);
 	if (!format)
 		return (0);
@@ -110,5 +108,5 @@ int			ft_printf(const char *format, ...)
 		else
 			ft_putchar(str[i]);
 	va_end(args);
-	return (err ? -1 : ft_strlen(str));
+	return (ft_strlen(str));
 }

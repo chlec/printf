@@ -6,21 +6,24 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 14:29:04 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/17 12:56:08 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-	Gestion des masques.
-	0XXXXXXX -> Si le cacetère est inférieure ou égal à 127
-	110XXXXX 10XXXXXX -> Si le cacetère est entre 128 et 2047 (size 11)
-	1110XXXX 10XXXXXX 10XXXXXX -> Si le cacetère est entre 2048 et 65535 (size 16)
-	11110XXX 10XXXXXX 10XXXXXX 10XXXXXX -> Si le cacetère est entre 65536 et 2097151 (size 21)
-
-	Les 3 masques: 0xC080 / 0xE08080 / 0xF0808080
+** Gestion des masques.
+** 0XXXXXXX -> Si le caractère est inférieure ou égal à 127
+** 110XXXXX 10XXXXXX -> Si le caractère est entre 128 et 2047 (size 11)
+** 1110XXXX 10XXXXXX 10XXXXXX -> Si le caractère est entre 2048
+** et 65535 (size 16)
+** 11110XXX 10XXXXXX 10XXXXXX 10XXXXXX -> Si le caractère est
+** entre 65536 et 2097151 (size 21)
+**
+** Les 3 masques: 0xC080 / 0xE08080 / 0xF0808080
 */
+
 static char	*get_size_11(unsigned int c)
 {
 	unsigned char	b2;
@@ -96,6 +99,8 @@ char		*wchartoasc(wchar_t *str)
 		if ((c = str[i]) <= 0x7F)
 			ret = add_end(ret, ft_strlen(ft_itoa(c)) > 2
 				? ft_itoa(c) : add_begin(ft_itoa(c), "0"));
+		else if ((c >= 0xD800 && c <= 0xDB7F) || (c >= 0xDC00 && c <= 0xDFFF))
+			return ("-1");
 		else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX > 1)
 			ret = add_end(ret, get_size_11(c));
 		else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX == 1)

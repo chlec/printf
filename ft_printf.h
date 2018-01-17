@@ -6,14 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 11:11:31 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:17:25 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-# include <stdio.h>
 # include <wchar.h>
 # include <stdint.h>
 # include "libft.h"
@@ -24,7 +23,7 @@ char		*get_length_flag(char *flag);
 char		*handle_flags(char *length_flag, char *flag, va_list *args);
 char		*handle_other_flags(char *flag, va_list *args);
 char		*handle_conversion(char *flag, char *ret);
-char		*replacestr(char *dest, char *flag, char *content);
+char		*replacestr(char *dest, char *find, char *content);
 char		*add_begin(char *str, char *add);
 char		*add_end(char *str, char *add);
 char		*get_flag(char *str);
