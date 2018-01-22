@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 13:57:13 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:04:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 
     conversion = 0;
 	temp = 0;
-    t_flag = 0;
 	length_f = get_length_flag(flag);
 	ret = handle_flags(length_f, flag, args);
 	flag_letter = flag[ft_strlen(flag) - 1];
@@ -95,8 +94,8 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
         ft_strdel(&temp);
 		return (ret);
     }
-    t_flag = ft_strdup(flag);
     t_ret = ft_strdup(ret);
+    t_flag = ft_strdup(flag);
     conversion = handle_conversion(flag, ret);
 	str = replacestr(str, t_flag, ft_strdup(conversion));
 	print_content(t_ret, temp, conversion, flag_letter);
@@ -136,7 +135,7 @@ int			ft_printf(const char *format, ...)
                 ft_strdel(&flag);
 				return (-1);
             }
-            if (flag && flag[0] == '%' && ft_isprint(flag[ft_strlen(flag) - 1]))
+           if (flag && flag[0] == '%' && ft_isprint(flag[ft_strlen(flag) - 1]))
                 ft_strdel(&flag);
 		}
 		else
