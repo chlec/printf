@@ -30,9 +30,6 @@ char	*replacestr(char *dest, char *find, char *content)
 	temp = add_end(temp, after_find);
 	dest = ft_strdup(temp);
 	ft_strdel(&temp);
-	//printf("Free find: %s\n", find);
 	ft_strdel(&find);
-   // if (ft_strlen(content) > 0)
-     //   ft_strdel(&content);
 	return (dest);
 }

@@ -58,22 +58,27 @@ static char	*store_begin(char *ret, int nb)
 	char	*temp;
     char    *lower1;
     char    *lower2;
-
+    char    *t;
+    
 	temp = 0;
     lower1 = ft_strtolower(ret);
     lower2 = ft_strtolower("0x");
 	if (ft_strncmp(lower1, lower2, 2) == 0)
 	{
 		if (!ft_strncmp(ret, "0x", 2))
-			temp = "0x";
+			temp = ft_strdup("0x");
 		else
-			temp = "0X";
-		ret = &ret[2];
+			temp = ft_strdup("0X");
+		t = ft_strdup(&ret[2]);
+        ft_strdel(&ret);
+        ret = t;
 	}
 	else if (ft_strchr(ret, '-'))
 	{
-		temp = "-";
-		ret = &ret[1];
+		temp = ft_strdup("-");
+        t = ft_strdup(&ret[1]);
+        ft_strdel(&ret);
+        ret = t;
 	}
 	while (ft_strlen(ret) < (size_t)nb)
 		ret = add_begin(ret, ft_strdup("0"));
@@ -95,10 +100,10 @@ static char	*get_ret_value(char *ret, int nb, char *flag)
 		ret = precision_cs(ret, nb, flag_letter);
 	else if (ft_strchr("oO", flag_letter) && nb == 0
 			&& ft_strequ(ret, "0") && ft_strchr(flag, '#'))
-		ret = "0";
+		ret = ft_strdup("0");
 	else if (ft_strchr("xXudioO", flag_letter)
 			&& nb == 0 && ft_strequ(ret, "0"))
-		ret = "";
+		ret = ft_strdup("");
 	else if (flag_letter == 'p' && nb == 0
 			&& ft_strequ(ft_strtolower(ret), "0x0"))
 		ret = ft_strndup(ret, 2);

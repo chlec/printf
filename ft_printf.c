@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/19 14:26:17 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 13:57:13 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
 	char	*temp;
 	char	*ret;
 	char	*length_f;
-    char    *t;
+    char    *t_flag;
+    char    *t_ret;
 
+    conversion = 0;
 	temp = 0;
+    t_flag = 0;
 	length_f = get_length_flag(flag);
 	ret = handle_flags(length_f, flag, args);
 	flag_letter = flag[ft_strlen(flag) - 1];
@@ -92,16 +95,16 @@ static char	*apply_flag(char *flag, char *str, int *i, va_list *args)
         ft_strdel(&temp);
 		return (ret);
     }
-    t = ft_strdup(flag);
+    t_flag = ft_strdup(flag);
+    t_ret = ft_strdup(ret);
     conversion = handle_conversion(flag, ret);
-	str = replacestr(str, t, ft_strdup(conversion));
-	print_content(ret, temp, conversion, flag_letter);
+	str = replacestr(str, t_flag, ft_strdup(conversion));
+	print_content(t_ret, temp, conversion, flag_letter);
 	ft_strdel(&temp);
 	*i += ft_strlen(conversion) - 1;
     if (ft_strlen(conversion) > 0)
         ft_strdel(&conversion);
-//    if (ft_strlen(ret) > 0)
-//        ft_strdel(&ret);
+    ft_strdel(&t_ret);
     ft_strdel(&length_f);
 	return (str);
 }
@@ -120,20 +123,20 @@ int			ft_printf(const char *format, ...)
 		return (0);
 	i = -1;
 	va_start(args, format);
-	while (str[++i])
+	while (str && str[++i])
 		if (str[i] == '%')
 		{
 			flag = get_flag(&str[i]);
 			t = apply_flag(flag, str, &i, &args);
             ft_strdel(&str);
             str = t;
-			if (ft_strequ(str, "-1") &&
+			if (str && ft_strequ(str, "-1") &&
 					ft_strchr("CS", flag[ft_strlen(flag) - 1]))
             {
                 ft_strdel(&flag);
 				return (-1);
             }
-            if (flag && flag[0] == '%')
+            if (flag && flag[0] == '%' && ft_isprint(flag[ft_strlen(flag) - 1]))
                 ft_strdel(&flag);
 		}
 		else

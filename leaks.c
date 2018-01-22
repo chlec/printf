@@ -1,9 +1,12 @@
 #include <strings.h>
 #include <locale.h>
+#include <limits.h>
+#include <stdio.h>
 int ft_printf(char const *str, ...);
 int main(void)
 {
 	setlocale(LC_ALL, "");
+    char    c;
 	ft_printf("\n");
 	ft_printf("%%\n");
 	ft_printf("%d\n", 42);
@@ -34,9 +37,17 @@ int main(void)
 	ft_printf("%s%s\n", "test", "test");
 	ft_printf("%s%s%s\n", "test", "test", "test");
 	ft_printf("%C\n", 15000);
-	ft_printf("%#08x\n", 42);
+	/*ft_printf("%#08x\n", 42);
 	ft_printf("%#.x %#.0x\n", 0, 0);
 	ft_printf("%5.x %5.0x\n", 0, 0);
+	ft_printf("%hhx, %hhx\n", 0, UCHAR_MAX + 42);
+	ft_printf("%hho, %hho\n", 0, UCHAR_MAX + 42);
+	ft_printf("%.4d\n", -424242);
+	ft_printf("%#.O\n", 0);
+	ft_printf("%s%d%p%%%S%D%i%o%O%u%U%x%X%c%C\n","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
+	ft_printf("%");*/
+	printf("Length: %d\n", ft_printf("{%-30S}\n", L"我是一只猫。"));
+	printf("Length: %d\n", printf("{%-30S}\n", L"我是一只猫。"));
 	while (1);
 	return (0);
 }

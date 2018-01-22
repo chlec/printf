@@ -58,7 +58,7 @@ char		*handle_neg(char *flag, char *ret)
 {
 	int		i;
 	int		nb;
-
+    
 	i = -1;
 	while (flag[++i])
 		if (flag[i] == '-')

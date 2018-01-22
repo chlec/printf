@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:33:57 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/12 13:00:33 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 11:56:22 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*get_flag(char *str)
 {
 	int		i;
-	char	*ret;
 	char	*validchar;
 
 	validchar = " +-#0123456789.hljz";
@@ -27,8 +26,7 @@ char	*get_flag(char *str)
 		else
 			return (ft_strndup(str, i + 1));
 	}
-	ret = ft_strdup(str);
-	return (ret);
+	return (ft_strdup(str));
 }
 
 char	*get_length_flag(char *flag)
