@@ -1,0 +1,5 @@
+.DS_STORE
+libft/.DS_STORE
+.*.swp
+libft/.*.swp
+libft/libft.xcodeproj

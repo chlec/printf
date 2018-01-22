@@ -39,7 +39,7 @@ char		*ft_uintmaxtoa_base(uintmax_t n, int base)
 		return (0);
 	if (n == 0)
 	{
-		str = ft_strdup("0");
+		str[0] = '0';
 		return (str);
 	}
 	while (n != 0)

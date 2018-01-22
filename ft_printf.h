@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 14:49:58 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:07:44 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <wchar.h>
 # include <stdint.h>
 # include <stdio.h>
-# include "includes/libft.h"
+# include "libft.h"
 
 int			ft_printf(const char *format, ...);
 size_t		arg_len(char *str);

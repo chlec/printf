@@ -34,14 +34,14 @@ char		*ft_intmaxtoa(intmax_t n)
 	uintmax_t	nb;
 
 	i = 0;
-	if (!(str = ft_strnew(get_length(n))))
-		return (0);
 	if (n < 0)
 		nb = -n;
 	else
 		nb = n;
-	if (nb == 0)
-		return (ft_strdup("0"));
+    if (nb == 0)
+        return (ft_strdup("0"));
+    if (!(str = ft_strnew(get_length(n))))
+        return (0);
 	while (nb != 0)
 	{
 		str[i++] = (nb % 10) + '0';

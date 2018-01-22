@@ -36,10 +36,10 @@ char		*ft_intmaxtoa_base(intmax_t n, int base)
 
 	base_str = "0123456789ABCDEF";
 	i = 0;
+    if (n == 0)
+        return (ft_strdup("0"));
 	if (!(str = ft_strnew(get_length(n, base))))
 		return (0);
-	if (n == 0)
-		return ("0");
 	if (n < 0 && base == 10)
 	{
 		n = -n;

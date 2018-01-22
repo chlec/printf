@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 15:01:37 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:17:10 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int			ft_printf(const char *format, ...);
 #include <locale.h>
 #include <stdio.h>
 
-/*int		main(void)
+int		main(void)
   {
   setlocale(LC_ALL, "");
   int e = 7;
@@ -31,11 +31,12 @@ int			ft_printf(const char *format, ...);
   ft_printf("%C\n", 0xd800);
   printf("%C\n", 0xd800);
   ft_printf("%s\n", "salut");
+  while (1);
   return (0);
-  }*/
+  }
 
 //leaks below
-int main(void)
+/*int main(void)
 {
 	ft_printf("\n");
 	ft_printf("%%\n");
@@ -69,4 +70,4 @@ int main(void)
 	ft_printf("%C\n", 15000);
 	while (1);
 	return (0);
-}
+}*/

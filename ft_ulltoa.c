@@ -33,10 +33,10 @@ char		*ft_ulltoa(unsigned long long n)
 	char	*str;
 
 	i = 0;
+    if (n == 0)
+        return (ft_strdup("0"));
 	if (!(str = ft_strnew(get_length(n))))
 		return (0);
-	if (n == 0)
-		return (ft_strdup("0"));
 	while (n != 0)
 	{
 		str[i++] = (n % 10) + '0';
