@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 11:07:11 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/05 13:14:27 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/22 14:35:11 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAGS) -c $(SRCS)
+$(NAME): $(OBJ)
 	ar rc ./$(NAME) $(OBJ)
+
+%.o: %.c
+	gcc -c $< $(FLAGS)
 
 clean:
 	rm -f $(OBJ)

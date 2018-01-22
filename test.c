@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 14:19:16 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 14:25:14 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int		main(void)
 	ft_printf("%C\n", 800);
 	printf("%C\n", 800);
 	ft_printf("%s\n", "salut");
-	while(1);
 	return (0);
 }

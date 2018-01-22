@@ -6,7 +6,7 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/17 13:45:45 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/22 14:32:45 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ LIB_OBJ =	libft/ft_atoi.o \
 			libft/ft_strtolower.o \
 			libft/ft_toupper.o \
 			libft/ft_bzero.o \
-			libft/ft_strdel.o
+			libft/ft_strdel.o \
+			libft/ft_isprint.o
 
 FLAGS = -Wall -Werror -Wextra
 
