@@ -126,7 +126,7 @@ int			ft_printf(const char *format, ...)
 		if (str[i] == '%')
 		{
 			flag = get_flag(&str[i]);
-			t = apply_flag(flag, str, &i, &args);
+			t = apply_flag(ft_strdup(flag), str, &i, &args);
             ft_strdel(&str);
             str = t;
 			if (str && ft_strequ(str, "-1") &&
