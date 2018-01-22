@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:33:57 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 11:56:22 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 14:53:46 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ int		valid_unicode(char *str)
 	else if (nb <= 0x1FFFFF && MB_CUR_MAX > 3)
 		return (1);
 	return (0);
+}
+
+char	*ft_update(char **old, char *new)
+{
+	char	*temp;
+
+	temp = ft_strdup(new);
+	ft_strdel(old);
+	*old = temp;
+	return (*old);
 }

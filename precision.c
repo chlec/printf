@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/17 14:41:14 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 14:51:48 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,31 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 static char	*store_begin(char *ret, int nb)
 {
 	char	*temp;
-    char    *lower1;
-    char    *lower2;
-    char    *t;
-    
+	char	*lower1;
+	char	*lower2;
+
 	temp = 0;
-    lower1 = ft_strtolower(ret);
-    lower2 = ft_strtolower("0x");
+	lower1 = ft_strtolower(ret);
+	lower2 = ft_strtolower("0x");
 	if (ft_strncmp(lower1, lower2, 2) == 0)
 	{
 		if (!ft_strncmp(ret, "0x", 2))
 			temp = ft_strdup("0x");
 		else
 			temp = ft_strdup("0X");
-		t = ft_strdup(&ret[2]);
-        ft_strdel(&ret);
-        ret = t;
+		ret = ft_update(&ret, &ret[2]);
 	}
 	else if (ft_strchr(ret, '-'))
 	{
 		temp = ft_strdup("-");
-        t = ft_strdup(&ret[1]);
-        ft_strdel(&ret);
-        ret = t;
+		ret = ft_update(&ret, &ret[1]);
 	}
 	while (ft_strlen(ret) < (size_t)nb)
 		ret = add_begin(ret, ft_strdup("0"));
 	if (temp)
 		ret = add_begin(ret, temp);
-    ft_strdel(&lower1);
-    ft_strdel(&lower2);
+	ft_strdel(&lower1);
+	ft_strdel(&lower2);
 	return (ret);
 }
 
@@ -115,7 +110,7 @@ char		*handle_precision(char *flag, char *ret)
 	int				i;
 	int				nb;
 	char			flag_letter;
-    char            *t;
+	char			*t;
 
 	i = -1;
 	flag_letter = flag[ft_strlen(flag) - 1];
@@ -128,8 +123,8 @@ char		*handle_precision(char *flag, char *ret)
 			if (ft_strchr("diuopOxX", flag_letter))
 				flag = remove_0(flag);
 			t = replacestr(flag, ft_strdup("."), ft_strdup(""));
-            ft_strdel(&flag);
-            flag = t;
+			ft_strdel(&flag);
+			flag = t;
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

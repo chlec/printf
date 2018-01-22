@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:10:48 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/17 14:44:33 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/22 14:49:58 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ char		*handle_u(char flag_letter, char *ret,
 char		*handle_s(char *flag, char *ret, char *length_flag, va_list *args);
 char		*handle_c(char *flag, char *ret, char *length_flag, va_list *args);
 int			valid_unicode(char *str);
+char		*ft_update(char **old, char *new);
 
 #endif
