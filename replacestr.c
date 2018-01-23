@@ -33,3 +33,35 @@ char	*replacestr(char *dest, char *find, char *content)
 	ft_strdel(&find);
 	return (dest);
 }
+/*"caca lol pipi"
+"lol" -> "tu"*/
+char	*replace_chars(char *dest, char *find, char *content)
+{
+	char		*part;
+	char		temp;
+	size_t		i;
+	size_t		j;
+	size_t      length;
+	size_t		k;
+
+	part = ft_strstr(dest, find);
+	length = ft_strlen(dest) - ft_strlen(part);
+	i = length;
+	j = 0;
+	printf("%d\n", i - length);
+	while (i - length < ft_strlen(find))
+	{
+		if (content[j])
+			dest[i] = content[j++];
+		else {
+			k = i;
+			while (dest[k])
+			{
+				dest[k] = dest[k + 1];
+				k++;
+			}
+		}
+		i++;
+	}
+	return (dest);
+}
