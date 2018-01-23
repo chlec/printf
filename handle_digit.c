@@ -16,7 +16,6 @@ char	*handle_digit(char *flag, char *ret)
 {
 	int		i;
 	int		nb;
-    char    *t;
 
 	i = -1;
 	while (flag[++i])
@@ -28,9 +27,8 @@ char	*handle_digit(char *flag, char *ret)
 				while (ft_strlen(ret) < (size_t)nb)
 					ret = add_begin(ret, ft_strdup(" "));
 			}
-			t = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), NULL);
-            ft_strdel(&flag);
-            flag = t;
+			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), NULL);
+           
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

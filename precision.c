@@ -110,7 +110,6 @@ char		*handle_precision(char *flag, char *ret)
 	int				i;
 	int				nb;
 	char			flag_letter;
-	char			*t;
 
 	i = -1;
 	flag_letter = flag[ft_strlen(flag) - 1];
@@ -122,9 +121,8 @@ char		*handle_precision(char *flag, char *ret)
 			flag = replacestr(flag, get_0_param(&flag[i + 1]), ft_strdup(""));
 			if (ft_strchr("diuopOxX", flag_letter))
 				flag = remove_0(flag);
-			t = replacestr(flag, ft_strdup("."), ft_strdup(""));
-			ft_strdel(&flag);
-			flag = t;
+			flag = replacestr(flag, ft_strdup("."), ft_strdup(""));
+			
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

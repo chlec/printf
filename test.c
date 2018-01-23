@@ -15,7 +15,7 @@ int			ft_printf(const char *format, ...);
 #include <stdio.h>
 #include <limits.h>
 #include <inttypes.h>
-
+/*
 int		main(void)
 {
 	setlocale(LC_ALL, "");
@@ -39,9 +39,9 @@ int		main(void)
 	// while (1);
 	return (0);
 }
-
+*/
 //leaks below
-/*
+
 int main(void)
   {
   ft_printf("\n");
@@ -76,4 +76,4 @@ int main(void)
   ft_printf("%C\n", 15000);
   while (1);
   return (0);
-  }*/
+  }

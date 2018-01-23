@@ -45,7 +45,7 @@ char			*handle_conversion(char *flag, char *ret)
 		return (rep);
 	else if ((rep = handle_digit(flag, ret)))
 		return (rep);
-    ft_strdel(&flag);
+    //ft_strdel(&flag);
 	return (ret);
 }
 

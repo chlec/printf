@@ -15,25 +15,21 @@
 
 static char	*remove_useless_flag(char *flag, int idx)
 {
-    char    *t;
     
 	if (ft_isdigit(flag[idx + 1]) && flag[idx + 1] != '0')
     {
-		t = replacestr(flag, ft_itoa(ft_atoi(&flag[idx])), NULL);
-        ft_strdel(&flag);
-        flag = t;
+		flag = replacestr(flag, ft_itoa(ft_atoi(&flag[idx])), NULL);
+        
     }
     else if (flag[idx + 1] == '0')
     {
-		t = replacestr(flag, add_end(ft_strdup("-"), ft_strdup("0")), NULL);
-        ft_strdel(&flag);
-        flag = t;
+		flag = replacestr(flag, add_end(ft_strdup("-"), ft_strdup("0")), NULL);
+        
     }
 	else
     {
-		t = replacestr(flag, ft_strdup("-"), NULL);
-        ft_strdel(&flag);
-        flag = t;
+		flag = replacestr(flag, ft_strdup("-"), NULL);
+        
     }
 	return (flag);
 }

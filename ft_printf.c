@@ -135,7 +135,7 @@ int			ft_printf(const char *format, ...)
                 ft_strdel(&flag);
 				return (-1);
             }
-           if (flag && flag[0] == '%' && ft_isprint(flag[ft_strlen(flag) - 1]))
+           //if (flag && flag[0] == '%' && ft_isprint(flag[ft_strlen(flag) - 1]))
                 ft_strdel(&flag);
 		}
 		else
