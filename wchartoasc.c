@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 11:31:19 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 15:16:10 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static char	*get_unicode(int c)
 		return (get_size_11(c));
 	else if (c <= 0xFFFF)
 		return (get_size_16(c));
-	else if (c <= 0x1FFFFF)
+	else if (c <= 0xFFFFF)
 		return (get_size_21(c));
 	else
 		return ("-1");
