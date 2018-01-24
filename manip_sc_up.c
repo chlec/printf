@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:05:35 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 13:02:12 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 10:38:31 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	display_unicode(char *conversion, char *temp, int idx)
 	int				h;
 	unsigned char	nb;
 	int				k;
-    char            *t;
+	char			*temp_nb;
 
 	h = 0;
 	k = idx;
@@ -57,9 +57,9 @@ static void	display_unicode(char *conversion, char *temp, int idx)
 	{
 		if (h % 3 == 0)
 		{
-            t = ft_strndup(&temp[h], 3);
-			nb = (unsigned char)ft_atoi(t);
-            ft_strdel(&t);
+			temp_nb = ft_strndup(&temp[h], 3);
+			nb = (unsigned char)ft_atoi(temp_nb);
+			ft_strdel(&temp_nb);
 			write(1, &nb, 1);
 		}
 		h += 3;
@@ -73,7 +73,6 @@ void		manip_sc_up(char *conversion, char *ret, char *temp)
 	int				j;
 
 	idx = get_index(conversion, ret);
-	//printf("conversion: %s, ret: %s, temp: %s, idx: %d\n", conversion, ret, temp, idx);
 	j = -1;
 	if (idx > -1 && not_only_0(conversion))
 	{

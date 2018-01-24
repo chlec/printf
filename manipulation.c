@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:56:47 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/18 13:59:32 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 10:24:28 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*add_begin(char *str, char *add)
 		return (0);
 	ft_strcat(ret, add);
 	ft_strcat(ret, str);
-    if (ft_strlen(str) > 0)
-        ft_strdel(&str);
-    ft_strdel(&add);
+	if (ft_strlen(str) > 0)
+		ft_strdel(&str);
+	ft_strdel(&add);
 	return (ret);
 }
 
@@ -38,7 +38,7 @@ char	*add_end(char *str, char *add)
 		return (0);
 	ft_strcat(ret, str);
 	ft_strcat(ret, add);
-    ft_strdel(&str);
-    ft_strdel(&add);
+	ft_strdel(&str);
+	ft_strdel(&add);
 	return (ret);
 }

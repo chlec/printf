@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 14:13:20 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 10:11:10 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char			*handle_conversion(char *flag, char *ret)
 		return (rep);
 	else if ((rep = handle_digit(flag, ret)))
 		return (rep);
-    //ft_strdel(&flag);
 	return (ret);
 }
 
@@ -54,10 +53,9 @@ char			*handle_other_flags(char *flag, va_list *args)
 	char	*ret;
 	wchar_t	*ret_w;
 	char	flag_letter;
-    char	*t;
+	char	*t;
 
 	ret = 0;
-	ret_w = 0;
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (flag_letter == 'p')
 	{
@@ -74,7 +72,7 @@ char			*handle_other_flags(char *flag, va_list *args)
 	{
 		ret_w = ft_ctos_up(va_arg(*args, wchar_t));
 		ret = wchartoasc(ret_w);
-        free(ret_w);
+		free(ret_w);
 	}
 	return (ret);
 }

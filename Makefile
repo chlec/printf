@@ -6,13 +6,14 @@
 #    By: clecalie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 15:12:41 by clecalie          #+#    #+#              #
-#    Updated: 2018/01/22 14:53:10 by clecalie         ###   ########.fr        #
+#    Updated: 2018/01/24 10:51:29 by clecalie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS =	ft_printf.c \
+		apply_flag.c \
 		ft_printf.util.c \
 		handle_flags.c \
 		handle_letters_dxou.c \
@@ -50,6 +51,7 @@ LIB_OBJ =	libft/ft_atoi.o \
 			libft/ft_strcmp.o \
 			libft/ft_strdup.o \
 			libft/ft_strequ.o \
+			libft/ft_strnequ.o \
 			libft/ft_strlen.o \
 			libft/ft_strncmp.o \
 			libft/ft_strndup.o \

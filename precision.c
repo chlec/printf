@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/22 14:51:48 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 14:13:05 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ static char	*store_begin(char *ret, int nb)
 	lower2 = ft_strtolower("0x");
 	if (ft_strncmp(lower1, lower2, 2) == 0)
 	{
-		if (!ft_strncmp(ret, "0x", 2))
-			temp = ft_strdup("0x");
-		else
-			temp = ft_strdup("0X");
+		temp = ft_strdup(!ft_strncmp(ret, "0x", 2) ? "0x" : "0X");
 		ret = ft_update(&ret, &ret[2]);
 	}
 	else if (ft_strchr(ret, '-'))
@@ -118,11 +115,11 @@ char		*handle_precision(char *flag, char *ret)
 		{
 			nb = ft_atoi(&flag[i + 1]);
 			ret = get_ret_value(ret, nb, flag);
-			flag = replace_chars(flag, get_0_param(&flag[i + 1]), ft_strdup(""));
+			flag = replace_chars(flag,
+					get_0_param(&flag[i + 1]), ft_strdup(""));
 			if (ft_strchr("diuopOxX", flag_letter))
 				flag = remove_0(flag);
 			flag = replace_chars(flag, ft_strdup("."), ft_strdup(""));
-			
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

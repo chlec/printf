@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 12:26:08 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/17 15:15:45 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 10:12:56 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,13 @@
 
 static char	*remove_useless_flag(char *flag, int idx)
 {
-    
 	if (ft_isdigit(flag[idx + 1]) && flag[idx + 1] != '0')
-    {
 		flag = replace_chars(flag, ft_itoa(ft_atoi(&flag[idx])), NULL);
-        
-    }
-    else if (flag[idx + 1] == '0')
-    {
-		flag = replace_chars(flag, add_end(ft_strdup("-"), ft_strdup("0")), NULL);
-        
-    }
+	else if (flag[idx + 1] == '0')
+		flag = replace_chars(flag, add_end(ft_strdup("-"), ft_strdup("0")),
+				NULL);
 	else
-    {
 		flag = replace_chars(flag, ft_strdup("-"), NULL);
-        
-    }
 	return (flag);
 }
 
@@ -54,7 +45,7 @@ char		*handle_neg(char *flag, char *ret)
 {
 	int		i;
 	int		nb;
-    
+
 	i = -1;
 	while (flag[++i])
 		if (flag[i] == '-')

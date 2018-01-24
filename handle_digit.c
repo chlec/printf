@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 12:27:11 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/17 15:17:02 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 10:13:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*handle_digit(char *flag, char *ret)
 					ret = add_begin(ret, ft_strdup(" "));
 			}
 			flag = replace_chars(flag, ft_itoa(ft_atoi(&flag[i])), NULL);
-           
 			return (handle_conversion(flag, ret));
 		}
 	return (0);
