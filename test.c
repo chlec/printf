@@ -15,12 +15,14 @@ int			ft_printf(const char *format, ...);
 #include <stdio.h>
 #include <limits.h>
 #include <inttypes.h>
+#include <stdlib.h>
 
 int		main(void)
 {
 	wchar_t	s[4];
 
 	setlocale(LC_ALL, "");
+	MB_CUR_MAX = 4;
 	s[0] = 0x53;
 	s[1] = 0x3abc;
 	s[2] = 0x81000;

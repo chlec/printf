@@ -16,9 +16,18 @@ static int	exec_flag(char **str, va_list *args, int *i)
 {
 	char	*flag;
 	char	*t;
+	char	*length_f;
 
 	t = *str;
 	flag = get_flag(&t[*i]);
+	length_f = get_length_flag(flag);
+	if (ft_strchr("cs", flag[ft_strlen(flag) - 1]) && ft_strchr(length_f, 'l'))
+	{
+		flag[ft_strlen(flag) - 1] = ft_toupper(flag[ft_strlen(flag) - 1]);
+		flag = replace_chars(flag, ft_strdup("l"), ft_strdup(""));
+		*str = replacestr(*str, get_flag(&t[*i]), ft_strdup(flag));
+	}
+	ft_strdel(&length_f);
 	t = apply_flag(flag, *str, i, args);
 	ft_strdel(str);
 	*str = t;

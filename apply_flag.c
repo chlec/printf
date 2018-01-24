@@ -77,7 +77,7 @@ static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
 	print_content(t_ret, *temp, conversion, flag_letter);
 	ft_strdel(temp);
-	len = ft_strlen(conversion);
+	len = (int)ft_strlen(conversion);
 	if (len > 0)
 		ft_strdel(&conversion);
 	ft_strdel(&t_ret);
@@ -89,12 +89,12 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	char	*temp;
 	char	*ret;
 	char	*length_f;
+	char	flag_letter;
 
 	length_f = get_length_flag(flag);
-	if (ft_strchr("cs", flag[ft_strlen(flag) - 1]) && ft_strchr(length_f, 'l'))
-		flag[ft_strlen(flag) - 1] = ft_toupper(flag[ft_strlen(flag) - 1]);
-	ret = handle_flags(length_f, flag, args);
-	if (ft_strchr("CS", flag[ft_strlen(flag) - 1])
+	flag_letter = flag[ft_strlen(flag) - 1];
+    ret = handle_flags(length_f, flag, args);
+	if (ft_strchr("CS", flag_letter)
 			&& ret && !valid_unicode(ret))
 	{
 		ft_strdel(&ret);
@@ -108,7 +108,7 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 		ft_strdel(&temp);
 		return (ret);
 	}
-	*i += apply_conversion(&flag, &ret, &temp, &str) - 1;
 	ft_strdel(&length_f);
+	*i += apply_conversion(&flag, &ret, &temp, &str) - 1;
 	return (str);
 }
