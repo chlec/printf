@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:51:46 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 14:45:00 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 16:28:34 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,9 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	char	*length_f;
 
 	length_f = get_length_flag(flag);
-	ret = handle_flags(length_f, flag, args);
-	ft_strdel(&length_f);
 	if (ft_strchr("cs", flag[ft_strlen(flag) - 1]) && ft_strchr(length_f, 'l'))
 		flag[ft_strlen(flag) - 1] = ft_toupper(flag[ft_strlen(flag) - 1]);
+	ret = handle_flags(length_f, flag, args);
 	if (ft_strchr("CS", flag[ft_strlen(flag) - 1])
 			&& ret && !valid_unicode(ret))
 	{
@@ -110,5 +109,6 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 		return (ret);
 	}
 	*i += apply_conversion(&flag, &ret, &temp, &str) - 1;
+	ft_strdel(&length_f);
 	return (str);
 }

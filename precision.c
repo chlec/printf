@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 14:13:05 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 16:14:50 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 	if (nb == 0 && ret[0] == '@')
 		nb = 1;
 	else if (ft_strchr("CS", flag_letter) && nb > 0
-			&& nb * 3 < (int)ft_strlen(ret))
+			&& nb * 3 <= (int)ft_strlen(ret))
 	{
 		t = 0;
-		while (ret[t])
+		while (t < (int)ft_strlen(ret) && t / 3 < nb)
 		{
 			num = ft_atoi(ft_strndup(&ret[t], 3));
-			if (num >= 192 && !(num >= 224 && t / 3 > nb)
-					&& !(num >= 192 && t / 3 > nb))
+			if (num >= 192 && t / 3 + 3 >= nb /*!(num >= 224 && t / 3 > nb)
+					&& !(num >= 192 && t / 3 > nb)*/)
 			{
-				nb--;
+				nb = t/ 3;
 				break ;
 			}
 			t += 3;
