@@ -33,7 +33,7 @@ char	*handle_sharp(char *flag, char *ret)
 					ret = add_begin(ret, ft_strdup("0"));
 			}
 			while (ft_strchr(flag, '#'))
-				flag = replacestr(flag, ft_strdup("#"), ft_strdup(""));
+				flag = replace_chars(flag, ft_strdup("#"), ft_strdup(""));
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

@@ -18,17 +18,17 @@ static char	*remove_useless_flag(char *flag, int idx)
     
 	if (ft_isdigit(flag[idx + 1]) && flag[idx + 1] != '0')
     {
-		flag = replacestr(flag, ft_itoa(ft_atoi(&flag[idx])), NULL);
+		flag = replace_chars(flag, ft_itoa(ft_atoi(&flag[idx])), NULL);
         
     }
     else if (flag[idx + 1] == '0')
     {
-		flag = replacestr(flag, add_end(ft_strdup("-"), ft_strdup("0")), NULL);
+		flag = replace_chars(flag, add_end(ft_strdup("-"), ft_strdup("0")), NULL);
         
     }
 	else
     {
-		flag = replacestr(flag, ft_strdup("-"), NULL);
+		flag = replace_chars(flag, ft_strdup("-"), NULL);
         
     }
 	return (flag);
@@ -44,7 +44,7 @@ static char	*update_nb(char *flag, int *nb)
 		{
 			if (*nb == 0)
 				*nb = ft_atoi(&flag[j]);
-			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[j])), NULL);
+			flag = replace_chars(flag, ft_itoa(ft_atoi(&flag[j])), NULL);
 			break ;
 		}
 	return (flag);
@@ -67,7 +67,7 @@ char		*handle_neg(char *flag, char *ret)
 			i = -1;
 			while (flag[++i])
 				if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
-					flag = replacestr(flag, get_0_param(&flag[i]), NULL);
+					flag = replace_chars(flag, get_0_param(&flag[i]), NULL);
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

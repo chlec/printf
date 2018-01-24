@@ -71,7 +71,7 @@ char		*handle_zero(char *flag, char *ret)
 				if (temp)
 					ret = add_begin(ret, temp);
 			}
-			flag = replacestr(flag, get_0_param(&flag[i]), NULL);
+			flag = replace_chars(flag, get_0_param(&flag[i]), NULL);
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

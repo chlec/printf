@@ -27,7 +27,7 @@ char	*handle_digit(char *flag, char *ret)
 				while (ft_strlen(ret) < (size_t)nb)
 					ret = add_begin(ret, ft_strdup(" "));
 			}
-			flag = replacestr(flag, ft_itoa(ft_atoi(&flag[i])), NULL);
+			flag = replace_chars(flag, ft_itoa(ft_atoi(&flag[i])), NULL);
            
 			return (handle_conversion(flag, ret));
 		}

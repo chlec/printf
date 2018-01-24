@@ -45,37 +45,32 @@ char	*ft_strstr(const char *haystack, const char *needle)
 char	*replace_chars(char *dest, char *find, char *content)
 {
 	char		*part;
-	char		temp;
 	size_t		i;
 	size_t		j;
 	size_t      length;
-	size_t		k;
+	char		*part2;
 
 	part = ft_strstr(dest, find);
+	part2 = &part[ft_strlen(find)];
 	length = ft_strlen(dest) - ft_strlen(part);
 	i = length;
 	j = 0;
 	while (i - length < ft_strlen(find))
-	{
 		if (content[j])
-			dest[i] = content[j++];
-		else {
-			k = i;
-			while (dest[k])
-			{
-				dest[k] = dest[k + 1];
-				k++;
-			}
-		}
-		i++;
-	}
+			dest[i++] = content[j++];
+		else
+			break;
+	j = 0;
+	while (part2[j])
+		dest[i++] = part2[j++];
+	dest[i] = '\0';
 	return (dest);
 }
 
 int main()
 {
-    char    t[] = "caca mouahhhhh pipi";
-    replace_chars(t, "mouahhhhh", "");
+    char    t[] = "testmouahhhhhabcd";
+    replace_chars(t, "test", "");
     printf("%s\n", t);
 
     return 0;

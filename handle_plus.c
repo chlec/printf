@@ -25,9 +25,9 @@ char	*handle_plus(char *flag, char *ret)
 			if (ft_strchr("id", flag_letter) && ft_atol(ret) >= 0)
 				ret = add_begin(ret, ft_strdup("+"));
 			while (ft_strchr(flag, '+'))
-				flag = replacestr(flag, ft_strdup("+"), ft_strdup(""));
+				flag = replace_chars(flag, ft_strdup("+"), ft_strdup(""));
 			while (ft_strchr(flag, ' '))
-				flag = replacestr(flag, ft_strdup(" "), ft_strdup(""));
+				flag = replace_chars(flag, ft_strdup(" "), ft_strdup(""));
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

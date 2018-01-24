@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:51:09 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/19 11:56:44 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/24 09:54:16 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,30 @@ char	*replacestr(char *dest, char *find, char *content)
 	ft_strdel(&find);
 	return (dest);
 }
-/*"caca lol pipi"
-"lol" -> "tu"*/
+
 char	*replace_chars(char *dest, char *find, char *content)
 {
 	char		*part;
-	char		temp;
 	size_t		i;
 	size_t		j;
 	size_t      length;
-	size_t		k;
+	char		*part2;
 
 	part = ft_strstr(dest, find);
+	part2 = &part[ft_strlen(find)];
 	length = ft_strlen(dest) - ft_strlen(part);
 	i = length;
 	j = 0;
-	printf("%d\n", i - length);
 	while (i - length < ft_strlen(find))
-	{
-		if (content[j])
-			dest[i] = content[j++];
-		else {
-			k = i;
-			while (dest[k])
-			{
-				dest[k] = dest[k + 1];
-				k++;
-			}
-		}
-		i++;
-	}
+		if (content && content[j])
+			dest[i++] = content[j++];
+		else
+			break;
+	j = 0;
+	while (part2[j])
+		dest[i++] = part2[j++];
+	dest[i] = '\0';
+	ft_strdel(&find);
+	ft_strdel(&content);
 	return (dest);
 }

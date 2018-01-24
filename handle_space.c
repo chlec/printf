@@ -26,7 +26,7 @@ char	*handle_space(char *flag, char *ret)
 					&& ft_atoi(ret) >= 0)
 				ret = add_begin(ret, ft_strdup(" "));
 			while (ft_strchr(flag, ' '))
-				flag = replacestr(flag, ft_strdup(" "), ft_strdup(""));
+				flag = replace_chars(flag, ft_strdup(" "), ft_strdup(""));
 			return (handle_conversion(flag, ret));
 		}
 	return (0);

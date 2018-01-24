@@ -20,7 +20,7 @@ static char	*remove_0(char *flag)
 	while (flag[i])
 	{
 		if (flag[i] == '0' && !ft_isdigit(flag[i - 1]))
-			flag = replacestr(flag, ft_strdup("0"), ft_strdup(""));
+			flag = replace_chars(flag, ft_strdup("0"), ft_strdup(""));
 		i++;
 	}
 	return (flag);
@@ -118,10 +118,10 @@ char		*handle_precision(char *flag, char *ret)
 		{
 			nb = ft_atoi(&flag[i + 1]);
 			ret = get_ret_value(ret, nb, flag);
-			flag = replacestr(flag, get_0_param(&flag[i + 1]), ft_strdup(""));
+			flag = replace_chars(flag, get_0_param(&flag[i + 1]), ft_strdup(""));
 			if (ft_strchr("diuopOxX", flag_letter))
 				flag = remove_0(flag);
-			flag = replacestr(flag, ft_strdup("."), ft_strdup(""));
+			flag = replace_chars(flag, ft_strdup("."), ft_strdup(""));
 			
 			return (handle_conversion(flag, ret));
 		}
