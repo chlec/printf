@@ -45,7 +45,7 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 			ft_strdel(&temp);
 			if (num >= 192 && t / 3 + 3 >= nb)
 			{
-				nb = t / 3;
+				nb = t;
 				break ;
 			}
 			t += 3;

@@ -28,7 +28,6 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 	else if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 	{
 		*temp = ft_strdup(ret);
-		ret = ft_strndup_static(ret, (ft_strlen(ret) / 3));
 	}
 	else if (!ft_strchr("sSpdDioOuUxXcC%", flag_letter))
 	{
@@ -64,23 +63,20 @@ static void	print_content(char *ret, char *temp,
 
 static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 {
-	char	*t_ret;
 	char	*t_flag;
 	char	*conversion;
 	char	flag_letter;
 	int		len;
 
-	t_ret = ft_strdup(*ret);
 	t_flag = ft_strdup(*flag);
 	flag_letter = t_flag[ft_strlen(t_flag) - 1];
 	conversion = handle_conversion(*flag, *ret);
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
-	print_content(t_ret, *temp, conversion, flag_letter);
+	print_content(*ret, *temp, conversion, flag_letter);
 	ft_strdel(temp);
 	len = (int)ft_strlen(conversion);
 	if (len > 0)
 		ft_strdel(&conversion);
-	ft_strdel(&t_ret);
 	return (len);
 }
 

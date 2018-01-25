@@ -27,7 +27,7 @@ static int	get_index(const char *haystack, const char *needle)
 	}
 	return (-1);
 }
-
+/*
 static int	not_only_0(char *str)
 {
 	int		i;
@@ -43,7 +43,7 @@ static int	not_only_0(char *str)
 	}
 	return (0);
 }
-
+*/
 static void	display_unicode(char *conversion, char *temp, int idx)
 {
 	int				h;
@@ -53,15 +53,28 @@ static void	display_unicode(char *conversion, char *temp, int idx)
 
 	h = 0;
 	k = idx;
-	while ((ft_isdigit(conversion[k]) || conversion[k] == '-') && temp[h])
+	(void)conversion;
+	while (h < (int)ft_strlen(temp))
 	{
-		if (h % 3 == 0)
+		temp_nb = ft_strndup(&temp[h], 3);
+		if (ft_atoi(temp_nb) != 0)
 		{
-			temp_nb = ft_strndup(&temp[h], 3);
-			nb = (unsigned char)ft_atoi(temp_nb);
-			ft_strdel(&temp_nb);
-			write(1, &nb, 1);
+			if (h % 3 == 0)
+			{
+				nb = (unsigned char)ft_atoi(temp_nb);
+				write(1, &nb, 1);
+			}
 		}
+		else
+		{
+			if (temp[h])
+				ft_putchar(temp[h]);
+			if (temp[h + 1])
+				ft_putchar(temp[h + 1]);
+			if (temp[h + 2])
+				ft_putchar(temp[h + 2]);
+		}
+		ft_strdel(&temp_nb);
 		h += 3;
 		k++;
 	}
@@ -70,10 +83,12 @@ static void	display_unicode(char *conversion, char *temp, int idx)
 void		manip_sc_up(char *conversion, char *ret, char *temp)
 {
 	int				idx;
-	int				j;
+	//int				j;
 
+	(void)temp;
 	idx = get_index(conversion, ret);
-	j = -1;
+	display_unicode(conversion, ret, 0);
+	/*j = -1;
 	if (idx > -1 && not_only_0(conversion))
 	{
 		while ((size_t)++j < ft_strlen(conversion))
@@ -82,11 +97,11 @@ void		manip_sc_up(char *conversion, char *ret, char *temp)
 				ft_putchar(conversion[j]);
 			if (j == idx)
 			{
-				display_unicode(conversion, temp, idx);
+				display_unicode(conversion, ret, idx);
 				j += ft_strlen(ret) - 1;
 			}
 		}
 	}
 	else
-		ft_putstr(conversion);
+		ft_putstr(conversion);*/
 }

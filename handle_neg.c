@@ -45,14 +45,20 @@ char		*handle_neg(char *flag, char *ret)
 {
 	int		i;
 	int		nb;
+	char	flag_letter;
+	size_t	ret_len;
 
 	i = -1;
 	while (flag[++i])
 		if (flag[i] == '-')
 		{
+			flag_letter = flag[ft_strlen(flag) - 1];
 			nb = ABS(ft_atoi(&flag[i + 1]));
 			flag = update_nb(flag, &nb);
-			while (ft_strlen(ret) < (size_t)(nb))
+			ret_len = ft_strlen(ret);
+			if (ft_strchr("SC", flag_letter))
+				ret_len = ret_len / 3;
+			while (ret_len++ < (size_t)(nb))
 				ret = add_end(ret, ft_strdup(" "));
 			flag = remove_useless_flag(flag, i);
 			i = -1;

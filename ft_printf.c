@@ -28,18 +28,18 @@ static void	update_big_sc(char **flag, char **str, char *got_flag)
 static int	exec_flag(char **str, va_list *args, int *i)
 {
 	char	*flag;
-	char	*t;
+	char	*temp;
 	char	*length_f;
 
-	t = *str;
-	flag = get_flag(&t[*i]);
+	temp = *str;
+	flag = get_flag(&temp[*i]);
 	length_f = get_length_flag(flag);
 	if (ft_strchr("cs", flag[ft_strlen(flag) - 1]) && ft_strchr(length_f, 'l'))
-		update_big_sc(&flag, str, get_flag(&t[*i]));
+		update_big_sc(&flag, str, get_flag(&temp[*i]));
 	ft_strdel(&length_f);
-	t = apply_flag(flag, *str, i, args);
+	temp = apply_flag(flag, *str, i, args);
 	ft_strdel(str);
-	*str = t;
+	*str = temp;
 	if (*str && ft_strequ(*str, "-1") &&
 			ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 	{
