@@ -47,6 +47,6 @@ int		main(void)
 	printf("%.3ls\n", s);
 	ft_printf("%lc, %lc\n", L'暖', L'ح');
 	printf("%lc, %lc\n", L'暖', L'ح');
-	//	while (1);
+//	while (1);
 	return (0);
 }

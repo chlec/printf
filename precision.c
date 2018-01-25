@@ -34,16 +34,15 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 	if (nb == 0 && ret[0] == '@')
 		nb = 1;
 	else if (ft_strchr("CS", flag_letter) && nb > 0
-			&& nb * 3 <= (int)ft_strlen(ret))
+			&& nb * 3 <= (int)ft_strlen(ret) + 1)
 	{
 		t = 0;
 		while (t < (int)ft_strlen(ret) && t / 3 < nb)
 		{
 			num = ft_atoi(ft_strndup(&ret[t], 3));
-			if (num >= 192 && t / 3 + 3 >= nb /*!(num >= 224 && t / 3 > nb)
-					&& !(num >= 192 && t / 3 > nb)*/)
+			if (num >= 192 && t / 3 + 3 >= nb)
 			{
-				nb = t/ 3;
+				nb = t / 3;
 				break ;
 			}
 			t += 3;
