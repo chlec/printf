@@ -51,24 +51,7 @@ char	*get_length_flag(char *flag)
 	return (ret);
 }
 
-int		valid_unicode(char *str)
-{
-	int		nb;
-	char	*t;
 
-	t = ft_strsub(str, 0, 3);
-	nb = ft_atoi(t);
-	ft_strdel(&t);
-	if (nb <= 0x7F && MB_CUR_MAX > 0)
-		return (1);
-	else if (nb <= 0x7FF && MB_CUR_MAX > 1)
-		return (1);
-	else if (nb <= 0xFFFF && MB_CUR_MAX > 2)
-		return (1);
-	else if (nb <= 0x1FFFFF && MB_CUR_MAX > 3)
-		return (1);
-	return (0);
-}
 
 char	*ft_update(char **old, char *new)
 {

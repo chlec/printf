@@ -42,7 +42,6 @@ char		*ft_uintmaxtoa_base(uintmax_t n, int base);
 char		*ft_intmaxtoa_base(intmax_t n, int base);
 char		*ft_ulltoa(unsigned long long n);
 char		*ft_ulltoa_base(unsigned long long n, int base);
-void		manip_sc_up(char *conversion, char *ret, char *temp);
 char		*wchartoasc(wchar_t *str);
 char		*handle_di(char flag_letter, char *ret,
 		char *length_flag, va_list *args);
@@ -54,7 +53,6 @@ char		*handle_u(char flag_letter, char *ret,
 		char *length_flag, va_list *args);
 char		*handle_s(char *flag, char *ret, char *length_flag, va_list *args);
 char		*handle_c(char *flag, char *ret, char *length_flag, va_list *args);
-int			valid_unicode(char *str);
 char		*ft_update(char **old, char *new);
 char		*replace_chars(char *dest, char *find, char *content);
 char		*apply_flag(char *flag, char *str, int *i, va_list *args);

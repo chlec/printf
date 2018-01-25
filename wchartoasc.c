@@ -97,13 +97,15 @@ static char	*get_unicode(int c)
 	}
 	else if ((c >= 0xD800 && c <= 0xDB7F) || (c >= 0xDC00 && c <= 0xDFFF))
 		return ("-1");
+	else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX == 1)
+		return (get_unicode((char)c));
 	else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX > 1)
 		return (get_size_11(c));
-	else if (c <= 0x7FF)
+	else if (c <= 0x7FF && MB_CUR_MAX > 1)
 		return (get_size_11(c));
-	else if (c <= 0xFFFF)
+	else if (c <= 0xFFFF && MB_CUR_MAX > 2)
 		return (get_size_16(c));
-	else if (c <= 0xFFFFF)
+	else if (c <= 0xFFFFF && MB_CUR_MAX > 3)
 		return (get_size_21(c));
 	else
 		return ("-1");
@@ -121,17 +123,16 @@ char		*wchartoasc(wchar_t *str)
 	i = -1;
 	ret = ft_strnew(0);
 	while (str[++i])
-		if ((c = str[i]) > 0x7F && c <= 0xFF && MB_CUR_MAX == 1)
-			str[i--] = (char)c;
+	{
+		c = str[i];
+		temp = get_unicode(c);
+		if (c > 0x0 && !ft_strequ(temp, "-1"))
+			ret = add_end(ret, temp);
 		else
 		{
-			if (c > 0x0 && !ft_strequ((temp = get_unicode(c)), "-1"))
-				ret = add_end(ret, temp);
-			else
-			{
-				ft_strdel(&ret);
-				return ("-1");
-			}
+			ft_strdel(&ret);
+			return ("-1");
 		}
+	}
 	return (ret);
 }

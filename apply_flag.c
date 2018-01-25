@@ -83,12 +83,6 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	length_f = get_length_flag(flag);
 	flag_letter = flag[ft_strlen(flag) - 1];
 	ret = handle_flags(length_f, flag, args);
-	if (ft_strchr("CS", flag_letter)
-			&& ret && !valid_unicode(ret))
-	{
-		ft_strdel(&ret);
-		return ("-1");
-	}
 	ret = get_temp(ret, &temp, flag[ft_strlen(flag) - 1]);
 	if (ret && (ft_strequ(ret, "-1")) &&
 			ft_strchr("CS", flag[ft_strlen(flag) - 1]))

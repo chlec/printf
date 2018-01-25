@@ -21,12 +21,12 @@ int			ft_printf(const char *format, ...);
 
 int		main(void)
 {
-	setlocale(LC_ALL, "");
+
 	wchar_t	s[4];
-	MB_CUR_MAX = 4;
-	s[0] = 0x53;
-	s[1] = 0x3abc;
-	s[2] = 0x3abc;
+
+	s[0] = 'a';
+	s[1] = 256;
+	s[2] = 'b';
 	s[3] = '\0';
 	int e = 7;
 	printf("Length: %d\n", ft_printf("%d %-30.4S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
@@ -44,9 +44,9 @@ int		main(void)
 	ft_printf("%s\n", "salut");
 	ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 	printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
-	printf("%d\n", ft_printf("%-10.5ls\n", s));
-	printf("%d\n", printf("%-10.5ls\n", s));
+	printf("%d\n", ft_printf("%C\n", 256));
+	printf("%d\n", printf("%C\n", 256));
 //	printf("Length: %d\n", ft_printf("%d %.5S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
-	while (1);
+	//while (1);
 	return (0);
 }
