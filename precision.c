@@ -28,27 +28,16 @@ static char	*remove_0(char *flag)
 
 static char	*precision_cs(char *ret, int nb, char flag_letter)
 {
-	int				t;
-	unsigned char	num;
-	char			*temp;
-
 	if (nb == 0 && ret[0] == '@')
 		nb = 1;
-	else if (flag_letter == 'S' && nb > 0
-			&& nb * 3 <= (int)ft_strlen(ret) + 1)
+	else if (flag_letter == 'S' && nb > 0)
 	{
-		t = 0;
-		while (t < (int)ft_strlen(ret) && t / 3 < nb)
+		if (nb < (int)ft_strlen(ret))
 		{
-			temp = ft_strndup(&ret[t], 3);
-			num = ft_atoi(temp);
-			ft_strdel(&temp);
-			if (num >= 192 && t / 3 + 3 >= nb)
-			{
-				nb = t;
-				break ;
-			}
-			t += 3;
+			if ((unsigned char)ret[nb - 1] >= 192)
+				nb--;
+			else if ((unsigned char)ret[nb - 2] >= 192)
+				nb -= 2;
 		}
 	}
 	ret = ft_strndup_static(ret, nb);

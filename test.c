@@ -29,8 +29,8 @@ int		main(void)
 	s[2] = 0x3abc;
 	s[3] = '\0';
 	int e = 7;
-	printf("Length: %d\n", ft_printf("%d %-30S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
-	printf("Length: %d\n",    printf("%d %-30S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
+	printf("Length: %d\n", ft_printf("%d %-30.4S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
+	printf("Length: %d\n",    printf("%d %-30.4S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length 2: %d\n", ft_printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc"));
 	printf("Length 2: %d\n", printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc"));
 	printf("Length 3: %d\n", ft_printf("me/ %10C test\n", L'à'));
