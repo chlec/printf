@@ -32,9 +32,9 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 		nb = 1;
 	else if (flag_letter == 'S' && nb > 0)
 	{
-		if (nb < (int)ft_strlen(ret))
+		if (nb > 1 && nb < (int)ft_strlen(ret))
 		{
-			if ((unsigned char)ret[nb - 1] >= 192)
+			if ((unsigned char)ret[nb - 1] >= 192 && MB_CUR_MAX > 1)
 				nb--;
 			else if ((unsigned char)ret[nb - 2] >= 192)
 				nb -= 2;

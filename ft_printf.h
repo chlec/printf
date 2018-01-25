@@ -15,7 +15,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include <stdint.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 int			ft_printf(const char *format, ...);
 size_t		arg_len(char *str);
