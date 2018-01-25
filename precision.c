@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 16:14:50 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/25 11:29:48 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 {
 	int				t;
 	unsigned char	num;
+	char			*temp;
 
 	if (nb == 0 && ret[0] == '@')
 		nb = 1;
-	else if (ft_strchr("CS", flag_letter) && nb > 0
+	else if (flag_letter == 'S' && nb > 0
 			&& nb * 3 <= (int)ft_strlen(ret) + 1)
 	{
 		t = 0;
 		while (t < (int)ft_strlen(ret) && t / 3 < nb)
 		{
-			num = ft_atoi(ft_strndup(&ret[t], 3));
+			temp = ft_strndup(&ret[t], 3);
+			num = ft_atoi(temp);
+			ft_strdel(&temp);
 			if (num >= 192 && t / 3 + 3 >= nb)
 			{
 				nb = t / 3;
@@ -48,7 +51,7 @@ static char	*precision_cs(char *ret, int nb, char flag_letter)
 			t += 3;
 		}
 	}
-	ret = ft_strndup(ret, nb);
+	ret = ft_strndup_static(ret, nb);
 	return (ret);
 }
 
@@ -87,7 +90,7 @@ static char	*get_ret_value(char *ret, int nb, char *flag)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	if (ft_strchr("diuopOxX", flag_letter) && nb > 0)
 		ret = store_begin(ret, nb);
-	else if (ft_strchr("cCsS", flag_letter))
+	else if (ft_strchr("csS", flag_letter))
 		ret = precision_cs(ret, nb, flag_letter);
 	else if (ft_strchr("oO", flag_letter) && nb == 0
 			&& ft_strequ(ret, "0") && ft_strchr(flag, '#'))

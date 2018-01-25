@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 16:05:27 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 15:16:10 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/25 11:33:13 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,14 @@ static char	*get_size_21(unsigned int c)
 
 static char	*get_unicode(int c)
 {
+	char	*temp_itoa;
+
 	if (c <= 0x7F)
-		return (ft_strlen(ft_itoa(c)) > 2
-				? ft_itoa(c) : add_begin(ft_itoa(c), ft_strdup("0")));
+	{
+		temp_itoa = ft_itoa(c);
+		return (ft_strlen(temp_itoa) > 2
+				? temp_itoa : add_begin(temp_itoa, ft_strdup("0")));
+	}
 	else if ((c >= 0xD800 && c <= 0xDB7F) || (c >= 0xDC00 && c <= 0xDFFF))
 		return ("-1");
 	else if (c > 0x7F && c <= 0xFF && MB_CUR_MAX > 1)
@@ -120,8 +125,7 @@ char		*wchartoasc(wchar_t *str)
 			str[i--] = (char)c;
 		else
 		{
-			temp = get_unicode(c);
-			if (!ft_strequ(temp, "-1"))
+			if (c > 0x0 && !ft_strequ((temp = get_unicode(c)), "-1"))
 				ret = add_end(ret, temp);
 			else
 			{

@@ -6,11 +6,24 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 14:57:03 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:32:51 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	update_big_sc(char **flag, char **str, char *got_flag)
+{
+	char	*temp;
+	char	*t;
+
+	temp = *flag;
+	temp[ft_strlen(temp) - 1] = ft_toupper(temp[ft_strlen(temp) - 1]);
+	temp = replace_chars(temp, ft_strdup("l"), ft_strdup(""));
+	t = replacestr(*str, got_flag, ft_strdup(temp));
+	ft_strdel(str);
+	*str = t;
+}
 
 static int	exec_flag(char **str, va_list *args, int *i)
 {
@@ -22,11 +35,7 @@ static int	exec_flag(char **str, va_list *args, int *i)
 	flag = get_flag(&t[*i]);
 	length_f = get_length_flag(flag);
 	if (ft_strchr("cs", flag[ft_strlen(flag) - 1]) && ft_strchr(length_f, 'l'))
-	{
-		flag[ft_strlen(flag) - 1] = ft_toupper(flag[ft_strlen(flag) - 1]);
-		flag = replace_chars(flag, ft_strdup("l"), ft_strdup(""));
-		*str = replacestr(*str, get_flag(&t[*i]), ft_strdup(flag));
-	}
+		update_big_sc(&flag, str, get_flag(&t[*i]));
 	ft_strdel(&length_f);
 	t = apply_flag(flag, *str, i, args);
 	ft_strdel(str);

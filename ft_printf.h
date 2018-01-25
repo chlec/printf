@@ -59,5 +59,6 @@ int			valid_unicode(char *str);
 char		*ft_update(char **old, char *new);
 char		*replace_chars(char *dest, char *find, char *content);
 char		*apply_flag(char *flag, char *str, int *i, va_list *args);
+char		*ft_strndup_static(char *str, size_t n);
 
 #endif

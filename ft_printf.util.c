@@ -79,3 +79,21 @@ char	*ft_update(char **old, char *new)
 	*old = temp;
 	return (*old);
 }
+
+char	*ft_strndup_static(char *str, size_t n)
+{
+	size_t	i;
+	size_t	len;
+
+	len = ft_strlen(str);
+	i = 0;
+	while (i < len)
+	{
+		if (i >= n)
+		{
+			str[i] = '\0';
+		}
+		i++;
+	}
+	return (str);
+}

@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:51:46 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 16:28:34 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:43:30 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 	else if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
 	{
 		*temp = ft_strdup(ret);
-		ret = ft_update(&ret, ft_strndup(ret, (ft_strlen(ret) / 3)));
+		ret = ft_strndup_static(ret, (ft_strlen(ret) / 3));
 	}
 	else if (!ft_strchr("sSpdDioOuUxXcC%", flag_letter))
 	{
@@ -93,7 +93,7 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 
 	length_f = get_length_flag(flag);
 	flag_letter = flag[ft_strlen(flag) - 1];
-    ret = handle_flags(length_f, flag, args);
+	ret = handle_flags(length_f, flag, args);
 	if (ft_strchr("CS", flag_letter)
 			&& ret && !valid_unicode(ret))
 	{

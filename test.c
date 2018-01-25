@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/24 16:26:06 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:30:55 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@ int			ft_printf(const char *format, ...);
 #include <limits.h>
 #include <inttypes.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include <wchar.h>
 
 int		main(void)
 {
-	wchar_t	s[4];
-
 	setlocale(LC_ALL, "");
+	wchar_t	s[4];
 	MB_CUR_MAX = 4;
 	s[0] = 0x53;
 	s[1] = 0x3abc;
 	s[2] = 0x81000;
 	s[3] = '\0';
 	int e = 7;
-	printf("Length: %d\n", ft_printf("%d %.4S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
-	printf("Length: %d\n",    printf("%d %.4S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
+	printf("Length: %d\n", ft_printf("%d %-30S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
+	printf("Length: %d\n",    printf("%d %-30S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
 	printf("Length 2: %d\n", ft_printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc"));
 	printf("Length 2: %d\n", printf("test %-12i et %--2.4s %24s !\n", 0, NULL, "cooc"));
 	printf("Length 3: %d\n", ft_printf("me/ %10C test\n", L'à'));
@@ -43,10 +44,8 @@ int		main(void)
 	ft_printf("%s\n", "salut");
 	ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
 	printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
-	ft_printf("%.3ls\n", s);
-	printf("%.3ls\n", s);
-	ft_printf("%lc, %lc\n", L'暖', L'ح');
-	printf("%lc, %lc\n", L'暖', L'ح');
-//	while (1);
+	ft_printf("%.5ls\n", s);
+	printf("%.5ls\n", s);
+	while (1);
 	return (0);
 }
