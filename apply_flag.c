@@ -25,10 +25,6 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 		ft_strdel(&ret);
 		ret = ft_strdup("@");
 	}
-	else if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)"))
-	{
-		*temp = ft_strdup(ret);
-	}
 	else if (!ft_strchr("sSpdDioOuUxXcC%", flag_letter))
 	{
 		ft_strdel(&ret);
@@ -37,15 +33,12 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 	return (ret);
 }
 
-static void	print_content(char *ret, char *temp,
+static void	print_content(char *temp,
 		char *conversion, char flag_letter)
 {
 	int		j;
 
-	if (ft_strchr("SC", flag_letter) && !ft_strequ(ret, "(null)")
-			&& !ft_strequ(ret, "@"))
-		manip_sc_up(conversion, ret, temp);
-	else if (ft_strchr("cC", flag_letter) && temp && temp[0] == '@')
+	if (ft_strchr("cC", flag_letter) && temp && temp[0] == '@')
 	{
 		j = 0;
 		while (conversion[j])
@@ -72,7 +65,7 @@ static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 	flag_letter = t_flag[ft_strlen(t_flag) - 1];
 	conversion = handle_conversion(*flag, *ret);
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
-	print_content(*ret, *temp, conversion, flag_letter);
+	print_content(*temp, conversion, flag_letter);
 	ft_strdel(temp);
 	len = (int)ft_strlen(conversion);
 	if (len > 0)

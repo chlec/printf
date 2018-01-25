@@ -21,7 +21,6 @@ SRCS =	ft_printf.c \
 		manipulation.c \
 		precision.c \
 		wchartoasc.c \
-		manip_sc_up.c \
 		replacestr.c \
 		ft_atol.c \
 		ft_uintmaxtoa.c \

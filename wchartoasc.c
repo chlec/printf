@@ -31,13 +31,13 @@ static char	*get_size_11(unsigned int c)
 	unsigned char	byte;
 	char			*ret;
 
-	ret = ft_strnew(0);
+	ret = ft_strnew(2);
 	b2 = (c << 26) >> 26;
 	b1 = ((c >> 6) << 27) >> 27;
 	byte = (0xC080 >> 8) | b1;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[0] = byte;
 	byte = (((long)0xC080 << 24) >> 24) | b2;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[1] = byte;
 	return (ret);
 }
 
@@ -49,16 +49,16 @@ static char	*get_size_16(unsigned int c)
 	unsigned char	byte;
 	char			*ret;
 
-	ret = ft_strnew(0);
+	ret = ft_strnew(3);
 	b3 = (c << 26) >> 26;
 	b2 = ((c >> 6) << 26) >> 26;
 	b1 = ((c >> 12) << 28) >> 28;
 	byte = (0xE08080 >> 16) | b1;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[0] = byte;
 	byte = (((long)0xE08080 << 16) >> 24) | b2;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[1] = byte;
 	byte = (((long)0xE08080 << 24) >> 24) | b3;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[2] = byte;
 	return (ret);
 }
 
@@ -70,30 +70,30 @@ static char	*get_size_21(unsigned int c)
 	unsigned char	byte;
 	char			*ret;
 
-	ret = ft_strnew(0);
+	ret = ft_strnew(4);
 	b3 = ((c >> 6) << 26) >> 26;
 	b2 = ((c >> 12) << 26) >> 26;
 	b1 = ((c >> 18) << 29) >> 29;
 	byte = (0xF0808080 >> 24) | b1;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[0] = byte;
 	byte = ((0xF0808080 << 8) >> 24) | b2;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[1] = byte;
 	byte = ((0xF0808080 << 16) >> 24) | b3;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[2] = byte;
 	byte = ((0xF0808080 << 24) >> 24) | (c << 26) >> 26;
-	ret = add_end(ret, ft_itoa(byte));
+	ret[3] = byte;
 	return (ret);
 }
 
 static char	*get_unicode(int c)
 {
-	char	*temp_itoa;
+	char	*ret;
 
 	if (c <= 0x7F)
 	{
-		temp_itoa = ft_itoa(c);
-		return (ft_strlen(temp_itoa) > 2
-				? temp_itoa : add_begin(temp_itoa, ft_strdup("0")));
+		ret = ft_strnew(1);
+		ret[0] = c;
+		return (ret);
 	}
 	else if ((c >= 0xD800 && c <= 0xDB7F) || (c >= 0xDC00 && c <= 0xDFFF))
 		return ("-1");
