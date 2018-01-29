@@ -6,11 +6,13 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:51:46 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/25 12:43:30 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/29 16:19:05 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+extern char	*g_buffer;
 
 static char	*get_temp(char *ret, char **temp, char flag_letter)
 {
@@ -65,6 +67,9 @@ static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 	flag_letter = t_flag[ft_strlen(t_flag) - 1];
 	conversion = handle_conversion(*flag, *ret);
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
+	ft_putstr(g_buffer);
+	ft_strdel(&g_buffer);
+	g_buffer = ft_strnew(0);
 	print_content(*temp, conversion, flag_letter);
 	ft_strdel(temp);
 	len = (int)ft_strlen(conversion);
