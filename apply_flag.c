@@ -94,6 +94,7 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	{
 		ft_strdel(&length_f);
 		ft_strdel(&temp);
+		ft_strdel(&g_buffer);
 		return (ret);
 	}
 	ft_strdel(&length_f);

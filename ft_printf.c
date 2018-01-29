@@ -69,15 +69,12 @@ int			ft_printf(const char *format, ...)
 		if (str[i] == '%')
 		{
 			if (exec_flag(&str, &args, &i) == -1)
-			{
-				ft_strdel(&g_buffer);
 				return (-1);
-			}
 		}
-		else if (ft_strchr(str, '%'))
-			g_buffer = add_end(g_buffer, ft_ctos(str[i]));
 		else
-			ft_putchar(str[i]);
+			g_buffer = add_end(g_buffer, ft_ctos(str[i]));
+		if (g_buffer)
+			ft_putstr(g_buffer);
 	va_end(args);
 	len = (int)ft_strlen(str);
 	ft_strdel(&str);

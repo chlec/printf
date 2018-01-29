@@ -53,6 +53,7 @@ int		main(void)
 	printf("a%xb%xc%xd\n", 0, 55555, 100000);
 	ft_printf("aa%%bb\n");
 	printf("aa%%bb\n");
+	while (1);
 //	printf("Length: %d\n", ft_printf("%d %.5S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
 	return (0);
 }
