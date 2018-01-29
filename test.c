@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:20:30 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/29 16:19:16 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/29 16:26:41 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int		main(void)
 	printf("before %d after\n", 42);
 	ft_printf("a%xb%xc%xd\n", 0, 55555, 100000);
 	printf("a%xb%xc%xd\n", 0, 55555, 100000);
+	ft_printf("aa%%bb\n");
+	printf("aa%%bb\n");
 //	printf("Length: %d\n", ft_printf("%d %.5S || %-5s%.7s %c |%lx| %20p\n", 234, L"我是一只猫。", "haha", "abcdef", 97, 2147483649, &e));
-	while (1);
 	return (0);
 }
