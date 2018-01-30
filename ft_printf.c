@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/29 16:20:18 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:16:55 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int			ft_printf(const char *format, ...)
 		}
 		else
 			g_buffer = add_end(g_buffer, ft_ctos(str[i]));
-		if (g_buffer)
-			ft_putstr(g_buffer);
+	if (g_buffer)
+		ft_putstr(g_buffer);
 	va_end(args);
 	len = (int)ft_strlen(str);
 	ft_strdel(&str);
