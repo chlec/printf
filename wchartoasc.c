@@ -26,62 +26,34 @@
 
 static char	*get_size_11(unsigned int c)
 {
-	unsigned char	b2;
-	unsigned char	b1;
-	unsigned char	byte;
 	char			*ret;
 
 	ret = ft_strnew(2);
-	b2 = (c << 26) >> 26;
-	b1 = ((c >> 6) << 27) >> 27;
-	byte = (0xC080 >> 8) | b1;
-	ret[0] = byte;
-	byte = (((long)0xC080 << 24) >> 24) | b2;
-	ret[1] = byte;
+	ret[0] = (c >> 6) | 0xC0;
+	ret[1] = (c & 63) | 0x80;
 	return (ret);
 }
 
 static char	*get_size_16(unsigned int c)
 {
-	unsigned char	b3;
-	unsigned char	b2;
-	unsigned char	b1;
-	unsigned char	byte;
 	char			*ret;
 
 	ret = ft_strnew(3);
-	b3 = (c << 26) >> 26;
-	b2 = ((c >> 6) << 26) >> 26;
-	b1 = ((c >> 12) << 28) >> 28;
-	byte = (0xE08080 >> 16) | b1;
-	ret[0] = byte;
-	byte = (((long)0xE08080 << 16) >> 24) | b2;
-	ret[1] = byte;
-	byte = (((long)0xE08080 << 24) >> 24) | b3;
-	ret[2] = byte;
+	ret[0] = (c >> 12) | 0xE0;
+	ret[1] = (c >> 6 & 63) | 0x80;
+	ret[2] = (c & 63) | 0x80;
 	return (ret);
 }
 
 static char	*get_size_21(unsigned int c)
 {
-	unsigned char	b3;
-	unsigned char	b2;
-	unsigned char	b1;
-	unsigned char	byte;
 	char			*ret;
 
 	ret = ft_strnew(4);
-	b3 = ((c >> 6) << 26) >> 26;
-	b2 = ((c >> 12) << 26) >> 26;
-	b1 = ((c >> 18) << 29) >> 29;
-	byte = (0xF0808080 >> 24) | b1;
-	ret[0] = byte;
-	byte = ((0xF0808080 << 8) >> 24) | b2;
-	ret[1] = byte;
-	byte = ((0xF0808080 << 16) >> 24) | b3;
-	ret[2] = byte;
-	byte = ((0xF0808080 << 24) >> 24) | (c << 26) >> 26;
-	ret[3] = byte;
+	ret[0] = (c >> 18) | 0xF0;
+	ret[1] = (c >> 12 & 63) | 0x80;
+	ret[2] = (c >> 6 & 63) | 0x80;
+	ret[3] = (c & 63) | 0x80;
 	return (ret);
 }
 
@@ -105,7 +77,7 @@ static char	*get_unicode(int c)
 		return (get_size_11(c));
 	else if (c <= 0xFFFF && MB_CUR_MAX > 2)
 		return (get_size_16(c));
-	else if (c <= 0xFFFFF && MB_CUR_MAX > 3)
+	else if (c <= 0x10FFFF && MB_CUR_MAX > 3)
 		return (get_size_21(c));
 	else
 		return ("-1");

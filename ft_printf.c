@@ -60,8 +60,6 @@ int			ft_printf(const char *format, ...)
 	int				len;
 
 	str = ft_strdup((char*)format);
-	if (!format)
-		return (0);
 	i = -1;
 	g_buffer = ft_strnew(0);
 	va_start(args, format);
