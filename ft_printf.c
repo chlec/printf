@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/31 14:11:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:35:26 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	exec_flag(char **str, va_list *args, int *i)
 	temp = apply_flag(flag, *str, i, args);
 	ft_strdel(str);
 	*str = temp;
-	if (*str && ft_strchr(*str, -1) &&
+	if (!*str &&
 			ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 	{
 		ft_strdel(&flag);
