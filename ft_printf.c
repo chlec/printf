@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/31 14:35:26 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:41:07 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	exec_flag(char **str, va_list *args, int *i)
 			ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 	{
 		ft_strdel(&flag);
+		ft_strdel(&g_buffer);
 		return (-1);
 	}
 	ft_strdel(&flag);
