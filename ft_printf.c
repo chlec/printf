@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/30 15:16:55 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:09:08 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	exec_flag(char **str, va_list *args, int *i)
 	temp = apply_flag(flag, *str, i, args);
 	ft_strdel(str);
 	*str = temp;
-	if (*str && ft_strequ(*str, "-1") &&
+	if (*str && ft_strchr(*str, -1) &&
 			ft_strchr("CS", flag[ft_strlen(flag) - 1]))
 	{
 		ft_strdel(&flag);
@@ -67,7 +67,10 @@ int			ft_printf(const char *format, ...)
 		if (str[i] == '%')
 		{
 			if (exec_flag(&str, &args, &i) == -1)
+			{
+				ft_strdel(&str);
 				return (-1);
+			}
 		}
 		else
 			g_buffer = add_end(g_buffer, ft_ctos(str[i]));

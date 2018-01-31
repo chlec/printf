@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:51:46 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/29 16:19:05 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:09:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_temp(char *ret, char **temp, char flag_letter)
 	*temp = 0;
 	if (ret == NULL && (flag_letter == 's' || flag_letter == 'S'))
 		ret = ft_strdup("(null)");
-	else if (ret && ft_strequ(ret, "-1") && ft_strchr("CS", flag_letter))
+	else if (ret && ft_strchr(ret, -1) && ft_strchr("CS", flag_letter))
 		return (ret);
 	else if (ret && ret[0] == '\0' && ft_strchr("cC", flag_letter))
 	{
@@ -52,7 +52,7 @@ static void	print_content(char *temp,
 			j++;
 		}
 	}
-	else
+	else if (ft_strlen(conversion))
 		ft_putstr(conversion);
 }
 
@@ -67,7 +67,18 @@ static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 	flag_letter = t_flag[ft_strlen(t_flag) - 1];
 	conversion = handle_conversion(*flag, *ret);
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
-	ft_putstr(g_buffer);
+	if (conversion && ft_strchr(conversion, -1) &&
+			ft_strchr("CS", flag_letter))
+	{
+		*ret = 0;
+		len = (int)ft_strlen(conversion);
+		if (len > 0)
+			ft_strdel(&conversion);
+		ft_strdel(&g_buffer);
+		return (len);
+	}
+	if (ft_strlen(g_buffer) > 0)
+		ft_putstr(g_buffer);
 	ft_strdel(&g_buffer);
 	g_buffer = ft_strnew(0);
 	print_content(*temp, conversion, flag_letter);
@@ -89,14 +100,7 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	ret = handle_flags(length_f, flag, args);
 	ret = get_temp(ret, &temp, flag[ft_strlen(flag) - 1]);
-	if (ret && (ft_strequ(ret, "-1")) &&
-			ft_strchr("CS", flag[ft_strlen(flag) - 1]))
-	{
-		ft_strdel(&length_f);
-		ft_strdel(&temp);
-		ft_strdel(&g_buffer);
-		return (ret);
-	}
+	ft_strdel(&temp);
 	ft_strdel(&length_f);
 	*i += apply_conversion(&flag, &ret, &temp, &str) - 1;
 	return (str);
