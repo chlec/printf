@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:51:46 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/31 14:09:54 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:23:53 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,17 @@ static int	apply_conversion(char **flag, char **ret, char **temp, char **str)
 	*str = replacestr(*str, t_flag, ft_strdup(conversion));
 	if (conversion && ft_strchr(conversion, -1) &&
 			ft_strchr("CS", flag_letter))
+		ft_strdel(str);
+	else
 	{
-		*ret = 0;
-		len = (int)ft_strlen(conversion);
-		if (len > 0)
-			ft_strdel(&conversion);
-		ft_strdel(&g_buffer);
-		return (len);
-	}
-	if (ft_strlen(g_buffer) > 0)
 		ft_putstr(g_buffer);
-	ft_strdel(&g_buffer);
-	g_buffer = ft_strnew(0);
-	print_content(*temp, conversion, flag_letter);
-	ft_strdel(temp);
+		ft_strdel(&g_buffer);
+		g_buffer = ft_strnew(0);
+		print_content(*temp, conversion, flag_letter);
+		ft_strdel(temp);
+	}
 	len = (int)ft_strlen(conversion);
-	if (len > 0)
-		ft_strdel(&conversion);
+	ft_strdel(&conversion);
 	return (len);
 }
 
@@ -100,7 +94,6 @@ char		*apply_flag(char *flag, char *str, int *i, va_list *args)
 	flag_letter = flag[ft_strlen(flag) - 1];
 	ret = handle_flags(length_f, flag, args);
 	ret = get_temp(ret, &temp, flag[ft_strlen(flag) - 1]);
-	ft_strdel(&temp);
 	ft_strdel(&length_f);
 	*i += apply_conversion(&flag, &ret, &temp, &str) - 1;
 	return (str);

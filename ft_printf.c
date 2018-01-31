@@ -6,7 +6,7 @@
 /*   By: clecalie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:09:10 by clecalie          #+#    #+#             */
-/*   Updated: 2018/01/31 14:09:08 by clecalie         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:11:54 by clecalie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ int			ft_printf(const char *format, ...)
 		if (str[i] == '%')
 		{
 			if (exec_flag(&str, &args, &i) == -1)
-			{
-				ft_strdel(&str);
 				return (-1);
-			}
 		}
 		else
 			g_buffer = add_end(g_buffer, ft_ctos(str[i]));
